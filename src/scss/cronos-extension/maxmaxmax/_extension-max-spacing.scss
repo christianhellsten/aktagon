@@ -1,0 +1,135 @@
+@mixin negativeMargins() {
+    @if $enable-negative-margins {
+        @each $name, $value in $spacing-values {
+            @if $name != 'auto' and $name != 0 {
+                // All directions
+                .-m-#{$name} {
+                    margin: -#{$value} !important
+                }
+    
+                // Cardinal directions
+                @each $direction, $suffix in $spacing-directions {
+                    .-m#{$suffix}-#{$name} {
+                        margin-#{$direction}: -#{$value}!important
+                    }
+                }
+    
+                // Horizontal axis
+                @if $spacing-horizontal != null {
+                    .-m#{$spacing-horizontal}-#{$name} {
+                        margin-left: -#{$value} !important;
+                        margin-right: -#{$value} !important;
+                    }
+                }
+    
+                // Vertical axis
+                @if $spacing-vertical != null {
+                    .-m#{$spacing-vertical}-#{$name} {
+                        margin-top: -#{$value} !important;
+                        margin-bottom: -#{$value} !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin spacingResponsive($resp) {
+    @each $property, $shortcut in $spacing-shortcuts {
+        @each $name, $value in $spacing-values {
+            @if $shortcut != 'p' and shortcut != 'pr' != and shortcut != 'pb' != and shortcut != 'pl' != and shortcut != 'pt' and $value != 'auto' {
+                // All directions
+                .#{$shortcut}-#{$name}-#{$resp} {
+                    #{$property}: $value !important
+                }
+                
+                @if $enable-negative-margins and $property == 'margin' and $name != 'auto' and $name != 0 {
+                    .-#{$shortcut}-#{$name}-#{$resp} {
+                        #{$property}: -#{$value} !important
+                    }                
+                }
+    
+                // Cardinal directions
+                @each $direction, $suffix in $spacing-directions {
+                    .#{$shortcut}#{$suffix}-#{$name}-#{$resp} {
+                        #{$property}-#{$direction}: $value !important
+                    }
+    
+                    @if $enable-negative-margins and $property == 'margin' and $name != 'auto' and $name != 0 {
+                        .-#{$shortcut}#{$suffix}-#{$name}-#{$resp} {
+                            #{$property}-#{$direction}: -#{$value} !important
+                        }                    
+                    }
+                }
+                // Horizontal axis
+                @if $spacing-horizontal != null {
+                    .#{$shortcut}#{$spacing-horizontal}-#{$name}-#{$resp} {
+                        #{$property}-left: $value !important;
+                        #{$property}-right: $value !important;
+                    }
+    
+                    @if $enable-negative-margins and $property == 'margin' and $name != 'auto' and $name != 0 {
+                        .-#{$shortcut}#{$spacing-horizontal}-#{$name}-#{$resp} {
+                            #{$property}-left: -#{$value} !important;
+                            #{$property}-right: -#{$value} !important;
+                        }
+                    }
+                }
+                // Vertical axis
+                @if $spacing-vertical != null {
+                    .#{$shortcut}#{$spacing-vertical}-#{$name}-#{$resp} {
+                        #{$property}-top: $value !important;
+                        #{$property}-bottom: $value !important;
+                    }
+    
+                    @if $enable-negative-margins and $property == 'margin' and $name != 'auto' and $name != 0 {
+                        .-#{$shortcut}#{$spacing-vertical}-#{$name}-#{$resp} {
+                            #{$property}-top: -#{$value} !important;
+                            #{$property}-bottom: -#{$value} !important;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@include negativeMargins();
+
+@include mobile {
+    @include spacingResponsive(mobile);
+}
+
+@include tablet {
+    @include spacingResponsive(tablet);
+}
+
+@include tablet-only {
+    @include spacingResponsive(tablet-only);
+}
+
+@include touch {
+    @include spacingResponsive(touch);
+}
+
+@include desktop {
+    @include spacingResponsive(desktop);
+}
+
+@include desktop-only {
+    @include spacingResponsive(desktop-only);
+}
+
+@include widescreen {
+    @include spacingResponsive(widescreen);
+}
+
+@include widescreen-only {
+    @include spacingResponsive(widescreen-only);
+}
+
+@include fullhd {
+    @include spacingResponsive(fullhd);
+}
+

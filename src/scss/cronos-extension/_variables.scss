@@ -1,0 +1,118 @@
+// Variables
+$border: #E7E5E4 !default;
+$border-hover: #F5F5F4 !default;
+$border-light: #FAFAF9 !default;
+$border-light-hover: #F5F5F4 !default;
+
+$radius: 0px !default;
+$radius-small: 0px !default;
+$radius-large: 0px !default;
+$radius-2x-large: 0px !default;
+
+//$primary: #006251 !default;
+$dark: #280498 !default;
+$success: #65B996 !default;
+$info: #56A2BD !default;
+$warning: #FBDC8E !default;
+$danger: #FC5C46 !default;
+$light: #F5F5F4 !default;
+//$dark: #00003F !default;
+$primary: #280498 !default;
+
+$text: $dark !default;
+$text-strong: $dark !default;
+
+$yellow: #FBE099 !default;
+$green: #338174 !default;
+$blue: #56A2BD !default;
+$red: #FC5C46 !default;
+
+$black-bis: #292524 !default;
+$black-ter: #44403C !default;
+$grey-darker: #57534E !default;
+$grey-dark: #78716C !default;
+$grey-light: #A8A29E !default;
+$grey-lighter: #D6D3D1 !default;
+$white-ter: #FAFAF9 !default;
+$white-bis: #F5F5F4 !default;
+
+$link: $primary !default;
+$link-visited: $primary !default;
+$link-hover: #004E41 !default;
+$link-hover-border: #004E41 !default;
+$link-focus: #004E41 !default;
+$link-focus-border: #004E41 !default;
+$link-active: #004E41 !default;
+$link-active-border: #004E41 !default;
+
+$container-max-width: 1140px !default;
+
+$body-family: "DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+
+$title-family: "Roboto Slab",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+$title-color: $dark !default;
+$title-weight: 700 !default;
+$title-line-height: 1.2 !default;
+
+$subtitle-family: "DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+$subtitle-color: #57534E !default;
+$subtitle-line-height: 2 !default;
+$subtitle-weight: 400 !default;
+$subtitle-size: 1rem !default;
+
+$size-1: 4rem !default;
+$size-2: 3rem !default;
+$size-3: 2.25rem !default;
+$size-4: 1.25rem !default;
+$size-5: 1rem !default;
+$size-6: 0.875rem !default;
+$size-7: 0.75rem !default;
+
+$section-padding: 5rem 1.5rem !default;
+$section-padding-desktop: 5rem 3rem !default;
+
+$tag-color: $dark !default;
+$tag-radius: 0px !default;
+$tag-delete-margin: 1px !default;
+
+$control-height: 3.3em !default;
+$size-normal: 0.875rem !default;
+
+$button-font-weight: 700 !default;
+$button-padding-vertical: calc(0.9em - 1px) !default;
+$button-padding-horizontal: 1.5rem !default;
+
+$box-radius: 0px !default;
+$box-shadow: none !default;
+$box-border-color: #E7E5E4 !default;
+$box-border-width: 1px !default;
+$box-border-style: solid !default;
+
+$card-radius: 0.25rem !default;
+$card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !default;
+
+$panel-radius: 0.25rem !default;
+$panel-shadow: none !default;
+
+$navbar-item-font-size: 0.875rem !default;
+$navbar-item-font-weight: 500 !default;
+$navbar-item-color: $dark !default;
+$navbar-item-hover-color: $dark !default;
+$navbar-item-hover-background-color: transparent !default;
+$navbar-item-padding-x: 1.5rem !default;
+$navbar-item-padding-y: .5rem !default;
+
+$notification-color: null !default;
+$notification-font-size: null !default;
+
+$notification-radius: $radius !default;
+$notification-border-width: 0 !default;
+$notification-border-top-width: $notification-border-width !default;
+$notification-border-right-width: $notification-border-width !default;
+$notification-border-bottom-width: $notification-border-width !default;
+$notification-border-left-width: $notification-border-width !default;
+
+$notification-border-top-right-radius: $notification-radius !default;
+$notification-border-top-left-radius: $notification-radius !default;
+$notification-border-bottom-right-radius: $notification-radius !default;
+$notification-border-bottom-left-radius: $notification-radius !default;

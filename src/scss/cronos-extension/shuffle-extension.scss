@@ -1,0 +1,81 @@
+/*!
+ * Shuffle CSS Extension for Bulma
+ * Copyright 2021 The Shuffle Team
+ */
+
+@import "variables";
+
+.notification {
+    color: $notification-color;
+    font-size: $notification-font-size;
+
+    border-top-width: $notification-border-top-width;
+    border-right-width: $notification-border-right-width;
+    border-bottom-width: $notification-border-bottom-width;
+    border-left-width: $notification-border-left-width;
+
+    border-top-right-radius: $notification-border-top-right-radius;
+    border-top-left-radius: $notification-border-top-left-radius;
+    border-bottom-right-radius: $notification-border-bottom-right-radius;
+    border-bottom-left-radius: $notification-border-bottom-left-radius;
+    
+    @each $name, $pair in $notification-colors {
+        &.is-#{$name} {
+            @if $notification-color {
+                color: $notification-color !important;
+            }
+            @if length($pair) >= 3 {
+                border-style: solid;
+                border-color: nth($pair, 3);
+            }
+            &.is-light {
+                @if $notification-color {
+                    color: $notification-color !important;
+                }
+                @if length($pair) >= 4 {
+                    border-style: solid;
+                    border-color: nth($pair, 4);
+                }
+            }
+        }
+    }
+}
+
+.navbar-item,
+.navbar-link {
+    padding: $navbar-item-padding-y $navbar-item-padding-x;
+    font-size: $navbar-item-font-size;
+    font-weight: $navbar-item-font-weight,
+}
+
+.is-absolute { position: absolute; }
+.is-relative { position: relative; }
+.is-fixed { position: fixed; }
+.is-sticky { position: sticky; }
+
+.is-top-0 { top: 0; }
+.is-right-0 { right: 0; }
+.is-bottom-0 { bottom: 0; }
+.is-left-0 { left: 0; }
+.is-inset-0 { 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.is-cover { object-fit: cover; }
+.is-rounded { border-radius: $radius-2x-large; }
+
+.box {
+    border-width: $box-border-width;
+    border-color: $box-border-color;
+    border-style: $box-border-style;
+}
+
+.button {
+    font-weight: $button-font-weight;
+}
+
+@import "maxmaxmax/extension-max-spacing";
+@import "maxmaxmax/extension-max-width";
