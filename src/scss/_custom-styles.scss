@@ -1,2 +1,77 @@
-$primary: #00003F !default;
-$dark: #280498 !default;
+$primary: #000 !default;
+$dark: $primary;
+$black: #222;
+
+h1 {
+  @extend .is-size-1;
+  @extend .title;
+  @extend .has-text-white;
+}
+
+h2 {
+  @extend .is-size-2;
+  @extend .title;
+  @extend .has-text-white;
+}
+
+h3 {
+  @extend .is-size-3;
+  @extend .title;
+  @extend .has-text-white;
+}
+
+input, textarea {
+  //@extend .has-text-black;
+  @extend .has-background-dark;
+}
+
+.is-gradient {
+  background: linear-gradient(111.17deg, #01FCFF -19.55%, #004BFF 59.17%);
+}
+
+.button-call-to-action {
+  background-color: transparent;
+  border-color: $black;
+  color: white;
+  opacity: 1;
+}
+
+.button-call-to-action:hover {
+  color: white;
+  opacity: .8;
+}
+
+.ellipse-background {
+  position: absolute;
+  width: 1175px;
+  height: 1175px;
+  left: -470px;
+  top: -470px;
+  border-radius: 50%;
+
+  background: #01A4FF;
+  opacity: .07;
+  filter: blur(200px);
+}
+
+.ellipse-background-right {
+  left: 348px;
+  top: -470px;
+}
+
+.title {
+  word-break: normal;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $dark;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $dark;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $dark;
+}

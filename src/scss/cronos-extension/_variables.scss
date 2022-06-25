@@ -10,17 +10,20 @@ $radius-large: 0px !default;
 $radius-2x-large: 0px !default;
 
 //$primary: #006251 !default;
-$dark: #280498 !default;
+//$dark: #280498 !default;
+$dark: #000 !default;
 $success: #65B996 !default;
 $info: #56A2BD !default;
 $warning: #FBDC8E !default;
 $danger: #FC5C46 !default;
 $light: #F5F5F4 !default;
+$white: #FFF !default;
 //$dark: #00003F !default;
-$primary: #280498 !default;
+//$primary: #280498 !default;
+$primary: #000 !default;
 
-$text: $dark !default;
-$text-strong: $dark !default;
+$text: $white !default;
+$text-strong: $white !default;
 
 $yellow: #FBE099 !default;
 $green: #338174 !default;
@@ -47,15 +50,18 @@ $link-active-border: #004E41 !default;
 
 $container-max-width: 1140px !default;
 
-$body-family: "DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+$body-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"DM Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
 
-$title-family: "Roboto Slab",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+//$title-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Roboto Slab","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
+$title-family: 'Montserrat', sans-serif;
 $title-color: $dark !default;
 $title-weight: 700 !default;
 $title-line-height: 1.2 !default;
 
+$subtitle-family: 'Montserrat', sans-serif;
+//$subtitle-family: "DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
 $subtitle-family: "DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !default;
-$subtitle-color: #57534E !default;
+$subtitle-color: $dark !default;
 $subtitle-line-height: 2 !default;
 $subtitle-weight: 400 !default;
 $subtitle-size: 1rem !default;
