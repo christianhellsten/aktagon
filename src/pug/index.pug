@@ -46,16 +46,16 @@ html(lang="en")
                         p(class="has-text-light mb-5") Optimized for your business and customers.
                         a(class="is-gradient button button-call-to-action is-large", href="#contact") Start a project
                 div(class="column")
-                    //img(src="aktagon-assets/images/section-1.png", class="opacity: 0.4")
+                    //img(src="aktagon-assets/images/section-1.png", style="opacity: 0.4")
             //
             // SECTION 2
             //
             div(class="columns is-relative mt-20")
                 a(name="products-for-the-web")
-                div(class="column")
+                div(class="column is-hidden-mobile")
+                    //img(src="aktagon-assets/images/web.svg", style="opacity: 0.4")
                 div(class="column is-relative")
                     div(class="ellipse-background ellipse-background-right")
-                        //img(src="aktagon-assets/images/section-2.png", class="opacity: 0.4")
                     div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
                         span(class="has-text-light") Web development
                         h1(class="title is-spaced mt-2")
@@ -82,7 +82,8 @@ html(lang="en")
             //
             div(class="columns is-relative mt-20")
                 a(name="products-for-mobile-devices")
-                div(class="column")
+                div(class="column is-hidden-mobile has-text-right")
+                    img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
                 div(class="column")
                     div(class="ellipse-background-right")
                     div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
@@ -91,23 +92,26 @@ html(lang="en")
                             span Software products
                             span(class="is-underlined is-block") for mobile devices.
                         p(class="has-text-light mb-5") Develop cross-platform and browser-based software products for iOS and Android.
-                    //img(src="aktagon-assets/images/section-4.png", class="opacity: 0.4")
             //
             // CONTACT
             //
             div(class="columns is-relative py-20 is-centered")
                 a(name="contact")
-                div(class="column is-one-third")
-                    span(class="has-text-light") Looking for collaboration for your next project?
-                    h2 Send a message
-                    form(action="#", class="mt-12", data-netlify="true")
-                        div(class="control mb-6")
-                            input(class="input", type="text", placeholder="Name")
-                        div(class="control mb-6")
-                            input(class="input", type="email", placeholder="E-mail")
-                        div(class="control mb-6")
-                            textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message...")
-                        button(class="button is-gradient is-fullwidth") Send message
+                div(class="column is-half-widescreen")
+                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                        span(class="has-text-light") Looking for collaboration for your next project?
+                        h2 Send a request for proposal
+                        form(action="#", class="mt-12", data-netlify="true", enctype="multipart/form-data")
+                            div(class="control mb-6")
+                                input(class="input", type="text", placeholder="Name")
+                            div(class="control mb-6")
+                                input(class="input", type="email", placeholder="E-mail")
+                            div(class="control mb-6")
+                                textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
+                            div(class="control mb-6")
+                              label Attach file:
+                              input(name="file", type="file")
+                            button(class="button is-gradient is-fullwidth") Send
 
             //
             // ABOUT
@@ -131,7 +135,7 @@ html(lang="en")
             //
             // FOOTER
             //
-            div(class="columns is-relative py-20")
+            div(class="columns is-relative py-20 px-5")
                 div(class="column")
                     img(src="aktagon-assets/logos/aktagon-logo.svg", alt="", width="100")
                 div(class="column has-text-right") &copy; 2006 - &infin;
