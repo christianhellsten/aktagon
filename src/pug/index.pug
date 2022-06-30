@@ -18,7 +18,7 @@ html(lang="en")
         nav(class="navbar is-dark mb-10 mb-16-desktop py-5", style="background-color: transparent !important;")
             div(class="container is-fluid")
                 div(class="navbar-brand is-justify-content-space-between")
-                    a(class="pl-0 mb-0 ml-5", href="#")
+                    a(class="pl-0 mb-0 ml-5 ml-0-mobile", href="#")
                         img(src="aktagon-assets/logos/aktagon-logo-white.svg", alt="")
                     button(class="button is-ghost is-hidden-desktop navbar-menu-open")
                         svg(width="24", height="24", viewbox="0 0 24 24", fill="none", xmlns="http://www.w3.org/2000/svg")
@@ -34,10 +34,10 @@ html(lang="en")
             //
             // SECTION 1
             //
-            div(class="columns is-relative")
+            div(class="columns is-relative mx-2-mobile")
                 div(class="column")
                     div(class="ellipse-background")
-                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                    div(class="mb-20 mb-32-desktop")
                         span(class="has-text-light") Web & Mobile 
                         h1(class="title is-spaced mt-2")
                             span Software
@@ -50,13 +50,13 @@ html(lang="en")
             //
             // SECTION 2
             //
-            div(class="columns is-relative mt-20")
+            div(class="columns is-relative mt-20 mx-2-mobile")
                 a(name="products-for-the-web")
                 div(class="column is-hidden-mobile")
                     //img(src="aktagon-assets/images/web.svg", style="opacity: 0.4")
                 div(class="column is-relative")
                     div(class="ellipse-background ellipse-background-right")
-                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                    div(class="mb-20 mb-32-desktop")
                         span(class="has-text-light") Web development
                         h1(class="title is-spaced mt-2")
                             span Software products
@@ -65,11 +65,11 @@ html(lang="en")
             //
             // SECTION 3
             //
-            div(class="columns is-relative mt-20")
+            div(class="columns is-relative mt-20 mx-2-mobile")
                 a(name="products-for-the-desktop")
                 div(class="column")
                     div(class="ellipse-background")
-                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                    div(class="mb-20 mb-32-desktop")
                         span(class="has-text-light") Desktop app development
                         h1(class="title is-spaced mt-2")
                             span Software products
@@ -80,13 +80,13 @@ html(lang="en")
             //
             // SECTION 4
             //
-            div(class="columns is-relative mt-20")
+            div(class="columns is-relative mt-20 mx-2-mobile")
                 a(name="products-for-mobile-devices")
                 div(class="column is-hidden-mobile has-text-right")
                     img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
                 div(class="column")
                     div(class="ellipse-background-right")
-                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                    div(class="mb-20 mb-32-desktop")
                         span(class="has-text-light") Mobile app development
                         h1(class="title is-spaced mt-2")
                             span Software products
@@ -95,10 +95,10 @@ html(lang="en")
             //
             // CONTACT
             //
-            div(class="columns is-relative py-20 is-centered")
+            div(class="columns is-relative py-20 is-centered m-5-mobile")
                 a(name="contact")
                 div(class="column is-half-widescreen")
-                    div(class="m-40-desktop m-20 mb-20 mb-32-desktop")
+                    div(class="mb-20 mb-32-desktop")
                         span(class="has-text-light") Looking for collaboration for your next project?
                         h2 Send a request for proposal
                         form(action="#", class="mt-12", data-netlify="true", enctype="multipart/form-data", netlify-honeypot="bot-field", name="contact-form")
