@@ -25,8 +25,22 @@ input, textarea {
   @extend .has-background-dark;
 }
 
+// https://www.joshwcomeau.com/gradient-generator/
 .is-gradient {
-  background: linear-gradient(111.17deg, #01FCFF -19.55%, #004BFF 59.17%);
+  //linear-gradient(111.17deg, #01FCFF -19.55%, #004BFF 59.17%);
+  background: linear-gradient(
+    120deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(289deg 100% 21%) 44%,
+    hsl(315deg 100% 27%) 65%,
+    hsl(329deg 100% 36%) 76%,
+    hsl(337deg 100% 43%) 83%,
+    hsl(357deg 91% 59%) 88%,
+    hsl(17deg 100% 59%) 92%,
+    hsl(34deg 100% 53%) 95%,
+    hsl(45deg 100% 50%) 98%,
+    hsl(55deg 100% 50%) 100%
+  );
 }
 
 .button-call-to-action {
