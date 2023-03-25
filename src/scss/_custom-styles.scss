@@ -75,6 +75,18 @@ input, textarea {
 
 .title {
   word-break: normal;
+  @extend .fadeout;
+}
+
+.fadeout {
+  // Fade-out effect
+  background: -webkit-linear-gradient(top left, #fff, #000);
+  background: -moz-linear-gradient(top left, #fff, #000);
+  background: linear-gradient(to bottom right, #fff, #000);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
