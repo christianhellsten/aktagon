@@ -6,8 +6,8 @@ $border-light-hover: #F5F5F4 !default;
 
 $radius: 0px !default;
 $radius-small: 0px !default;
-$radius-large: 0px !default;
-$radius-2x-large: 0px !default;
+$radius-large: 9999px !default;
+$radius-2x-large: 9999px !default;
 
 //$primary: #006251 !default;
 //$dark: #280498 !default;
@@ -84,7 +84,7 @@ $tag-delete-margin: 1px !default;
 $control-height: 3.3em !default;
 $size-normal: 0.875rem !default;
 
-$button-font-weight: 300 !default;
+$button-font-weight: 700 !default;
 $button-padding-vertical: calc(0.9em - 1px) !default;
 $button-padding-horizontal: 1.5rem !default;
 

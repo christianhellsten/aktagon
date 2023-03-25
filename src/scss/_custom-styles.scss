@@ -44,14 +44,15 @@ input, textarea {
 }
 
 .button-call-to-action {
+  border-radius: 9999px;
   background-color: transparent;
   border-color: $black;
-  color: white;
+  color: $white;
   opacity: 1;
 }
 
 .button-call-to-action:hover {
-  color: white;
+  color: $white;
   opacity: .8;
 }
 
@@ -80,9 +81,9 @@ input, textarea {
 
 .fadeout {
   // Fade-out effect
-  background: -webkit-linear-gradient(top left, #fff, #000);
-  background: -moz-linear-gradient(top left, #fff, #000);
-  background: linear-gradient(to bottom right, #fff, #000);
+  background: -webkit-linear-gradient(top left, #fff, #222);
+  background: -moz-linear-gradient(top left, #fff, #222);
+  background: linear-gradient(to bottom right, #fff, #222);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
