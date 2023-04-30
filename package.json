@@ -19,9 +19,13 @@
     "watch-css": "npm run css-compile -- --watch"
   },
   "dependencies": {
-    "bulma": "^0.9.4"
+    "bulma": "^0.9.4",
+    "markdown-it-anchor": "^8.6.7"
   },
   "devDependencies": {
+    "jstransformer-markdown-it": "^3.0.0",
+    "markdown-it-table-of-contents": "^0.6.0",
+    "marked": "^4.3.0",
     "browser-sync": "^2.27.10",
     "clean-css-cli": "^4.2.1",
     "cpx": "^1.5.0",

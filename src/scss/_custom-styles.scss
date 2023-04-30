@@ -1,28 +1,39 @@
-$primary: #000 !default;
+$primary: #222 !default;
 $dark: $primary;
 $black: #222;
 
-h1 {
-  @extend .is-size-1;
-  @extend .title;
-  @extend .has-text-white;
-}
+.has-background-dark {
+  a {
+    color: $white;
+  }
 
-h2 {
-  @extend .is-size-2;
-  @extend .title;
-  @extend .has-text-white;
-}
+  h1 {
+    @extend .is-size-1;
+    @extend .title;
+    @extend .has-text-white;
+  }
 
-h3 {
-  @extend .is-size-3;
-  @extend .title;
-  @extend .has-text-white;
-}
+  h2 {
+    @extend .is-size-2;
+    @extend .title;
+    @extend .has-text-white;
+  }
 
-input, textarea {
-  //@extend .has-text-black;
-  @extend .has-background-dark;
+  h3 {
+    @extend .is-size-3;
+    @extend .title;
+    @extend .has-text-white;
+  }
+
+  input, textarea {
+    //@extend .has-text-black;
+    @extend .has-background-dark;
+  }
+
+  .title {
+    word-break: normal;
+    @extend .fadeout;
+  }
 }
 
 // https://www.joshwcomeau.com/gradient-generator/
@@ -72,11 +83,6 @@ input, textarea {
 .ellipse-background-right {
   left: 348px;
   top: -470px;
-}
-
-.title {
-  word-break: normal;
-  @extend .fadeout;
 }
 
 .fadeout {
