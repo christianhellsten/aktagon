@@ -2,7 +2,7 @@
 
 Assets (SCSS, images, etc):
 
-* src/assets - default static files (eg. image placeholders). You should replace them with your own files.
+* src/assets/ - default static files (eg. image placeholders). You should replace them with your own files.
 * src/scss/ - Sass sources used to build Bootstrap theme. Variables used in Theme Customizer are located in custom-variables.scss file.
 
 HTML:

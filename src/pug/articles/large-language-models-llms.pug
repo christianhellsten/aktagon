@@ -1,0 +1,327 @@
+extends ../article-layout.pug
+
+block title
+  title= 'Essential Concepts for Comprehending Large Language Models (LLMs)'
+
+block content
+  h1 Essential Concepts for Comprehending Large Language Models (LLMs)
+
+  :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
+
+    **Table of contents**
+
+    [[toc]]
+
+    ## Introduction
+
+    Large Language Models (LLMs) have revolutionized the field of natural
+    language processing (NLP) by demonstrating impressive capabilities in
+    understanding and generating text. These models can comprehend questions
+    and produce answers with a level of sophistication that closely mirrors
+    human conversation.
+
+    LLMs achieve this near-human comprehension of language through the
+    application of advanced deep learning techniques. They are trained on vast
+    datasets, containing a wide array of textual information, which enables
+    them to interpret and respond to human language.
+
+    One of the core concepts behind Large Language Models (LLMs) is language
+    modeling (LM).
+
+    ## Language Modeling (LM)
+
+    In the context of Large Language Models (LLMs), language modeling is the
+    process of developing a statistical and probabilistic model that is able to
+    predict the sequence of words in a given language.
+
+    The goal of language modeling is to capture the meaning of text, including
+    grammar rules, syntax, semantics, and facts about the world of natural
+    language. This enables LLMs to ”understand” and generate human-like text.
+
+    Language models are built using various techniques that include natural
+    language processing (NLP) and deep learning.
+
+    ## Natural Language Processing (NLP)
+
+    Natural Language Processing (NLP) uses various computer algorithms to
+    analyze human language and convert it into a format that computers can
+    work with.
+
+    This process includes, for example, tokenization for breaking sentences
+    into words, and part-of-speech (POS) tagging, which assigns grammatical
+    categories such as nouns, verbs, and adjectives to the tokenized words.
+
+    Another common technique used in NLP is Named Entity Recognition (NEM).
+    This technique detects the names and type of, for example, places and
+    objects.
+
+    After the text (or voice) has been processed using NLP techniques, the data
+    can be fed into a deep learning model.
+
+    ## Deep Learning
+
+    Deep learning is a set of machine learning algorithms that have led to
+    significant advancements in various domains, including natural language
+    processing and complex tasks such as, for example, question-answering,
+    machine translation, and gameplay.
+
+    Deep learning models employ artificial neural networks (ANNs), also
+    referred to as neural networks (NNs), that consist of interconnected layers
+    of neurons.
+
+    For more on deep learning, see [The Little Book of Deep
+    Learning](https://fleuret.org/public/lbdl.pdf).
+
+    ## Neural Networks (NNs)
+
+    Neural networks function like a computer brain that is able to help with
+    analyzing problems (input) and making decisions (output).
+
+    Many types of neural networks exist, including the following:
+
+    - Feedforward neural network (FNNs): the simplest NN, input flows only one way through the layers
+    - Recurrent neural networks (RNNs): input can flow through the neurons in cycles
+    - Convolutional neural networks (CNNs): often used in, for example, image and voice recognition
+
+    In an NN, interconnected artificial neurons, organized into layers, form a
+    neural network that can process and learn from data that is fed to it.
+    Inputs, such as text, flow through each layer, allowing the neural network
+    to progressively learn higher-level representations and relationships
+    within the data.
+
+    The first layer, known as the input layer, receives basic information (such
+    as pixels in an image). As the information moves through the subsequent
+    layers (called hidden layers), each neuron learns more complex concepts
+    (like colors and shapes). The final output layer then produces the result
+    or a prediction (like recognizing a person in the image).
+
+    During the training phase, the neural network learns from a specific
+    training dataset. To optimize the output, that is, to minimize the amount
+    of errors, a cost (or loss) function is employed. This loss function
+    calculates how close to the desired output the prediction of the neural
+    network is. Based on this, the internal parameters of the neural network
+    are adjusted automatically during training to improve accuracy, often using
+    a technique such as backpropagation or gradient descent.
+
+    ## Neuron
+
+    In artificial neural networks, a neuron (also see perceptron), is a
+    fundamental computational unit inspired by the biological neurons in the
+    human brain.
+
+    The purpose of an artificial neuron is to receive input, process it, and
+    generate an output that can be passed to other neurons or used as the final
+    result.
+
+    ## Transformer Model
+
+    The Transformer model is a groundbreaking and state-of-the-art neural
+    network architecture introduced by Vaswani, Uszkoreit, et al. in their 2017
+    paper titled ["Attention is All You
+    Need"](https://arxiv.org/abs/1706.03762):
+
+    > The best performing models also connect the encoder and decoder through
+    > **an attention mechanism**. We propose a new simple network architecture,
+    > the Transformer, based solely on attention mechanisms, dispensing with
+    > recurrence and convolutions entirely. Experiments on two machine
+    > translation tasks show these models to be **superior in quality** while
+    > being more **parallelizable and requiring significantly less time to
+    > train.**
+
+    The transformer model uses an auto-regressive approach, where the
+    previously generated symbols are used as additional input when generating
+    the next symbols.
+
+    The transformer model also incorporates positional encodings, which are
+    added to the embeddings to provide information about the position of each
+    word in the sentence. Positional encodings are essential in the transformer
+    model.
+
+    The key innovation of the transformer model is the concept of
+    self-attention, a mechanism that enables more efficient processing and
+    understanding of text.
+
+    ## Self-Attention Mechanism
+
+    The self-attention mechanism enables the transformer model to process and
+    understand the relationships and dependencies between words in a sentence,
+    regardless of their distance from one another (long-range dependencies).
+    Learning long-range dependencies is a key challenge in many natural
+    language processing tasks, such as reading comprehension, text
+    summarization, and question answering.
+
+    The concept of attention heads and multi-head attention are essential
+    components that enable the model to capture different aspects of the input
+    sequence and gain a richer understanding of the text.
+
+    By incorporating multiple attention heads, the model can simultaneously
+    learn various aspects of the input sequence, such as syntactic (grammar),
+    semantic (meaning), or positional relationships between words. This allows
+    the model to develop a more nuanced understanding of the text, which
+    ultimately leads to better performance in natural language processing
+    tasks.
+
+    ## Embeddings
+
+    In natural language processing, an embedding is a vector (which is
+    basically a list of numbers). This numerical representation of a word or
+    sequence of words captures its meaning and grammar in a form that allows
+    the model to process and understand the text.
+
+    [Embeddings](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings) are typically learned through unsupervised training on large text corpora, such as Wikipedia, the Common Crawl, or other source on the internet. Numerous providers offer embeddings, including OpenAI, Cohere, Hugging Face, and others.
+
+    Since the transformer model’s self-attention mechanism lacks positional
+    awareness, additional positional encodings are added to the word
+    embeddings. These positional encodings are essential and provide the model
+    with information about the position of words in the sequence, enabling it
+    to learn the correct order and relationships between words. This
+    information is crucial for understanding the structure and meaning of the
+    text.
+
+    ## Parameters & Hyperparameters
+
+    Parameters: These are the adjustable settings within the model that are
+    learned during the training process. The optimization process adjusts, for
+    example, the weight parameters using an optimization algorithm called
+    backpropagation, to minimize the difference between the model's predictions
+    and the actual desired outputs.
+
+    Hyperparameters: These are the high-level settings of the model and
+    training process that are not learned but instead are set by the user
+    before training begins. Hyperparameters significantly impact the model's
+    performance and training time. Examples of hyperparameters include the
+    number of layers in the neural network, the number of neurons per layer,
+    and the type of activation functions used.
+
+    ## Optimization
+
+    Optimization is crucial for training LLMs because it enables the model to
+    adjust its internal parameters to minimize the difference between its
+    predictions and the desired outcomes during the training phase.
+
+    The Transformer model uses a state-of-the-art optimization algorithm named
+    Adam, introduced in a paper titled ["Adam: A Method for Stochastic
+    Optimization"](https://arxiv.org/abs/1412.6980) in 2014 by Kingma and Lei
+    Ba:
+
+    > We introduce Adam, an algorithm for first-order gradient-based
+    > optimization of stochastic objective functions, based on adaptive estimates
+    > of lower-order moments. The method is straightforward to implement, is
+    > computationally efficient, has little memory requirements, is invariant to
+    > diagonal rescaling of the gradients, and is well suited for problems that
+    > are large in terms of data and/or parameters.
+
+    The exact optimization technique might change in the future as it is a
+    developing field of research.
+
+    Backpropagation is a key optimization technique used during the training
+    process of neural networks. Gradient descent is another training algorithm
+    commonly used.
+
+    ## Pre-Training
+
+    Pre-training is a process of training a language model on a massive dataset
+    to allow it to learn the semantic and syntactic aspects of languages, as
+    well as basic facts.
+
+    Pre-training involves taking a mathematical model with initially random
+    parameters (weights) and adjusting these weights iteratively. Most often, a
+    loss function is employed to measure the difference between the model's
+    predictions and the the desired outputs. By minimizing the loss function,
+    the model's weights are adjusted iteratively, which helps improve the
+    accuracy of the model's predictions (output).
+
+    The general knowledge of languages and facts learnt during pre-training is
+    often not enough for many tasks, such as question-answering, which is why
+    fine-tuning is needed for tasks that require more specific knowledge.
+
+    ## Fine-Tuning
+
+    Fine-tuning is the process of taking a pre-trained LLM, such as GPT, and
+    training it on a task-specific dataset to teach it to solve more specific
+    problems, for example, question-answering.
+
+    Fine-tuning is costly due to the high need for computing resources.
+    Fine-tuning can lead to overfitting issues where the model gives accurate
+    output with training data but struggles with real-world data.
+
+    Many times, prompt engineering is a better and more cost-effective approach
+    than fine-tuning when trying to achieve better results in tasks like
+    question-answering.
+
+    ## Prompt Engineering
+
+    Prompt engineering is the process in which the end-user refines the prompt,
+    or input query, to optimize the responses from language models. This
+    approach does not modify the language model itself, unlike model
+    fine-tuning. As a result, making prompt engineering more cost-effective and often
+    also more accurate than fine-tuning.
+
+    As LLMs are pretrained on a massive dataset, they learn the general
+    structure of languages and how to respond to a wide variety of inputs.
+    However, these models might not always generate the desired output,
+    especially if the input prompt is ambiguous or poorly phrased.
+
+    With prompt engineering, the end-user can guide the model towards providing
+    more accurate, useful, and relevant responses. This can include providing
+    context (examples), asking questions in a more explicit manner, or using
+    specific phrasing to encourage desired behavior from the model and avoiding
+    hallucinations.
+
+    ## Hallucinations
+
+    AI models, such as the ones used by OpenAI’s ChatGPT, generates outputs
+    that can be creative,  plausible, but factually incorrect or nonsensical.
+    This is what is usually referred to as hallucinations.
+
+    These hallucinations occur when the model relies on patterns it has learned
+    from training data but fails to generate the requested answer from the
+    given context (prompt). To mitigate these hallucinations the user can
+    refine the prompt, usually referred to as prompt engineering, to guide the
+    AI towards more accurate answers.
+
+    ## Model Size
+
+    The number of parameters in an LLM has a direct impact on its capacity to
+    learn and model complex patterns and relationships in data. Models with
+    more parameters can generally capture finer details and nuances in
+    language, leading to improved performance in tasks like text generation,
+    translation, and summarization. However, larger models also require more
+    computational resources for training and inference, and may face challenges
+    like overfitting or increased memory requirements.
+
+    OpenAI has chosen not to disclose specific details about the GPT-4 model,
+    including its size and other technical aspects. OpenAI's GPT-3 consists of
+    175 billion parameters.
+
+    ## Computational Resources
+
+    The computational resources required for training large-scale AI models,
+    such as OpenAI's GPT models, are immense and can be prohibitively expensive
+    for smaller organizations or research teams.
+
+    Sam Altman, the CEO of OpenAI, believes that larger organizations with
+    access to more computational resources will have a significant advantage in
+    developing and training more powerful AI systems.
+
+    ## Future
+
+    The future of LLMs is of course unclear. However, several exciting
+    developments are currently underway in the field of LLM research.
+
+    These developments have already given us:
+
+    - Smaller models
+    - Cheaper models
+    - [Open source models](https://www.semianalysis.com/p/google-we-have-no-moat-and-neither)
+    - [Optimized models](https://bair.berkeley.edu/blog/2023/04/03/koala/)
+
+    ## Conclusion
+
+    Large Language Models, though not perfect, can already be employed today to
+    solve real-world challenges that require human-like understanding of
+    languages.
+
+    However, due to the inherent stochastic nature and limitations of LLMs,
+    human fact-checking and intervention is still required for verifying the
+    accuracy and validity of the output provided by these models.

@@ -1,0 +1,78 @@
+extends ../article-layout.pug
+
+block title
+  title= 'Build Smart and Autonomous Apps with LangChain & Large Language Models'
+
+block content
+  h1 Build Smart and Autonomous Apps with LangChain & Large Language Models
+
+  :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
+
+    **Table of contents**
+
+    [[toc]]
+
+    ## Introduction
+
+    Large Language Models (LLMs) have the ability to understand human language
+    and generate human-like responses to queries.
+
+    LLMs are pre-trained and fine-tuned on massive datasets that make them
+    great for problems that require the understanding of human languages and
+    and text generation, including, for example, question-answering and text
+    summarization.
+
+    For more specialized use cases that involve data the LLM has not been trained
+    on, we need to provide the LLM with:
+
+      1. **External data** that the LLM can use to solve the problem
+      2. **Tools** that offer capabilities and features to assist the LLM in problem-solving
+      3. **Autonomous problem-solving** features to enable the LLM to solve problems independently
+
+    LangChain is an open-source library that enables software engineers to
+    develop applications that connect LLMs, like ChatGPT, with the data and
+    tools necessary to perform advanced automation tasks.
+
+    ## Core LangChain Features
+
+    Based on LangChain 0.0.157
+
+    LangChain is a comprehensive framework for developing applications powered
+    by language models. The core features that LangChain provides are the
+    following:
+
+    - Schema: data structures used for storing data, including text, document, and chat message
+
+    - Models: the core functionality that takes input and generates output, including the embedding, language, and chat models
+
+    - Prompts: the queries (input) given to the LLM by the user
+
+    - Indexes: data structures that allow us find documents that are relevent to the query
+
+    - Memory: short-term and long-term memory for applications, e.g., chat messages and history
+
+    - Chains: provides a way of splitting a complex task into more optimal subtasks
+
+    - Agents: a component that can autonomously solve problems through the use of external tools and the other features of LangChain
+
+    - Structured tool: https://blog.langchain.dev/structured-tools/
+
+    ## Schema
+
+    ## Models
+
+    ## Prompts
+
+    ## Indexes
+
+    ## Memory
+
+    ## Chains
+
+    ## Agents
+
+    ## Conclusion
+
+    LangChain provides you with a set of tools that allow you to create
+    autonomous agents powered by large language models that have
+    access to your internal and external data sources.

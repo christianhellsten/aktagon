@@ -2,27 +2,47 @@ $primary: #222 !default;
 $dark: $primary;
 $black: #222;
 
+article.content {
+  h1 {
+    font-family: $title-family;
+    @extend .is-size-1;
+    @extend .title;
+  }
+
+  h2 {
+    font-family: $subtitle-family;
+    @extend .is-size-2;
+    @extend .subtitle;
+  }
+
+  h2 {
+    font-family: $subtitle-family;
+    @extend .is-size-3;
+    @extend .subtitle;
+  }
+}
+
 .has-background-dark {
   a {
-    color: $white;
+    //color: $white;
   }
 
   h1 {
     @extend .is-size-1;
     @extend .title;
-    @extend .has-text-white;
+    //@extend .has-text-white;
   }
 
   h2 {
     @extend .is-size-2;
     @extend .title;
-    @extend .has-text-white;
+    //@extend .has-text-white;
   }
 
   h3 {
     @extend .is-size-3;
     @extend .title;
-    @extend .has-text-white;
+    //@extend .has-text-white;
   }
 
   input, textarea {
