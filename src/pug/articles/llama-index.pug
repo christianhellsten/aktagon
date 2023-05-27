@@ -30,16 +30,18 @@ block content
 
     In such cases, LLMs can be fine-tuned using the private data to achieve
     more accurate responses. However, fine-tuning can be a resource intensive
-    and costly operation, and has to be done again whenever the data is updated.
+    and costly operation, and has to be done again whenever the data is
+    updated. Fine-tuning might also cause problems such as overfitting.
 
     Often a more effective and cost-efficient approach involves prompt
-    engineering and local pre-processing and retrieval of relevant chunks of
-    the data.
+    engineering and storing data locally before sending it to the LLM.
 
-    Storing data locally and utilizing local search enables the retrieval of
-    relevant portions of the data at lower costs. These chunks can be
-    provided to the language model as context or examples within the prompt.
-    Consequently, the language model can comprehend these examples and generate
+    Storing data locally and utilizing similarity search enables the retrieval
+    of relevant portions of the data at lower costs. These ”chunks” can be
+    provided to the language model as context, referred to as context-augmented
+    generation, within the prompt.
+
+    The language model can comprehend these examples and generate
     a more accurate and relevant response by leveraging this context.
 
     This is where LlamaIndex comes into play. Also sometimes referred to as GPT
@@ -48,132 +50,124 @@ block content
     specifically designed for efficient and cost-effective downloading,
     indexing, and querying of your data.
 
-    ## Fundamental Concepts of LlamaIndex
+    This article is based on LlamaIndex version 0.6.
 
-    LlamaIndex is generally [used in the following manner](https://gpt-index.readthedocs.io/en/latest/guides/primer/usage_pattern.html):
+    ## LlamaIndex Workflow
 
-    1. Data Loading: 
-    First, we retrieve the data to be indexed and convert it to documents, which includes metadata.
+    As a software engineer, this is [how I most often use
+    LlamaIndex](https://gpt-index.readthedocs.io/en/latest/guides/primer/usage_pattern.html):
 
-    2. Data Processing: 
-    Next, we parse the document into nodes, in other words, chunks of text.
+    **Data Loading**
 
-    3. Data Indexing: 
-    With the data loaded and processed, we index it to enable search and retrieval of nodes.
+    First, I retrieve the data to be indexed and convert it to documents using
+    LlamaIndex.
 
-    4. Querying: 
-    Finally, we can execute a query and receive a response. Behind the scenes, this query is run against the index to retrieve documents and nodes relevant to the query. An LLM is used to generate the final response.
+    **Data Processing**
 
-    5. Optimization: 
-    If needed, LlamaIndex also be used to improve the quality of responses and reduce usage costs.
+    Next, I process the data. This includes parsing the document into nodes, in
+    other words, chunks of text, extracting keywords, etc.
 
-    ## Data Loading
+    **Data Indexing**
+
+    With the data loaded and processed, I use LlamaIndex to index the data.
+    This enables search and retrieval of nodes that are relevant to the query.
+
+    **Querying**
+
+    The last step is to execute a query. Behind the scenes, the query is run
+    against the index to retrieve documents and nodes relevant to the query. An
+    LLM model is used to generate the final response.
+
+    **Optimization**
+
+    LlamaIndex can optionally be used to optimize the quality of responses and
+    reduce usage costs.
+
+    ## Core Concepts
+
+    LlamaIndex offers a variety of features and data structures that simplify
+    the development and maintenance of LLM-based applications. These features
+    allow efficient organization and querying of information for large language
+    models. The core features provided by LlamaIndex include:
+
+    ![LlamaIndex core concepts](/images/articles/LlamaIndex.jpg "LlamaIndex core concepts")
+
+    **Index**
+
+    An index allows for efficient queries, most often some type of similarity
+    search, to be run on your data. The indexing process transforms chunks of
+    data or entire documents into numerical vector representations.
+
+    **Retriever**
+
+    A retriever is used to retrieve nodes from an index.
+
+    **Response synthesizer**
+
+    The response synthesizer generates the final response. Response synthesis
+    can optionally include post processors and various optimizers to improve
+    response quality and reduce costs.
+
+    **Query engine**
+
+    The query engine serves as the interface and acts as a bridge between our
+    data and the LLM. It allows us to pose questions through prompts and
+    receive answers from the LLM.
+
+    ## Data Structures
+
+    Behind LlamaIndex, there is a collection of data structures that enable its
+    functionality, these are some of the more important ones:
+
+    **Data loader**
 
     LlamaIndex's data connectors, also known as loaders, streamline the process
     of loading data from online sources, such as Google Docs and Slack, and
     offline sources, such as text files and PDF files.
 
-    Most often, the downloaded data is indexed and loaded into a vector store.
-    This vector store can then be queried to retrieve relevant portions, or
-    ”chunks”, of the data. These chunks can subsequently be included as
-    examples in the prompt.
-
     A list of LlamaIndex loaders can be
     found online at [llamahub.ai](https://llamahub.ai/).
 
-    ## Data Processing
+    **Document**
 
-    Data processing involves, for example, splitting the loaded [documents into
-    nodes](https://github.com/jerryjliu/llama_index/blob/main/examples/paul_graham_essay/SentenceSplittingDemo.ipynb) and [extracting
-    keywords](https://github.com/jerryjliu/llama_index/blob/main/examples/paul_graham_essay/KeywordTableComparison.ipynb).
+    Documents hold the raw data, for example, the text and metadata of one or more pages of a PDF file.
 
-    ## Data Indexing
+    **Node**
 
-    Data indexing is a process in which raw textual data is transformed into a
-    format that LLMs can efficiently understand and work with. During this
-    process, the data is converted into vector representations, often
-    referred to as embeddings.
+    Nodes are chunks of the documents such as words, sentences, and paragraphs.
+    Due to prompt size constraints, often referred to as ”context window size”,
+    it's not possible to feed large documents to the LLMs. One solution is to
+    break the document down into smaller pieces, a process known as ”chunking”.
+    The GPT-4 model, for example, has a context window size of 32,000 tokens,
+    with each token representing a character or word.
 
-    LlamaIndex not only provides tools for indexing data easily and
-    efficiently, but also enables the creation of complex data structures, such
-    as indices organized into graph or tree structures that are optimized for
-    specific tasks or queries. Indices can be organized, for example, by
-    keyword, relationships, etc. Furthermore, each index can have a textual
-    description (summary) that informs the language model, such as GPT, about
-    the context in which the index is most suitable.
+    **Token**
 
-    ## Data Structures
+    A token is the base unit, a character, word, or sentence, that the LLM
+    model is able to work with.
 
-    LlamaIndex offers a variety of data structures that simplify the development
-    and maintenance of LLM-based applications. These data structures allow
-    efficient organization, retrieval, and querying of information for large
-    language models. The basic data structures provided by LlamaIndex include:
+    A tokenizer is responsible for splitting the text into tokens.
 
-    - Document
+    **Embeddings**
 
-    The document holds the raw data, for example, text and metadata.
+    In the field of natural language processing, an embedding refers to a
+    vector, which can be thought of as a list of numbers. This vector
+    representation of a word or a sequence of words captures its meaning and
+    grammar in a way that enables the model to process and comprehend the text.
 
-    - Node
+    **Prompts**
 
-    Nodes are chunks of the documents (e.g. sentences or paragraphs). Due to
-    prompt size constraints—often referred to as 'context window size'—we are
-    not allowed to feed large documents to the LLMs. One solution is to break
-    the document down into smaller pieces, a process known as ”chunking”. For
-    example, the GPT-4 model has a context window size of 32,000 tokens, with
-    each token representing a character or word.
-
-    - Index
-
-    The indexing process transforms chunks of data or entire documents into
-    numeric vector representations (embeddings) that enable the LLM to work
-    with it.
-
-    Indices are often stored in vector stores or databases, such as ChromaDB,
-    Milvus, Pinecone, Qdrant, Redis, Weaviate or Zilliz.
-
-    - Index structures
-
-    At a minimum, a single index is required to query your data. However, you
-    can also create multiple indices (lists, graphs, trees) for greater
-    flexibility. Organizing indices into graph and tree structures can improve
-    the organization and retrieval of relevant documents.
-
-    - Storage context
-
-    LlamaIndex enables the reuse of nodes between multiple indices, thus
-    preventing duplication of data across indices. This feature allows for more
-    efficient resource utilization and cost reduction.
-
-    - Cost predictor
-
-    LlamaIndex's cost predictors help estimate the expenses associated with
-    using language models such as OpenAI's GPT models.
-
-    Each interaction with a LLM incurs a cost - for example, OpenAI's Davinci
-    costs $0.02 per 1,000 tokens at the time of writing. The cost associated
-    with building an index and querying depends on many factors, including:
-
-      - The LLM used, e.g., GPT-4 is more expensive than GPT-3
-      - The size of the data, i.e., the number of tokens used during indexing
-      - The size of the prompt, i.e., the number of tokens used during prompting
-
-    - Prompt template
-
-    LlamaIndex's prompt templates are optimized for building efficient prompts
-    (queries). Prompt engineering is a crucial concept in working with LLMs, as
-    it helps improve the quality of responses.
-
-    In addition to prompts, there are techniques and concepts that are
-    important to understand to be able to use LLMs and LlamaIndex efficiently.
-
-    Prompt engineering is perhaps the most important concept to learn for the
-    end-user of LLMs.
+    Interaction with an LLM model is done through a prompt. This is why writing
+    efficient prompts, often referred to as Prompt Engineering, is the key to
+    getting the most out of LLM models. LlamaIndex includes prompt templates that
+    follow best practices and also allows you to customize them to your needs.
 
     ## Prompt Engineering
 
+    The quality of the prompts is crucial to the effectiveness of an LLM.
+
     Prompt engineering involves designing effective prompts (input) for Large
-    Language Models (LLMs) to improve their responses (output). The quality
-    of the input prompts is crucial to the effectiveness of an LLM.
+    Language Models (LLMs) to improve their responses (output).
 
     For instance, an effective prompt that guides the LLM towards a correct
     answer may include context, facts, and specify what to avoid or include in
@@ -206,70 +200,48 @@ block content
     Evaluating the performance of a model for your specific use case is a
     crucial aspect of developing applications that leverage language models.
 
-    In addition to optimal use cases, each model has associated usage costs and
-    varying computational resource requirements, such as memory and CPU.
-
     ## Vector Store
 
-    LlamaIndex offers the option of using vector stores, also referred to as
-    embeddings databases, to address high usage costs, prompt-size limitations,
-    search quality issues, and many other challenges and limitations of LLM
-    models and the limited data they have been are trained on.
+    Vectors, referred to as embeddings in the context of Large Language Models,
+    are numerical representations of the nodes and tokens that Large Language
+    Models are able to understand and process. These are not features of
+    LlamaIndex per se, but fundamental concepts used in machine learning and
+    the development of LLM models.
 
-    Vector stores function as local or remotely hosted databases that are used
-    for storing and searching vector representations of textual data. These
-    vector representations, known as embeddings in the context of LLMs,
-    capture the semantic and syntactic meaning of the text.
+    Vectors, along with metadata, are most often stored in-memory or in a
+    vector database.
 
-    The primary purpose of vector stores is to enable fast and efficient
-    retrieval of chunks of text (embeddings) relevant to the prompt from large
-    datasets that the language model has not been trained on.
+    Vector stores enable fast and efficient retrieval of text (embeddings)
+    relevant to the prompt from large datasets that the language model has not
+    been trained on.
 
-    For example, you can store a recently published and non-public PDF that the
-    LLM has not been trained on and include chunks of the PDF in the prompt.
+    They achieve this through the following key features, which are essential in
+    the development of LLM-based applications:
 
-    Popular vector store implementations include:
+    - **Vector storage**: Vector stores provide a mechanism to store and organize vectors (embeddings) efficiently.
+    - **Indexing capabilities**: Vector stores offer indexing capabilities, which makes vector searching and retrieval faster.
+    - **Similarity search**: Vector stores enable similarity search, which involves finding vectors that are most similar to a given query vector.
 
-    - ChromaDb: an open-source vector store that can be hosted locally
-    - Pinecone: a closed-source vector store that is provided as a SaaS-service
+    LlamaIndex provides supports many popular vector stores, including, Milvus,
+    Redis, Pinecone, etc.
 
     ## Similarity Search
 
-    Similarity search algorithms can be used to find and retrieve relevant
-    chunks of text that are relevant to the prompt. The text can then be
-    incorporated as, for example, context (examples) within the prompt template
-    to generate a final prompt that is sent to the LLM.
+    Vector stores use various search algorithms, such as ANN (Approximate
+    Nearest Neighbors), to find text that is similar to the query prompt.
 
-    Vector stores utilize various search algorithms, such as approximate
-    nearest neighbor (ANN), which can efficiently store, locate, and retrieve
-    text most similar to the user query.
+    These text chunks are then incorporated as context within the prompt. By
+    doing so, the LLM can use the provided context to generate a more informed
+    and accurate response to the prompt.
 
-    Some popular ANN libraries include FAISS, Annoy, and HNSW.
+    LlamaIndex supports several ANN libraries, including FAISS, Annoy, and
+    HNSW. These libraries enable efficient and accurate approximate nearest
+    neighbor search operations.
 
-    LlamaIndex is also able to use these libraries without a vector store.
+    ## Index
 
-    ## LlamaIndex's Core Abstractions
-
-    [LlamaIndex's three core abstractions](https://betterprogramming.pub/llamaindex-0-6-0-a-new-query-interface-over-your-data-331996d47e89) are:
-
-    1. Index: Offers storage and query capabilities for documents stored as chunks of text (nodes), including metadata.
-    2. Retriever: Retrieves the most relevant data (nodes) from an index based on a given query.
-    3. QueryEngine: Generates a response based on the query and retrieved nodes.
-
-    ![LlamaIndex core concepts](/images/articles/llama-core-concepts.png "LlamaIndex core concepts. Source https://gpt-index.readthedocs.io/")
-
-    In addition to these core abstractions, LlamaIndex has numerous other
-    concepts, some of which are discussed later in this article.
-
-    Please note, this article is based on LlamaIndex version 0.6. Future
-    versions might introduce new concepts or rename existing ones.
-
-    ## Index & Index Composability
-
-    An index provides an efficient view of your data, enabling quick and
-    effective retrieval of information relevant to a prompt. In LlamaIndex, a
-    retriever is used to identify and return the nodes that are most relevant
-    to your query.
+    LlamaIndex offers many types of indices, each designed to store nodes in
+    distinct ways and execute data queries using different approaches.
 
     When the corpus of data is large, using similarity search alone on one
     index may not be sufficient to find the most relevant data. This is because
@@ -277,23 +249,53 @@ block content
 
     For complex use cases like these, where having one huge index leads to poor
     results, the concept of index composability offers a solution for better
-    results. This approach, allows you to split the indices into smaller
-    segments, consequently minimizing the number of results. Essentially, these
-    structures allow us to break down the query process into separate parts
-    making the search space smaller and more optimized.
+    results. This approach, allows you to split the indices, and consequently
+    minimizing the number of results.
 
-    LlamaIndex's index-composability features enable creating a knowledge graph
-    (e.g., list, tree, and table are supported) from a set of indices. The
-    knowledge graph of indices can then be queried, allowing LlamaIndex
-    (sometimes with the help of the LLM) to choose the indices that are most
-    relevant to the query.
+    Software engineers can then choose the most suitable index type for their
+    problem.
 
-    When composing a hierarchy of indices, you provide LlamaIndex (and the LLM)
-    with a summary of each index. The summary helps the LLM in selecting the
-    best indices for your query.
+    **List**
 
-    LlamaIndex uses query engines to execute the query recursively, traversing
-    the indices, starting from the root index, then moving to the sub-indices.
+    A list-based data structure that takes documents as input and breaks them
+    up into small document chunks.
+
+    Uses the _create and refine_ paradigm to construct an initial answer using
+    the first text chunk.
+
+    The answer undergoes further refinement by using subsequent text chunks as
+    context. This iterative process of feeding in additional information can
+    enhance the accuracy and depth of the answer, allowing for a more
+    comprehensive and context-aware response.
+
+    **Tree**
+
+    The tree index is _a tree-structured index_ in which each node serves as a
+    summary of its corresponding children nodes. This tree-based organization
+    allows for efficient navigation and retrieval of information, with each node
+    encapsulating a concise representation of its child nodes' content.
+
+    During querying the tree of indices is traversed to construct an answer.
+
+    **Graph**
+
+    In a _composable graph_, you can specify one index as the root and specify
+    separate children indices. Each child index should have a summary.
+
+    During querying the graph of indices is traversed recursively to construct
+    an answer.
+
+    **Keyword table**
+
+    Uses GPT with a _keyword extraction prompt_ to extract keywords from
+    document chunks during index creation.
+
+    During querying, extracts a set of relevant keywords from the query using a
+    keyword extraction prompt. The retrieved chunks are then ranked based on
+    the number of matches with the keywords, ensuring the most relevant results
+    are prioritized.
+
+    Constructs the answer using the _create and refine_ paradigm.
 
     ## Retriever
 
@@ -390,6 +392,26 @@ block content
     selection of the model. The Playground module gives you a way of
     automatically testing your data using different configurations of indices,
     models, and many other options.
+
+    **Cost predictor**
+
+    LlamaIndex's cost predictors help estimate the expenses associated with
+    using language models such as OpenAI's GPT models.
+
+    Each interaction with a LLM model incurs a cost - for example, OpenAI's
+    Davinci costs $0.02 per 1,000 tokens at the time of writing (2023). The
+    cost associated with building an index and querying depends on many
+    factors, including:
+
+      - The LLM used, e.g., GPT-4 is more expensive than GPT-3
+      - The size of the data, i.e., the number of tokens used during indexing
+      - The size of the prompt, i.e., the number of tokens used during prompting
+
+    **Storage context**
+
+    LlamaIndex storage context features allows for the reuse of nodes between
+    multiple indices, thus lowering costs by preventing duplication of data
+    across indices.
 
     ## Conclusion
 
