@@ -340,16 +340,34 @@ block content
 
     ## Response Synthesizer
 
-    A [response
-    synthesizer](https://gpt-index.readthedocs.io/en/latest/guides/primer/index_guide.html#response-synthesis)
-    takes a list of nodes as input, which are relevant document chunks (nodes)
-    fetched by a retriever from an index, and generates an output in the form
-    of a response or answer to the given query.
+    A [response synthesizer](https://gpt-index.readthedocs.io/en/latest/guides/primer/index_guide.html#response-synthesis)
+    takes a list of nodes as input and generates output in the form of a
+    response.
 
-    LlamaIndex supports different types of response synthsis, including:
+    LlamaIndex supports different modes of response synthesis, including:
 
-    - Create-and-Refine: Iteratively approach of generating a response from a list of nodes.
-    - Tree-Summarize: Bottoms-up approach of generating a response from a tree where the nodes are the leaves.
+    **Refine**
+
+    An iterative way of generating a response that uses all nodes. The initial
+    answer is generated using the first node as context. This answer and the
+    second node are then fed as context to a refinement prompt. This process
+    continues until all nodes have been processed in the same way and the final
+    response has been generated.
+
+    **Compact and refine**
+
+    Same as refine, except the text chunks are merged into larger chunks to
+    optimize cost and performance.
+
+    **Tree summarize**
+
+    Tree summarization is a bottoms-up approach to constructing a response from a
+    list of nodes. It involves generating a summary and parent node by combining
+    every two nodes until only one answer remains.
+
+    **Simple summarize**
+
+    Combines all text chunks and makes one LLM call using the whole text as context.
 
     ## Query Transformation
 
