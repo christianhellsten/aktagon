@@ -238,7 +238,7 @@ block content
     HNSW. These libraries enable efficient and accurate approximate nearest
     neighbor search operations.
 
-    ## Index
+    ## Index & Index Composability
 
     LlamaIndex offers many types of indices, each designed to store nodes in
     distinct ways and execute data queries using different approaches.
@@ -249,13 +249,12 @@ block content
 
     For complex use cases like these, where having one huge index leads to poor
     results, the concept of index composability offers a solution for better
-    results. This approach, allows you to split the indices, and consequently
-    minimizing the number of results.
+    results
 
-    Software engineers can then choose the most suitable index type for their
-    problem.
+    Software engineers can then choose the most suitable index type(s) for their
+    problem and build a _composable graph_ from multiple indices.
 
-    **List**
+    **List index**
 
     A list-based data structure that takes documents as input and breaks them
     up into small document chunks.
@@ -268,24 +267,35 @@ block content
     enhance the accuracy and depth of the answer, allowing for a more
     comprehensive and context-aware response.
 
-    **Tree**
+    Does not use an LLM during index construction.
+
+    **Vector store index**
+
+    A vector store index is built on top of a vector store.
+
+    Uses the LLM model to create the embeddings during index construction.
+
+    **Tree index**
 
     The tree index is _a tree-structured index_ in which each node serves as a
     summary of its corresponding children nodes. This tree-based organization
-    allows for efficient navigation and retrieval of information, with each node
-    encapsulating a concise representation of its child nodes' content.
+    allows for efficient navigation and retrieval of information, with each
+    parent node encapsulating a concise representation of its child nodes'
+    content.
 
     During querying the tree of indices is traversed to construct an answer.
 
-    **Graph**
+    A tree index is useful for summarizing a collection of documents.
 
-    In a _composable graph_, you can specify one index as the root and specify
+    **Composable graph index**
+
+    In a [_composable graph index_](https://howaibuildthis.substack.com/p/llamaindex-how-to-use-index-correctly), you can specify one index as the root and specify
     separate children indices. Each child index should have a summary.
 
     During querying the graph of indices is traversed recursively to construct
     an answer.
 
-    **Keyword table**
+    **Knowledge graph index**
 
     Uses GPT with a _keyword extraction prompt_ to extract keywords from
     document chunks during index creation.
@@ -297,6 +307,16 @@ block content
 
     Constructs the answer using the _create and refine_ paradigm.
 
+    Similar to a hash table. Also referred to as keyword-table index.
+
+    **SQL index**
+
+    The SQL index allows you to connect your database data to an LLM and ask questions about the data.
+
+    **Pandas index**
+
+    The Pandas index allows you to connect pandas to an LLM and ask questions about the data.
+
     ## Retriever
 
     In order to retrieve your data (as nodes) from an index, LlamaIndex uses
@@ -304,11 +324,10 @@ block content
 
     LlamaIndex supports many types of retrievers, including the following:
 
-    - Vector store retriever: returns top-k most similar nodes from a vector store
-    - List retriever: capable of returning all nodes from an index
-    - Tree retriever: capable of returning nodes from a hierarchical tree of nodes
-
-    Each type of retriever is optimized to a specific use case.
+    - Vector store retriever: returns top-k most similar nodes from a vector store.
+    - List retriever: capable of returning all nodes from an index.
+    - Tree retriever: capable of returning nodes from a hierarchical tree of nodes.
+    - Knowledge graph retriever: capable of returning nodes from a hierarchical tree of nodes.
 
     ## Query Engine
 
@@ -318,9 +337,6 @@ block content
 
     The query engine generates a response that includes the answer along with
     the sources of the answer (nodes).
-
-    Behind the three core concepts LlamaIndex there are even more concepts,
-    such as the response synthesizer discussed next.
 
     ## Response Synthesizer
 
