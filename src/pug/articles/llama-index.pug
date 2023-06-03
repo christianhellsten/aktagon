@@ -52,10 +52,18 @@ block content
 
     This article is based on LlamaIndex version 0.6.
 
+    See [Essential Concepts for Comprehending Large Language Models
+    (LLMs)](/articles/large-language-models-llms.html) for an introduction to
+    LLMs.
+
     ## LlamaIndex Workflow
 
-    As a software engineer, this is [how I most often use
-    LlamaIndex](https://gpt-index.readthedocs.io/en/latest/guides/primer/usage_pattern.html):
+    [The LlamaIndex workflow is composed of several
+    steps](https://gpt-index.readthedocs.io/en/latest/guides/primer/usage_pattern.html).
+    Thanks to the well-designed API, most of these steps are hidden to the end
+    user. However, should there be a need, the API offers considerable
+    flexibility, including the option to customize each step according to
+    specific requirements.
 
     **Data Loading**
 
@@ -177,7 +185,7 @@ block content
     templates](https://github.com/jerryjliu/llama_index/blob/main/gpt_index/prompts/default_prompts.py)
     optimized for various tasks such as [question-answering, prompt refinement,
     keyword extraction, code generation, and
-    more](https://github.com/jerryjliu/llama_index/blob/main/gpt_index/prompts/chat_prompts.py).
+    more](https://github.com/jerryjliu/llama_index/blob/main/llama_index/prompts/prompts.py).
 
     Prompt engineering is an evolving field of research, with new techniques
     being continually developed.
@@ -248,15 +256,14 @@ block content
     the result set will also be large in these cases.
 
     For complex use cases like these, where having one huge index leads to poor
-    results, the concept of index composability offers a solution for better
-    results
+    results, the concept of index composability offers a solution.
 
     Software engineers can then choose the most suitable index type(s) for their
     problem and build a _composable graph_ from multiple indices.
 
-    **List index**
+    **List Index**
 
-    A list-based data structure that takes documents as input and breaks them
+    A List Index is a list-based data structure that takes documents as input and breaks them
     up into small document chunks.
 
     Uses the _create and refine_ paradigm to construct an initial answer using
@@ -269,15 +276,16 @@ block content
 
     Does not use an LLM during index construction.
 
-    **Vector store index**
+    **Vector Store Index**
 
-    A vector store index is built on top of a vector store.
+    A Vector Store Index is built on top of a vector store such as, for
+    example, ChromaDB.
 
-    Uses the LLM model to create the embeddings during index construction.
+    It uses the LLM model to create the embeddings during index construction.
 
-    **Tree index**
+    **Tree Index**
 
-    The tree index is _a tree-structured index_ in which each node serves as a
+    The Tree Index is _a tree-structured index_ in which each node serves as a
     summary of its corresponding children nodes. This tree-based organization
     allows for efficient navigation and retrieval of information, with each
     parent node encapsulating a concise representation of its child nodes'
@@ -287,18 +295,19 @@ block content
 
     A tree index is useful for summarizing a collection of documents.
 
-    **Composable graph index**
+    **Composable Graph Index**
 
-    In a [_composable graph index_](https://howaibuildthis.substack.com/p/llamaindex-how-to-use-index-correctly), you can specify one index as the root and specify
+    In a [_Composable Graph Index_](https://howaibuildthis.substack.com/p/llamaindex-how-to-use-index-correctly), you can specify one index as the root and specify
     separate children indices. Each child index should have a summary.
 
     During querying the graph of indices is traversed recursively to construct
     an answer.
 
-    **Knowledge graph index**
+    **Knowledge Graph Index**
 
-    Uses GPT with a _keyword extraction prompt_ to extract keywords from
-    document chunks during index creation.
+    Uses GPT with a _keyword extraction prompt_ to extract keywords in the form
+    of triplets, in the form of (subset, predicate, object), from document
+    chunks during index creation.
 
     During querying, extracts a set of relevant keywords from the query using a
     keyword extraction prompt. The retrieved chunks are then ranked based on
@@ -309,34 +318,96 @@ block content
 
     Similar to a hash table. Also referred to as keyword-table index.
 
-    **SQL index**
+    **SQL Index**
 
-    The SQL index allows you to connect your database data to an LLM and ask questions about the data.
+    The SQL Index allows you to connect your database data to an LLM and ask questions about the data.
 
-    **Pandas index**
+    **Pandas Index**
 
-    The Pandas index allows you to connect pandas to an LLM and ask questions about the data.
+    The Pandas Index allows you to connect pandas to an LLM and ask questions about the data.
 
     ## Retriever
 
     In order to retrieve your data (as nodes) from an index, LlamaIndex uses
     [retrievers](https://gpt-index.readthedocs.io/en/latest/reference/query/retrievers.html).
-
     LlamaIndex supports many types of retrievers, including the following:
 
-    - Vector store retriever: returns top-k most similar nodes from a vector store.
-    - List retriever: capable of returning all nodes from an index.
-    - Tree retriever: capable of returning nodes from a hierarchical tree of nodes.
-    - Knowledge graph retriever: capable of returning nodes from a hierarchical tree of nodes.
+    **Vector Store Retriever**
+
+    The Vector Store Retriever fetches the top-k most similar nodes from a
+    vector store index.
+
+    **List Retriever**
+
+    You can use the List Retriever to fetch all nodes from a list index. This
+    retriever supports two modes: default and embeddings.
+
+    **Tree Retriever**
+
+    The Tree Retriever, as its name suggests, extracts nodes from a
+    hierarchical tree of nodes. This retriever supports many different modes,
+    the default is _select_leaf_.
+
+    **Keyword Table Retriever**
+
+    The Keyword Table Retriever extracts keywords from the query and uses them
+    to find nodes having matching keywords.
+
+    The retriever supports three different modes: default, simple, and rake.
+
+    **Knowledge Graph Retriever**
+
+    The Knowledge Graph Retriever fetches nodes from a hierarchical tree of nodes.
+
+    It supports keywords, embeddings, and hybrid mode. Hybrid mode uses both
+    keywords and embeddings to find relevant triplets.
 
     ## Query Engine
 
     A query engine processes a given query and generates a response by
-    utilizing a retriever and a response synthesizer. This is the component you
-    interact with when prompting an LLM through LlamaIndex.
+    utilizing a retriever and a response synthesizer.
 
     The query engine generates a response that includes the answer along with
     the sources of the answer (nodes).
+
+    **Retriever Query Engine**
+
+    The Retriever Query Engine is uses a retriever and a response synthesizer
+    class to generate the response.
+
+    **Graph Query Engine**
+
+    The Graph Query Engine can parse a composable graph of indices and is able
+    to use a different query engine for each subindex.
+
+    **Multistep Query Engine**
+
+    The Multistep Query Engine seeks to answer a question by breaking it down
+    into subquestions, which are answered sequentially until no further
+    questions remain. This query engine utilizes another query engine and query
+    transformations to generate the subquestions. A stop function is used to
+    tell the query engine when to stop asking questions.
+
+    **Transform Query Engine**
+
+    The Transform Query Engine changes the original query before passing it to
+    the query engine.
+
+    Supports many types of query transformations, including, for example
+    [Hypothetical Document Embeddings (HyDE)](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf).
+
+    **Router Query Engine**
+
+    The Router Query Engine selects one query engine out of a list of query
+    engines. The selection is made based on the query engines' metadata and the
+    query itself.
+
+    **Sub-Question Query Engine**
+
+    The Sub-Question Query Engine takes a complex query and breaks it down into
+    sub questions.
+
+    The final answer is generated from the answer to all sub-questions.
 
     ## Response Synthesizer
 
@@ -372,32 +443,101 @@ block content
     ## Query Transformation
 
     LlamaIndex supports automatic prompt engineering techniques that aim to
-    improve the prompt in order to obtain a better answer from the LLM:
+    improve the prompt, in a single step or multiple steps, in order to obtain
+    a better answer from the LLM. This includes, for example, the following
+    techniques:
 
-    - HyDE (Hypothetical Document Embeddings)
-    - Single-Step Query Decomposition
-    - Multi-Step Query Transformations
+    **HyDE (Hypothetical Document Embeddings)**
 
     The [Hypothetical Document Embeddings (HyDE) query
     transform](https://arxiv.org/abs/2212.10496) improves accuracy by
-    generating a hypothetical document as explained in the original paper,
-    published by Luyu Gao in 2022:
+    generating a hypothetical document/answer as explained in the original
+    paper, published by Luyu Gao in 2022:
 
-      > While dense retrieval has been shown effective and efficient across tasks and languages, it remains difficult to create effective fully zero-shot dense retrieval systems when no relevance label is available. In this paper, we recognize the difficulty of zero-shot learning and encoding relevance. Instead, we propose to pivot through Hypothetical Document Embeddings~(HyDE). Given a query, HyDE first zero-shot instructs an instruction-following language model (e.g. InstructGPT) to generate a hypothetical document.
+      > While dense retrieval has been shown effective and efficient across
+      tasks and languages, it remains difficult to create effective fully
+      zero-shot dense retrieval systems when no relevance label is available.
+      In this paper, we recognize the difficulty of zero-shot learning and
+      encoding relevance. Instead, we propose to pivot through Hypothetical
+      Document Embeddings~(HyDE). Given a query, HyDE first zero-shot instructs
+      an instruction-following language model (e.g. InstructGPT) to generate a
+      hypothetical document.
 
-      > Our experiments show that HyDE significantly outperforms the state-of-the-art unsupervised dense retriever Contriever and shows strong performance comparable to fine-tuned retrievers, across various tasks (e.g. web search, QA, fact verification) and languages~(e.g. sw, ko, ja)
+      > Our experiments show that HyDE significantly outperforms the
+      state-of-the-art unsupervised dense retriever Contriever and shows strong
+      performance comparable to fine-tuned retrievers, across various tasks
+      (e.g. web search, QA, fact verification) and languages~(e.g. sw, ko, ja)
+
+    **Single-Step Query Decomposition**
+
+    In Single-Step Query Decomposition, the original query is broken down into
+    two or more subquestions that are answered separately and used to generate
+    the final answer.
+
+    **Multi-Step Query Transformations**
+
+    In Multiple-Step Query Decomposition, the original query is broken down
+    into subquestions that are answered sequentially, one after the other; the
+    final answer is generated from these answers.
 
     ## Post Processors
 
     The LlamaIndex post-processor functionality enables filtering and
-    augmentation of search results (nodes) before sending it to the response
-    synthesizer. For instance, you can exclude or require specific keywords to
-    be absent or present in the retrieved nodes.
-
-    Furthermore, you can rank results based on attributes such as time or other
-    characteristics.
+    augmentation of search results (nodes) before sending them to the response
+    synthesizer. For instance, you can require specific keywords to be absent
+    or present in the retrieved nodes. You can also rank results based on
+    attributes such as time.
 
     The query engine handles post-processing of nodes retrieved from the index.
+    There are many types of post-processors, including the following:
+
+    **SimilarityPostprocessor**
+
+    Allows you to require the retrieved nodes to have a minimum similarity
+    score.
+
+    **KeywordNodePostprocessor**
+
+    Allows you to require certain keywords to be present in nodes.
+
+    **PrevNextNodePostprocessor** & **AutoPrevNextNodePostprocessor**
+
+    The PrevNextNodePostprocessor and AutoPrevNextNodePostprocessor both fetch
+    additional nodes (previous, next, both).
+
+    **FixedRecencyPostprocessor**
+
+    If the query involves a time factor (temporal query), this post processor
+    orders the nodes by date and returns the first k nodes to the response synthesizes.
+
+    **EmbeddingRecencyPostprocessor**
+
+    The EmbeddingRecencyPostprocessor is similar to FixedRecencyPostprocessor, but filters
+    out nodes that have a high embedding similarity with the current node.
+
+    **TimeWeightedPostprocessor**
+
+    The TimeWeightedPostprocessor ranks the nodes by their recency.
+
+    **PIINodePostprocessor**
+
+    The PIINodeprocessor masks Personally Identifiable Information (PII) in
+    the text using a local LLM such as _StableLM_. For example, replaces a
+    credit card number with _[CREDIT_CARD_NUMBER]_.
+
+    **NERPIINodePostprocessor**
+
+    The NERPIINodePostprocessor uses an LLM or a Hugging Face NER model for PII
+    Masking. For example, replaces an organization name with _[ORG_1]_.
+
+    **CohereRerank**
+
+    The CohereRank post processor uses an [external service](https://cohere.com/rerank) to rerank and improve the search results.
+
+    **LLMRerank**
+
+    The LLMRerank post processor uses an embeddings retriever and an LLM to
+    rerank the results.
 
     ## Response Evaluation
 
@@ -410,24 +550,25 @@ block content
     your data across a wide range of combinations involving indices, models,
     embeddings, modes, and more.
 
-    This helps you determine the optimal configuration for your specific needs.
+    ## Cost & Performance Optimization
 
-    ## Cost Reduction
-
-    Cost optimization and reduction are important considerations when building
-    LLM-based applications.
+    Cost and performance optimization are important considerations when
+    building LLM-based applications.
 
     For instance, ChatGPT charges by usage (e.g., tokens), so it makes sense to
     try to minimize the number of tokens used. With LlamaIndex's optimizer
     features, such as the Token Predictor, you can optimize costs by predicting
     and minimizing the number of tokens sent to ChatGPT.
 
-    Costs can also be optimized through configuration options, such as, the
-    selection of the model. The Playground module gives you a way of
-    automatically testing your data using different configurations of indices,
-    models, and many other options.
+    **Playground Model**
 
-    **Cost predictor**
+    Costs and performance can be optimized through various configuration options,
+    such as selecting the appropriate model. The Playground module offers a method
+    for automatically testing your data using different combinations of
+    configuration settings, which include indices, models, embeddings, retriever
+    modes, and more.
+
+    **Cost Predictor**
 
     LlamaIndex's cost predictors help estimate the expenses associated with
     using language models such as OpenAI's GPT models.
@@ -441,11 +582,17 @@ block content
       - The size of the data, i.e., the number of tokens used during indexing
       - The size of the prompt, i.e., the number of tokens used during prompting
 
-    **Storage context**
+    **Storage Context**
 
     LlamaIndex storage context features allows for the reuse of nodes between
     multiple indices, thus lowering costs by preventing duplication of data
     across indices.
+
+    **Sentence Embedding Optimizer**
+
+    The [Sentence Embedding
+    Optimizer](https://github.com/jerryjliu/llama_index/blob/main/docs/examples/node_postprocessor/OptimizerDemo.ipynb)
+    optimizes costs by shortening the input text.
 
     ## Conclusion
 
