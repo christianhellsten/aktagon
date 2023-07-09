@@ -1,7 +1,8 @@
 html(lang="en")
     head
-        block title
-            title Software product development - Aktagon Ltd.
+        title
+            block title
+                title Software product development - Aktagon Ltd.
         meta(charset="utf-8")
         meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
         meta(name="description", content="Software product development - Aktagon Ltd.")
@@ -48,8 +49,10 @@ html(lang="en")
                                 a(class="navbar-item", href="/#about") About Aktagon Ltd.
                                 a(class="button is-black is-inverted is-outlined", href="#contact") Start a project
         div(class="columns is-centered")
-            div(class="column is-one-third-fullhd is-two-thirds-widescreen is-full")
+            div(class="column is-one-third-fullhd is-two-thirds")
                 article.content
+                    h1
+                        block title
                     block content
                 //
                 // FOOTER

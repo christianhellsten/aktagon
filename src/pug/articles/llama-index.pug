@@ -1,14 +1,15 @@
 extends ../article-layout.pug
 
 block title
-  title= 'Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models'
+  | Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models
 
 block content
-  h1 Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models
+  figure(class="image container")
+    img(src="/images/articles/LlamaIndex.png", alt="", class="pb-5")
 
   :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
 
-    **Table of contents**
+    **Table of Contents**
 
     [[toc]]
 
@@ -98,7 +99,7 @@ block content
     allow efficient organization and querying of information for large language
     models. The core features provided by LlamaIndex include:
 
-    ![LlamaIndex core concepts](/images/articles/LlamaIndex.jpg "LlamaIndex core concepts")
+    ![LlamaIndex core concepts](/images/articles/LlamaIndex-core-concepts.jpg "LlamaIndex core concepts")
 
     **Index**
 
@@ -110,24 +111,28 @@ block content
 
     A retriever is used to retrieve nodes from an index.
 
-    **Response synthesizer**
+    **Response Synthesizer**
 
     The response synthesizer generates the final response. Response synthesis
     can optionally include post processors and various optimizers to improve
     response quality and reduce costs.
 
-    **Query engine**
+    **Query Engine**
 
     The query engine serves as the interface and acts as a bridge between our
     data and the LLM. It allows us to pose questions through prompts and
     receive answers from the LLM.
+
+    Every call to a query engine not only generates a synthesized response but
+    also provides the source documents so that we can perform fact checking of
+    the response.
 
     ## Data Structures
 
     Behind LlamaIndex, there is a collection of data structures that enable its
     functionality, these are some of the more important ones:
 
-    **Data loader**
+    **Data Loader**
 
     LlamaIndex's data connectors, also known as loaders, streamline the process
     of loading data from online sources, such as Google Docs and Slack, and
@@ -425,18 +430,18 @@ block content
     continues until all nodes have been processed in the same way and the final
     response has been generated.
 
-    **Compact and refine**
+    **Compact and Refine**
 
     Same as refine, except the text chunks are merged into larger chunks to
     optimize cost and performance.
 
-    **Tree summarize**
+    **Tree Summarize**
 
     Tree summarization is a bottoms-up approach to constructing a response from a
     list of nodes. It involves generating a summary and parent node by combining
     every two nodes until only one answer remains.
 
-    **Simple summarize**
+    **Simple Summarize**
 
     Combines all text chunks and makes one LLM call using the whole text as context.
 
@@ -472,7 +477,8 @@ block content
 
     In Single-Step Query Decomposition, the original query is broken down into
     two or more subquestions that are answered separately and used to generate
-    the final answer.
+    the final answer. This works with questions that, for example, compare two
+    things.
 
     **Multi-Step Query Transformations**
 
@@ -541,7 +547,7 @@ block content
 
     ## Response Evaluation
 
-    The quality of the response can be evaluated using tools provided by
+    The quality of the LLM's response can be evaluated using tools provided by
     LlamaIndex. This allows us to choose the most suitable language model and
     configuration for our problem, and minimize the number of errors and
     hallucinations.
@@ -550,13 +556,43 @@ block content
     your data across a wide range of combinations involving indices, models,
     embeddings, modes, and more.
 
+    LlamaIndex also has an evaluation module that allows us to evaluate the
+    response to see if we got a relevant response from the language model.
+
+    The response from a query engine always includes both the response text and
+    the source documents. This allows us to evaluate the response with regards
+    to the input query and source documents.
+
+    The response evaluator uses a LLM model, such as, GPT-4 to evaluate if the
+    response answers the question.
+
+    There are two evaluation modes in LlamaIndex:
+
+    **Response and Context Evaluation**
+
+    The response and context evaluation mode evaluates the correctness of the
+    response against the context, in other words, the source nodes. This means
+    the response is considered to be correct, if the retrieved context nodes
+    match the response.
+
+    If the response does not match the retrieved source, the LLM model is
+    probably hallucinating.
+
+    **Query, Response, and Source Context Evaluation**
+
+    When using query, response, and source context evaluation, the correctness
+    of the response is evaluated 
+
+    The Sources Evaluator will look at each source node in the results and see
+    if the text matches the query.
+
     ## Cost & Performance Optimization
 
     Cost and performance optimization are important considerations when
     building LLM-based applications.
 
     For instance, ChatGPT charges by usage (e.g., tokens), so it makes sense to
-    try to minimize the number of tokens used. With LlamaIndex's optimizer
+    try to minimize the number of tokens used by your application. With LlamaIndex's optimizer
     features, such as the Token Predictor, you can optimize costs by predicting
     and minimizing the number of tokens sent to ChatGPT.
 
