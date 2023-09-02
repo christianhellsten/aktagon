@@ -256,36 +256,74 @@ block content
     - a: Abort the trace and return to the top level.
     - c or Space: Continue to the next step (creep mode).
 
-    ## Recap
+    ## Conclusion
+
+    In our exploration of Prolog, we began with Facts, the foundational
+    building blocks of our knowledge base, and then advanced to Rules, which helped us
+    establish relationships.
+
+    With Queries, we saw the unique power
+    of Prolog in action, drawing inferences from established facts and rules.
+    Variables added another layer of depth, allowing more generalized and
+    complex queries.
+
+    The use of Recursion in Prolog allowed us to solve a complex problem through
+    self-referencing techniques.
+
+    The Data Types section provided a deep dive into the various ways data is
+    represented, offering a clearer picture of how Prolog views and processes
+    information.
+
+    In Debugging and Tracing we saw the inner
+    workings of Prolog, giving us the tools to troubleshoot and optimize our
+    programs.
+
+    ## Glossary
 
     - Prolog:
-        A high-level programming language based on formal logic, known for its use in artificial intelligence and symbolic reasoning tasks.
+        A high-level programming language based on formal logic, known for its
+        use in artificial intelligence and symbolic reasoning tasks.
 
     - Horn clauses:
-        A specific kind of logical expression that forms the basis for defining relationships in Prolog. They can be facts, rules, or queries.
+        A specific kind of logical expression that forms the basis for defining
+        relationships in Prolog. They can be facts, rules, or queries.
 
     - Knowledge Base:
-        A database of facts and rules in a Prolog program. It's where the programmer defines all the known relationships and data.
+        A database of facts and rules in a Prolog program. It's where the
+        programmer defines all the known relationships and data.
 
     - Fact:
-        A basic assertion in Prolog that something is true. For example, parent(anne, axel). states that Anne is a parent to Axel.
+        A basic assertion in Prolog that something is true. For example,
+        parent(anne, axel). states that Anne is a parent to Axel.
 
     - Rule:
-        A logical formula in Prolog that defines a relationship in terms of other relationships. It has a head and a body, e.g., grandparent(X, Z) :- parent(X, Y), parent(Y, Z). Here, the rule states that if X is a parent of Y and Y is a parent of Z, then X is a grandparent of Z.
+        A logical formula in Prolog that defines a relationship in terms of
+        other relationships and facts. It has a head and a body, e.g.,
+        grandparent(X, Z) :- parent(X, Y), parent(Y, Z). Here, the rule states
+        that if X is a parent of Y and Y is a parent of Z, then X is a
+        grandparent of Z.
 
     - Query:
-        A question posed to the Prolog interpreter to retrieve information from the knowledge base. It can return true, false, or bind values to specific variables.
+        A question posed to the Prolog interpreter to retrieve information from
+        the knowledge base. It can return true, false, or bind values to
+        specific variables.
 
     - Backtracking:
-        A cornerstone of Prolog's execution mechanism. If Prolog doesn't find a solution using the current path, it goes back (backtracks) to previous decision points and tries other possibilities.
+        A cornerstone of Prolog's execution mechanism. If Prolog doesn't find a
+        solution using the current path, it goes back (backtracks) to previous
+        decision points and tries other possibilities.
 
     - Term:
-        The basic unit of data in Prolog. Terms include atoms, numbers, variables, and compound terms.
+        The basic unit of data in Prolog. Terms include atoms, numbers,
+        variables, and compound terms.
 
     - Atom:
-        A specific kind of term used to represent constant values. They start with a lowercase letter, e.g., anne.
+        A specific kind of term used to represent constant values. They start
+        with a lowercase letter, e.g., anne.
 
     - Compound Term:
-        A structure in Prolog representing a relation between different terms. It consists of a functor and its arguments, e.g., parent(anne, axel).
+        A structure in Prolog representing a relation between different terms.
+        It consists of a functor and its arguments, e.g., parent(anne, axel).
 
-    - Functor: The name or label of a compound term, followed by its arguments enclosed in parentheses.
+    - Functor:
+        The name or label of a compound term, followed by its arguments enclosed in parentheses.
