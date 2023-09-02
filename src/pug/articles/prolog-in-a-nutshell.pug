@@ -1,0 +1,291 @@
+extends ../article-layout.pug
+
+block title
+  | Prolog In a Nutshell
+
+block content
+  figure(class="image container")
+    img(src="/images/articles/SquirrelReadsBook.png", alt="", class="pb-5")
+
+  :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
+
+    **Table of Contents**
+
+    [[toc]]
+
+    ## Introduction
+
+    Prolog, invented in 1972 by Alain Colmerauer and Philippe Roussel, is a
+    niche programming language that uses Horn clauses to represent relations in
+    the form of facts and rules. These facts and rules comprise a knowledge
+    base that can be used to run computations, or queries.
+
+    Prolog is highly suitable for symbolic reasoning and artificial
+    intelligence applications, and excels at tasks like natural
+    language processing, expert systems, and theorem proving, as it can handle
+    abstract relationships and patterns without requiring explicit algorithmic
+    instructions
+
+    ## Facts
+
+    Facts serve as the basic building blocks in constructing a knowledge base in
+    Prolog. In the example below, we establish a knowledge base about a family,
+    which consists of two parents, two children, and four grandparents:
+
+    ```
+    % anne has two children
+    parent(anne, axel).
+    parent(anne, victor).
+
+    % tim has two children
+    parent(tim, axel).
+    parent(tim, victor).
+
+    % tim has two parents
+    parent(bill, tim).
+    parent(sally, tim).
+
+    % anne has two parents
+    parent(mark, anne).
+    parent(jane, anne).
+
+    % Define genders
+    female(anne).
+    female(sally).
+    female(jane).
+    male(tim).
+    male(axel).
+    male(victor).
+    male(mark).
+    male(bill).
+    ```
+
+    These facts state that:
+
+    - Anne and Tim are parents to both Axel and Victor.
+    - Mark and Jane are Anne's parents.
+    - Bill and Sally are Tim's parents.
+    - Anne, Sally, and Jane are female.
+    - Tim, Axel, Victor, Mark, and Bill are male.
+
+    Note: In Prolog, facts (atoms or constants) and predicate names must start
+    with a lowercase letter, while variables start with an uppercase letter.
+
+    ## Rules
+
+    Using rules, we can build a relationships among facts.
+
+    ```
+    % Define what a mother, father, and a grandparent is
+    mother(M, C) :- parent(M, C), female(M).
+    father(F, C) :- parent(F, C), male(F).
+    grandparent(X, Z) :- parent(X, Y), parent(Y, Z).
+    ```
+
+    The rule named **mother** defines the meaning of the mother relationship:
+    If M is a parent of C, and if M is female, then M is a mother.
+
+    Similarly, the **father** rule defines the meaning of the father relationship:
+    If F is a parent of C, and if F is male, then F is a father.
+
+    Lastly, the **grandparent** rule defines the meaning of the grandparent
+    relationship: if X is a parent of Y, and Y is a parent of Z, then X is a
+    grandparent of Z.
+
+    ## Queries
+
+    Having defined the relationships (or Horn clauses) using facts and rules,
+    we can execute queries or computations on our knowledge base.
+
+    To determine if Tim is the parent of Victor, input the following query in a
+    Prolog interpreter:
+
+    ```
+    % Ask if Tim is the parent of Victor
+    parent(tim, victor).
+    ```
+
+    The interpreter will return **true**, confirming Tim is indeed the parent
+    of Victor.
+
+    ## Variables
+
+    We can use **variables** to make our queries more general, allowing us to
+    lookup parents and grandparents:
+
+    ```
+    % Lookup parents
+    ?- parent(Parent, victor).
+    Parent = anne ;
+    Parent = tim.
+
+    % Lookup grandparents
+    ?- grandparent(GrandParent, victor).
+    GrandParent = bill ;
+    GrandParent = sally ;
+    GrandParent = mark ;
+    GrandParent = jane.
+    ```
+
+    These queries use **variables** named Parent and GrandParent to retrieve all
+    matching results for the given conditions.
+
+    Note that in Prolog, variables, like GrandParent and Parent, must begin
+    with an uppercase letter, while constants, such as anne and tim, must start
+    with a lowercase letter.
+
+    ## Recursion in Prolog
+
+    Recursion in Prolog occurs when a rule refers to itself. Such recursive
+    rules can be especially useful for capturing complex relationships and is
+    commonly used to navigate hierarchical data, like family trees. We use
+    recursion to find the ancestors of a person by adding the following two
+    rules to our knowledge base:
+
+    ```
+    % Use recursion to define the concept of ancestor
+    ancestor(X, Z) :- parent(X, Z).
+    ancestor(X, Z) :- parent(X, Y), ancestor(Y, Z).
+    ```
+
+    With these rules in place, we can enumerate all the ancestors of Victor
+    using the variable **Ancestor**:
+
+    ```
+    ?- ancestor(Ancestor, victor).
+    Ancestor = anne ;
+    Ancestor = tim ;
+    Ancestor = bill ;
+    Ancestor = sally ;
+    Ancestor = mark ;
+    Ancestor = jane ;
+    false.
+    ```
+
+    The false at the end of the result set is Prolog's way of saying, "I've
+    given you all the solutions I can find, and there are no more left."
+
+    ## Data Types
+
+    In Prolog, the data in our knowledge base is represented using terms. Terms
+    are the basic units of data and can be classified into four main
+    categories: atoms, numbers, variables, and compound terms. Let's delve
+    deeper into each of them:
+
+    - Atoms:
+        - Atoms are a sequence of characters that are used to represent a specific piece of data.
+        - They start with a lowercase letter.
+        - They are analogous to constants, or identifiers, in other programming languages.
+        - Examples include anne, tim, victor, etc.
+        - Strings enclosed in single quotes are also considered atoms, like 'Hello World'.
+
+    - Variables:
+        - Variables are placeholders for any Prolog term and are useful in queries.
+        - They start with an uppercase letter, or an underscore.
+        - Examples: Parent, Child, GrandParent, Ancestor, _.
+
+    - Compound Terms:
+        - Compound terms are used to represent structures in Prolog.
+        - Rules, facts, and many queries in Prolog are expressed using compound terms.
+        - Example: in the compound term parent(anne, axel), parent is the functor, and its arity is 2 because it has two arguments: anne and axel.
+        - Example: in the rule ancestor(X, Y) :- parent(X, Y). The rule's head (ancestor(X, Y)) is a compound term. The body (parent(X, Y)) is also a compound term.
+        - Different functors can have different arities, which means they can take different numbers of arguments.
+        - The functor provides a name for the structure, and it's followed by its arguments, which are enclosed in parentheses.
+
+    - Numbers:
+        - Examples: 123, -456, 3.14.
+        - Prolog supports both integer and floating-point numbers.
+
+    In Prolog, everything you work with – whether it's facts, rules, or queries
+    – revolves around terms. Understanding terms is fundamental to grasping how
+    Prolog represents and processes data.
+
+    ## Debugging and Tracing
+
+    You can use the trace tool to debug and trace your queries and for
+    understanding Prolog's backtracking mechanism.
+
+    The trace/0 predicate in Prolog activates the debugger. The /0 indicates that
+    trace is a predicate with zero arguments. When activated, it allows you to step
+    through the execution of your program to understand its flow or locate errors.
+
+    For example, using the following query and by using **trace** we see how
+    Prolog figures out that Anne is an ancestor of Victor:
+
+    ```
+      [trace]  ?- trace, ancestor(anne, victor).
+         Call: (11) ancestor(anne, victor) ? creep
+         Call: (12) parent(anne, victor) ? creep
+         Exit: (12) parent(anne, victor) ? creep
+         Exit: (11) ancestor(anne, victor) ? creep
+      true .
+    ```
+
+    For each step, you see a marker (Call), a call number indicating the
+    sequence and depth (11, etc), and then the goal (or predicate) being
+    evaluated.
+
+    The markers you'll commonly encounter are:
+
+        - Call: This indicates that Prolog is attempting to satisfy the goal.
+        - Exit: This indicates that the goal has succeeded.
+        - Fail: This indicates that the goal has failed.
+        - Redo: This means Prolog is backtracking to find another solution.
+
+    For example, when asking if a grandparent is an ancestor, Prolog will use
+    backtracking to find the answer:
+
+    ```
+      [trace]  ?- trace, ancestor(bill, victor).
+         Call: (11) ancestor(bill, victor) ? creep
+         Call: (12) parent(bill, victor) ? creep
+         Fail: (12) parent(bill, victor) ? creep
+         Redo: (11) ancestor(bill, victor) ? creep
+         Call: (12) parent(bill, _53830) ? creep
+         Exit: (12) parent(bill, tim) ? creep
+         Call: (12) ancestor(tim, victor) ? creep
+         Call: (13) parent(tim, victor) ? creep
+         Exit: (13) parent(tim, victor) ? creep
+         Exit: (12) ancestor(tim, victor) ? creep
+         Exit: (11) ancestor(bill, victor) ? creep
+      true .
+    ```
+
+    Here's a summary of a few key commands:
+
+    - a: Abort the trace and return to the top level.
+    - c or Space: Continue to the next step (creep mode).
+
+    ## Recap
+
+    - Prolog:
+        A high-level programming language based on formal logic, known for its use in artificial intelligence and symbolic reasoning tasks.
+
+    - Horn clauses:
+        A specific kind of logical expression that forms the basis for defining relationships in Prolog. They can be facts, rules, or queries.
+
+    - Knowledge Base:
+        A database of facts and rules in a Prolog program. It's where the programmer defines all the known relationships and data.
+
+    - Fact:
+        A basic assertion in Prolog that something is true. For example, parent(anne, axel). states that Anne is a parent to Axel.
+
+    - Rule:
+        A logical formula in Prolog that defines a relationship in terms of other relationships. It has a head and a body, e.g., grandparent(X, Z) :- parent(X, Y), parent(Y, Z). Here, the rule states that if X is a parent of Y and Y is a parent of Z, then X is a grandparent of Z.
+
+    - Query:
+        A question posed to the Prolog interpreter to retrieve information from the knowledge base. It can return true, false, or bind values to specific variables.
+
+    - Backtracking:
+        A cornerstone of Prolog's execution mechanism. If Prolog doesn't find a solution using the current path, it goes back (backtracks) to previous decision points and tries other possibilities.
+
+    - Term:
+        The basic unit of data in Prolog. Terms include atoms, numbers, variables, and compound terms.
+
+    - Atom:
+        A specific kind of term used to represent constant values. They start with a lowercase letter, e.g., anne.
+
+    - Compound Term:
+        A structure in Prolog representing a relation between different terms. It consists of a functor and its arguments, e.g., parent(anne, axel).
+
+    - Functor: The name or label of a compound term, followed by its arguments enclosed in parentheses.

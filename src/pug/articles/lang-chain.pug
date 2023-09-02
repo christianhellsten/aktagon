@@ -1,10 +1,11 @@
 extends ../article-layout.pug
 
 block title
-  title= 'Build Smart and Autonomous Apps with LangChain & Large Language Models'
+  | Build Smart Applications Using LangChain & Large Language Models
 
 block content
-  h1 Build Smart and Autonomous Apps with LangChain & Large Language Models
+  figure(class="image container")
+    img(src="/images/articles/LangChain.png", alt="", class="pb-5")
 
   :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
 
@@ -16,13 +17,19 @@ block content
 
     ## Introduction
 
-    Large Language Models (LLMs) have the ability to understand human language
-    and generate human-like responses to queries.
+    Large Language Models (LLMs) exhibit an impressive ability to interpret and
+    respond to human language, giving the illusion of understanding. However,
+    it's essential to note that, at their core, LLMs primarily operate through
+    sophisticated statistical analyses of human languages, rather than
+    possessing true comprehension. In any case, LLMs allow us to solve
+    practical real-world problems that involve language.
 
     LLMs are pre-trained and fine-tuned on massive datasets that make them
-    great for problems that require the understanding of human languages and
-    and text generation, including, for example, question-answering and text
+    great at general problems, for example, question-answering and text
     summarization.
+
+    LLMs, however, have recollection of facts is limited, which is why there is
+    a need to present.
 
     For more specialized use cases that involve data the LLM has not been trained
     on, we need to provide the LLM with:
@@ -37,7 +44,7 @@ block content
 
     ## Core LangChain Features
 
-    Based on LangChain 0.0.157
+    This article is based on LangChain 0.0.157
 
     LangChain is a comprehensive framework for developing applications powered
     by language models. The core features that LangChain provides are the
