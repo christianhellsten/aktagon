@@ -277,53 +277,56 @@ block content
 
     ## Glossary
 
-    - Prolog:
+    - **Prolog**:
         A high-level programming language based on formal logic, known for its
         use in artificial intelligence and symbolic reasoning tasks.
 
-    - Horn clauses:
+    - **Horn clauses**:
         A specific kind of logical expression that forms the basis for defining
         relationships in Prolog. They can be facts, rules, or queries.
 
-    - Knowledge Base:
+    - **Knowledge Base**:
         A database of facts and rules in a Prolog program. It's where the
         programmer defines all the known relationships and data.
 
-    - Fact:
+    - **Fact**:
         A basic assertion in Prolog that something is true. For example,
         parent(anne, axel). states that Anne is a parent to Axel.
 
-    - Rule:
+    - **Rule**:
         A logical formula in Prolog that defines a relationship in terms of
         other relationships and facts. It has a head and a body, e.g.,
         grandparent(X, Z) :- parent(X, Y), parent(Y, Z). Here, the rule states
         that if X is a parent of Y and Y is a parent of Z, then X is a
         grandparent of Z.
 
-    - Query:
+    - **Query**:
         A question posed to the Prolog interpreter to retrieve information from
         the knowledge base. It can return true, false, or bind values to
         specific variables.
 
-    - Backtracking:
+    - **Backtracking**:
         A cornerstone of Prolog's execution mechanism. If Prolog doesn't find a
         solution using the current path, it goes back (backtracks) to previous
         decision points and tries other possibilities.
 
-    - Term:
+    - **Term**:
         The basic unit of data in Prolog. Terms include atoms, numbers,
         variables, and compound terms.
 
-    - Atom:
+    - **Atom**:
         A specific kind of term used to represent constant values. They start
         with a lowercase letter, e.g., anne.
 
-    - Compound Term:
+    - **Compound Term**:
         A structure in Prolog representing a relation between different terms.
         It consists of a functor and its arguments, e.g., parent(anne, axel).
 
-    - Functor:
+    - **Functor**:
         The name or label of a compound term, followed by its arguments enclosed in parentheses.
+
+    - **Predicate**:
+        A predicate is a combination of a functor and a specific arity (number of arguments). Predicates can represent facts, rules, or queries in the Prolog database.
 
     ## References
 

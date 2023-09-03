@@ -29,10 +29,10 @@ block content
     There are many subdomains to constraint logic programming, each optimized
     for solving a specific problem domain, including the following:
 
-    - CLP(FD) - Integers - 1, 2, 3, ...
-    - CLP(B) - Booleans - true, false
-    - CLP(R) - Real Numbers - 1.0, 2.0, 3.14, ...
-    - CLP(Q) - Rational Numbers - 1/3, 2/3, 3/3, ...
+    - **CLP(FD)** - Integers - 1, 2, 3, ...
+    - **CLP(B)** - Booleans - true, false
+    - **CLP(R)** - Real Numbers - 1.0, 2.0, 3.14, ...
+    - **CLP(Q)** - Rational Numbers - 1/3, 2/3, 3/3, ...
 
     Next, I'll walk you through CLP(FD) and CLP(B) to give you insight into how
     they can be used and for which types of problem domains.
@@ -74,10 +74,10 @@ block content
     values to boolean variables such that a given boolean formula (typically
     expressed in conjunctive normal form) evaluates to true.
 
-    Problem: Find values for A and B (either true or false) such that the
+    **Problem**: Find values for A and B (either true or false) such that the
     following boolean formula is true: **A ∨ B** (∨ represents the OR operation).
 
-    Solution: The clause (A ∨ B) evaluates to true when:
+    **Solution**: The clause (A ∨ B) evaluates to true when:
 
     - A is true and B is false.
     - A is false and B is true.
@@ -100,10 +100,10 @@ block content
     ### NP (Nondeterministic Polynomial Time) Problems
 
     CLP(B) and SAT problems belong to the NP class. For problems in NP, while
-    verifying a solution is straightforward, finding a solution can be highly
-    time-consuming in the worst-case scenarios. While determining a solution
+    verifying a solution is straightforward, __finding a solution can be highly
+    time-consuming__ in the worst-case scenarios. While determining a solution
     for a basic expression with two boolean variables, such as A∨BA∨B, is
-    relatively simple, the complexity exhibits polynomial growth when dealing
+    relatively simple, the __complexity exhibits polynomial growth__ when dealing
     with thousands of variables.
 
     ## Example: Solving the Magic Square Problem Using CLP(FD)
