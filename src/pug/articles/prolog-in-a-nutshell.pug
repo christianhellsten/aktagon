@@ -13,12 +13,12 @@ block content
 
     [[toc]]
 
-    ## Introduction
+    ## Introduction to Prolog
 
     Prolog, invented in 1972 by Alain Colmerauer and Philippe Roussel, is a
     niche programming language that uses Horn clauses to represent relations in
-    the form of facts and rules. These facts and rules comprise a knowledge
-    base that can be used to run computations, or queries.
+    the form of facts and rules. These elements together form a knowledge
+    base that can be used to run computations or queries.
 
     Prolog is highly suitable for symbolic reasoning and artificial
     intelligence applications, and excels at tasks like natural
@@ -26,7 +26,7 @@ block content
     abstract relationships and patterns without needing specific step-by-step
     directives as in imperative programming languages, such as Java.
 
-    ## Facts
+    ## Facts in Prolog
 
     Facts serve as the basic building blocks in constructing a knowledge base in
     Prolog. In the example below, we establish a knowledge base about a family,
@@ -71,7 +71,7 @@ block content
     Note: In Prolog, facts (atoms or constants) and predicate names must start
     with a lowercase letter, while variables start with an uppercase letter.
 
-    ## Rules
+    ## Rules in Prolog
 
     Using rules, we can build a relationships among facts.
 
@@ -92,7 +92,7 @@ block content
     relationship: if X is a parent of Y, and Y is a parent of Z, then X is a
     grandparent of Z.
 
-    ## Queries
+    ## Queries in Prolog
 
     Having defined the relationships (or Horn clauses) using facts and rules,
     we can execute queries or computations on our knowledge base.
@@ -108,7 +108,7 @@ block content
     The interpreter will return **true**, confirming Tim is indeed the parent
     of Victor.
 
-    ## Variables
+    ## Variables in Prolog
 
     We can use **variables** to make our queries more general, allowing us to
     lookup parents and grandparents:
@@ -165,34 +165,31 @@ block content
     The false at the end of the result set is Prolog's way of saying, "I've
     given you all the solutions I can find, and there are no more left."
 
-    ## Data Types
+    ## Data Types in Prolog
 
-    In Prolog, the data in our knowledge base is represented using terms. Terms
-    are the basic units of data and can be classified into four main
+    In Prolog, the data in our knowledge base is represented using terms. A **term**
+    is the basic units of data and can be classified into four main
     categories: atoms, numbers, variables, and compound terms. Let's delve
     deeper into each of them:
 
-    - Atoms:
+    - **Atoms**:
         - Atoms are a sequence of characters that are used to represent a specific piece of data.
         - They start with a lowercase letter.
         - They are analogous to constants, or identifiers, in other programming languages.
         - Examples include anne, tim, victor, etc.
         - Strings enclosed in single quotes are also considered atoms, like 'Hello World'.
-
-    - Variables:
+    - **Variables**:
         - Variables are placeholders for any Prolog term and are useful in queries.
         - They start with an uppercase letter, or an underscore.
         - Examples: Parent, Child, GrandParent, Ancestor, _.
-
-    - Compound Terms:
+    - **Compound Terms**:
         - Compound terms are used to represent structures in Prolog.
         - Rules, facts, and many queries in Prolog are expressed using compound terms.
         - Example: in the compound term parent(anne, axel), parent is the functor, and its arity is 2 because it has two arguments: anne and axel.
         - Example: in the rule ancestor(X, Y) :- parent(X, Y). The rule's head (ancestor(X, Y)) is a compound term. The body (parent(X, Y)) is also a compound term.
         - Different functors can have different arities, which means they can take different numbers of arguments.
         - The functor provides a name for the structure, and it's followed by its arguments, which are enclosed in parentheses.
-
-    - Numbers:
+    - **Numbers**:
         - Examples: 123, -456, 3.14.
         - Prolog supports both integer and floating-point numbers.
 
@@ -200,7 +197,7 @@ block content
     – revolves around terms. Understanding terms is fundamental to grasping how
     Prolog represents and processes data.
 
-    ## Debugging and Tracing
+    ## Debugging and Tracing Prolog Programs
 
     You can use the trace tool to debug and trace your queries and for
     understanding Prolog's backtracking mechanism.
@@ -227,10 +224,10 @@ block content
 
     The markers you'll commonly encounter are:
 
-        - Call: This indicates that Prolog is attempting to satisfy the goal.
-        - Exit: This indicates that the goal has succeeded.
-        - Fail: This indicates that the goal has failed.
-        - Redo: This means Prolog is backtracking to find another solution.
+      - **Call**: This indicates that Prolog is attempting to satisfy the goal.
+      - **Exit**: This indicates that the goal has succeeded.
+      - **Fail**: This indicates that the goal has failed.
+      - **Redo**: This means Prolog is backtracking to find another solution.
 
     For example, when asking if a grandparent is an ancestor, Prolog will use
     backtracking to find the answer:
@@ -258,23 +255,23 @@ block content
 
     ## Conclusion
 
-    In our exploration of Prolog, we began with Facts, the foundational
-    building blocks of our knowledge base, and then advanced to Rules, which helped us
+    In our exploration of Prolog, we began with **Facts**, the foundational
+    building blocks of our knowledge base, and then advanced to **Rules**, which helped us
     establish relationships.
 
-    With Queries, we saw the unique power
+    With **Queries**, we saw the unique power
     of Prolog in action, drawing inferences from established facts and rules.
     Variables added another layer of depth, allowing more generalized and
     complex queries.
 
-    The use of Recursion in Prolog allowed us to solve a complex problem through
+    The use of **Recursion** in Prolog allowed us to solve a complex problem through
     self-referencing techniques.
 
-    The Data Types section provided a deep dive into the various ways data is
+    The **Data Types** section provided a deep dive into the various ways data is
     represented, offering a clearer picture of how Prolog views and processes
     information.
 
-    In Debugging and Tracing we saw the inner
+    In **Debugging and Tracing** we saw the inner
     workings of Prolog, giving us the tools to troubleshoot and optimize our
     programs.
 
@@ -327,3 +324,7 @@ block content
 
     - Functor:
         The name or label of a compound term, followed by its arguments enclosed in parentheses.
+
+    ## References
+
+    The Power of Prolog: https://www.metalevel.at/prolog

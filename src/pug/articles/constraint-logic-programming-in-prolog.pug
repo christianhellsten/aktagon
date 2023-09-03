@@ -1,0 +1,184 @@
+extends ../article-layout.pug
+
+block title
+  | Constraint Logic Programming In Prolog
+
+block content
+  figure(class="image container")
+    img(src="/images/articles/constraint-logic-programming-in-prolog.png", alt="", class="pb-5")
+
+  :markdown-it(linkify langPrefix='highlight-' plugins=['markdown-it-table-of-contents', 'markdown-it-anchor'])
+
+    **Table of Contents**
+
+    [[toc]]
+
+    ## Introduction
+
+    Prolog is a programming language based on the logic programming paradigm.
+    Prolog uses Horn clauses to represent relations in the form of facts and
+    rules. Together, these elements form a knowledge base that can be used to
+    run computations or queries.
+
+    Constraint logic programming is an extension of this paradigm that
+    introduces constraints on possible values and variables. This enables
+    us to narrow down the search space and more quickly find solutions to
+    optimization problems where the solution must adhere to defined
+    constraints.
+
+    There are many subdomains to constraint logic programming, each optimized
+    for solving a specific problem domain, including the following:
+
+    - CLP(FD) - Integers - 1, 2, 3, ...
+    - CLP(B) - Booleans - true, false
+    - CLP(R) - Real Numbers - 1.0, 2.0, 3.14, ...
+    - CLP(Q) - Rational Numbers - 1/3, 2/3, 3/3, ...
+
+    Next, I'll walk you through CLP(FD) and CLP(B) to give you insight into how
+    they can be used and for which types of problem domains.
+
+    CLP(R) and CLP(Q) are similar to CLP(FD) but contain tools optimized for
+    solving problems specific to their respective domains.
+
+    ## CLP(FD) - Integers
+
+    Using CLP(FD) we can find solutions to problems involving a set of integers
+    within a finite domain. The domain is considered "finite" because integer
+    variables can assume only a limited range of values.
+
+    The CLP(FD) domain includes combinatorial problems such as planning,
+    scheduling, and allocation.
+
+    We can define different types of constraints, such as:
+
+    - **Range** constraint: **X in 1..10**, indicates that variable **X** can take any integer value between 1 and 10.
+    - **Arithmetic** constraint: **X #= Y + Z** states that **X** must be the sum of **Y** and **Z**.
+    - **Global** constraints: For instance, **all_different(List)** requires all variables in the list named List to take different values.
+    - Other constraints: E.g., **X #< Y**, **X #> Y**, **X #\= Y** to specify less-than, greater-than, and not-equal-to constraints respectively.
+
+    For example, the Magic Square problem, in which the sums of the numbers in
+    each row, each column, and both main diagonals are the same, can be solved
+    this these constraings. Sudoku puzzles can also be solved using this technique.
+
+    ## CLP(B) - Booleans
+
+    Using CLP(B) we can find solutions to problems involving boolean variables.
+    This includes combinatorial problems such as verification, allocation and
+    covering tasks
+
+    ### SAT Problems
+
+    A CLP(B) problem can be seen as a general **SAT (Boolean Satisfiability Problem)**.
+
+    When solving a SAT problem, you're trying to find an assignment of truth
+    values to boolean variables such that a given boolean formula (typically
+    expressed in conjunctive normal form) evaluates to true.
+
+    Problem: Find values for A and B (either true or false) such that the
+    following boolean formula is true: **A ∨ B** (∨ represents the OR operation).
+
+    Solution: The clause (A ∨ B) evaluates to true when:
+
+    - A is true and B is false.
+    - A is false and B is true.
+    - Both A and B are true.
+
+    ### CNF (Conjunctive Normal Form)
+
+    Conjunctive normal form (CNF) is a way of expressing SAT problems using a
+    combination of the following elements:
+
+    - **Literals** (boolean variables):
+      For example: The variables **A** and **B**.
+    - **Clause** (logical OR):
+      For example: A ∨ B. This means that the statement A or B is true if at least one of the variables, A or B, is true.
+    - **Conjuction** (logical AND):
+      For example: A ∧ B. This is true if and only if both A and B are true.
+    - **Negation** (logical NOT):
+      For example: ¬A: This literal is true if AA is false.  The "not" operation ("¬" or sometimes as "~") inverts, or negates, a variable.
+
+    ### NP (Nondeterministic Polynomial Time) Problems
+
+    CLP(B) and SAT problems belong to the NP class. For problems in NP, while
+    verifying a solution is straightforward, finding a solution can be highly
+    time-consuming in the worst-case scenarios. While determining a solution
+    for a basic expression with two boolean variables, such as A∨BA∨B, is
+    relatively simple, the complexity exhibits polynomial growth when dealing
+    with thousands of variables.
+
+    ## Example: Solving the Magic Square Problem Using CLP(FD)
+
+    We'll use SWI-Prolog's CLP(FD) library and the following code to solve the Magic
+    Square problem:
+
+    ```
+    % Import the clpfd library which provides constraints over finite domains
+    :- use_module(library(clpfd)).
+
+    % Define the magic_square functor that takes a list (Square) as an argument
+    magic_square(Square) :-
+        % Assign the Square list to contain variables A through I
+        Square = [A,B,C,D,E,F,G,H,I],
+
+        % Constrain each variable in Square to be a value between 1 and 9
+        Square ins 1..9,           % Each cell is in the domain from 1 to 9
+
+        % Assert that all variables in Square must have distinct values
+        all_different(Square),    % All cells must have different values
+
+        % The following constraints ensure that the sum of numbers in each 
+        % row, column, and diagonal is equal. The exact sum value is represented by 'Sum'.
+
+        % Row constraints: Each row should sum up to the value 'Sum'
+        A+B+C #= Sum,
+        D+E+F #= Sum,
+        G+H+I #= Sum,
+
+        % Column constraints: Each column should sum up to the value 'Sum'
+        A+D+G #= Sum,
+        B+E+H #= Sum,
+        C+F+I #= Sum,
+
+        % Diagonal constraints: Both the diagonals should sum up to the value 'Sum'
+        A+E+I #= Sum,  % From top-left to bottom-right diagonal
+        C+E+G #= Sum,  % From top-right to bottom-left diagonal
+
+        % Try to find a solution that satisfies all the constraints
+        label(Square).
+    ```
+
+    To list all solutions we run the query in the Prolog interpreter:
+
+    ```
+    ?- magic_square(Square).
+    Square = [2, 7, 6, 9, 5, 1, 4, 3, 8] ;
+    Square = [2, 9, 4, 7, 5, 3, 6, 1, 8] ;
+    Square = [4, 3, 8, 9, 5, 1, 2, 7, 6] ;
+    Square = [4, 9, 2, 3, 5, 7, 8, 1, 6] ;
+    Square = [6, 1, 8, 7, 5, 3, 2, 9, 4] ;
+    Square = [6, 7, 2, 1, 5, 9, 8, 3, 4] ;
+    Square = [8, 1, 6, 3, 5, 7, 4, 9, 2] ;
+    Square = [8, 3, 4, 1, 5, 9, 6, 7, 2] ;
+    false.
+    ```
+
+    For a more general solution for all square sizes, see Markus Triska's solution:
+    https://github.com/triska/clpfd/blob/master/magic_square.pl
+
+    ## References
+
+    - The Power of Prolog
+
+    https://www.metalevel.at/prolog
+
+    - CLP(FD)
+
+    https://github.com/triska/clpfd
+
+    https://www.metalevel.at/drt.pdf
+
+    - CLP(B)
+
+    https://www.metalevel.at/swiclpb.pdf
+
+    https://www.metalevel.at/boolean.pdf
