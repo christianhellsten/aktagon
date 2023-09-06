@@ -1,7 +1,7 @@
 extends ../article-layout.pug
 
 block title
-  | Prolog In a Nutshell
+  | Prolog in a Nutshell
 
 block content
   figure(class="image container")
@@ -252,6 +252,71 @@ block content
 
     - a: Abort the trace and return to the top level.
     - c or Space: Continue to the next step (creep mode).
+
+    ## Writing Tests
+
+    Let's write a unit test for the **ancestor** predicate.
+
+    First, we need to make the ancestor code a **module** that we can import from
+    an external file and from the tests that we're going to write. Add the
+    following to the top of the family\.pl file:
+
+    ```
+    :- module(family, [ancestor/2]).
+    ```
+
+    This defines a module that we can import in our tests.
+
+    Save the following code in a file named family_test.pl:
+
+    ```
+    :- use_module(library(plunit)).
+     % The code we test is saved in 'family.pl'
+    :- use_module(family).
+    :- begin_tests(ancestor_tests).
+
+    % Direct parent-child relationships
+    test(anne_is_ancestor_of_axel) :-
+        % We use once to get rid of this warning:
+        % 	PL-Unit: Test anne_is_ancestor_of_axel: Test succeeded with choicepoint
+        once(ancestor(anne, axel)).
+
+    test(tim_is_ancestor_of_victor) :-
+        once(ancestor(tim, victor)).
+
+    % Grandparent relationships
+    test(bill_is_ancestor_of_axel) :-
+        once(ancestor(bill, axel)).
+
+    test(jane_is_ancestor_of_victor) :-
+        once(ancestor(jane, victor)).
+
+    % Ancestor relationships with self should fail
+    test(anne_is_not_ancestor_of_anne, [fail]) :-
+        once(ancestor(anne, anne)).
+
+    :- end_tests(ancestor_tests).
+    ```
+
+    Run the tests from the CLI with the following command:
+
+    ```bash
+    ❯ swipl -s magic_square_test.pl -g run_tests -t halt
+    ```
+
+    You should see the following output:
+
+    ```bash
+    % PL-Unit: magic_square_tests
+    Warning: /Users/christian/projects/aktagon/aktagon-cronos/src/assets/downloads/magic_square_test.pl:7:
+      PL-Unit: Test valid_magic_square: Test succeeded with choicepoint
+     passed 0.021 sec
+    % test passed
+    ```
+
+    The key takeaways are that unit tests for the "ancestor" predicate in
+    Prolog require module declaration and the once/1 predicate for removing the
+    warning ”Test succeeded with choicepoint”.
 
     ## Conclusion
 

@@ -1,3 +1,4 @@
+:- module(magic_square, [magic_square/1]).
 % Import the clpfd library which provides constraints over finite domains
 :- use_module(library(clpfd)).
 

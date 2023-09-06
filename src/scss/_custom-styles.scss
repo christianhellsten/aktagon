@@ -2,6 +2,13 @@ $primary: #222 !default;
 $dark: $primary;
 $black: #222;
 
+.column.is-fixed-width {
+  flex: none;
+  width: 780px;
+  max-width: 780px;
+}
+
+
 article.content {
   h1 {
     font-family: $title-family;
