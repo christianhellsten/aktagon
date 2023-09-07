@@ -5,16 +5,17 @@ block content
     // SECTION 1
     //
     div(class="columns is-relative mx-2-mobile")
-        div(class="column")
-            div(class="ellipse-background")
+        div(class="column is-one-third")
+            //div(class="ellipse-background")
             div(class="mb-20 mb-32-desktop")
-                span(class="has-text-light") Web & Mobile 
-                h1(class="title is-spaced mt-2")
-                    span Software
-                    span(class="is-block is-underlined-disabled") product
-                    span(class="is-underlined-disabled") development.
-                p(class="has-text-light mb-5") Customized software solutions, catering to business and customer requirements.
-                a(class="is-gradient button button-call-to-action", href="#contact") Start a project
+                .hero
+                    span(class="subtitle") Web, Mobile, and Desktop
+                    h1(class="hero-title is-spaced mt-2")
+                        span Software
+                        span(class="is-block is-underlined-disabled") product
+                        span(class="is-underlined-disabled") development.
+                    p(class="subtitle mb-5") Customized software solutions, catering to business and customer requirements.
+                    a(class="button button-call-to-action", href="#contact") Start a project
         div(class="column")
             //img(src="aktagon-assets/images/section-1.png", style="opacity: 0.4")
     //
@@ -22,29 +23,31 @@ block content
     //
     div(class="columns is-relative mt-20 mx-2-mobile")
         a(name="products-for-the-web")
-        div(class="column is-hidden-mobile")
+        //div(class="column is-hidden-mobile")
             //img(src="aktagon-assets/images/web.svg", style="opacity: 0.4")
-        div(class="column is-relative")
-            div(class="ellipse-background ellipse-background-right")
+        div(class="column is-two-thirds")
+            //div(class="ellipse-background ellipse-background-right")
             div(class="mb-20 mb-32-desktop")
-                span(class="has-text-light") Web development
-                h1(class="title is-spaced mt-2")
-                    span Software products
+                span(class="subtitle") Web development
+                h1(class="hero-title is-spaced mt-2")
+                    span Software
+                    span(class="is-block") products
                     span(class="is-underlined-disabled is-block") for the web.
-                p(class="has-text-light mb-5") Aktagon Ltd. creates friendly, browser-based software solutions that make life easier for your business, customers, and stakeholders, while offering a delightful user experience.
+                p(class="subtitle mb-5") Aktagon Ltd. creates friendly, browser-based software solutions that make life easier for your business, customers, and stakeholders, while offering a delightful user experience.
     //
     // SECTION 3
     //
     div(class="columns is-relative mt-20 mx-2-mobile")
         a(name="products-for-the-desktop")
-        div(class="column")
-            div(class="ellipse-background")
+        div(class="column is-one-third")
+            //div(class="ellipse-background")
             div(class="mb-20 mb-32-desktop")
-                span(class="has-text-light") Desktop app development
-                h1(class="title is-spaced mt-2")
-                    span Software products
+                span(class="subtitle") Desktop app development
+                h1(class="hero-title is-spaced mt-2")
+                    span Software
+                    span(class="is-block") products
                     span(class="is-underlined-disabled is-block") for the desktop.
-                p(class="has-text-light mb-5") Aktagon Ltd. crafts cross-platform, browser-based software products that play nice with MacOS, Windows, and Linux systems.
+                p(class="subtitle mb-5") Aktagon Ltd. crafts cross-platform, browser-based software products that play nice with MacOS, Windows, and Linux systems.
         div(class="column")
             //img(src="aktagon-assets/images/section-3.png", class="opacity: 0.4")
     //
@@ -52,16 +55,17 @@ block content
     //
     div(class="columns is-relative mt-20 mx-2-mobile")
         a(name="products-for-mobile-devices")
-        div(class="column is-hidden-mobile has-text-right")
+        //div(class="column is-hidden-mobile has-text-right")
             //img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
-        div(class="column")
-            div(class="ellipse-background-right")
+        div(class="column is-one-third")
+            //div(class="ellipse-background-right")
             div(class="mb-20 mb-32-desktop")
-                span(class="has-text-light") Mobile app development
-                h1(class="title is-spaced mt-2")
-                    span Software products
+                span(class="subtitle") Mobile app development
+                h1(class="hero-title is-spaced mt-2")
+                    span Software
+                    span(class="is-block") products
                     span(class="is-underlined-disabled is-block") for mobile devices.
-                p(class="has-text-light mb-5") Aktagon Ltd. specializes in developing top-notch, cross-platform, browser-based software products that ensure seamless compatibility with both iOS and Android devices for optimal user experience.
+                p(class="subtitle mb-5") Aktagon Ltd. specializes in developing top-notch, cross-platform, browser-based software products that ensure seamless compatibility with both iOS and Android devices for optimal user experience.
 
     //
     // Large Language Models
@@ -72,34 +76,34 @@ block content
             ol.list.is-hoverable.is-lower-alpha
                 li.list-item
                     h3
-                        a(href="/articles/large-language-models-llms.html") Essential Concepts for Comprehending Large Language Models (LLMs)
+                        a(href="./articles/large-language-models-llms.pug") Essential Concepts for Comprehending Large Language Models (LLMs)
                 li.list-item
                     h3
-                        a(href="/articles/llama-index.html") Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models
+                        a(href="./articles/llama-index.pug") Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models
                 //li.list-item
                     h3
-                        a(href="/articles/lang-chain.html") Build Smart Applications Using LangChain and Large Language Models
+                        a(href="/articles/lang-chain.pug") Build Smart Applications Using LangChain and Large Language Models
     //
     // Prolog
     //
     div(class="columns is-relative mt-20 mx-2-mobile")
         a(name="products-for-mobile-devices")
-        div(class="column is-hidden-mobile has-text-right")
+        //div(class="column is-hidden-mobile has-text-right")
             //img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
         div(class="column")
-            div(class="ellipse-background-right")
+            //div(class="ellipse-background-right")
             div(class="mb-20 mb-32-desktop")
                 h2 Prolog
                 ol.list.is-hoverable.is-lower-alpha
                     li.list-item
                         h3
-                            a(href="/articles/prolog-in-a-nutshell.html") Prolog in a Nutshell
+                            a(href="./articles/prolog-in-a-nutshell.pug") Prolog in a Nutshell
                     li.list-item
                         h3
-                            a(href="/articles/constraint-logic-programming-in-prolog.html") Constraint Logic Programming in Prolog
+                            a(href="./articles/constraint-logic-programming-in-prolog.pug") Constraint Logic Programming in Prolog
                     li.list-item
                         h3
-                            a(href="/articles/natural-language-parsing-in-prolog.html") Natural Language Parsing in Prolog
+                            a(href="./articles/natural-language-parsing-in-prolog.pug") Natural Language Parsing in Prolog
     //
     // CONTACT
     //
@@ -118,9 +122,15 @@ block content
                     div(class="control mb-6")
                         textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
                     div(class="control mb-6")
-                      label Attach file:
-                      input(name="file", type="file")
-                    button(class="is-gradient button button-call-to-action") Send RFP
+                      div(class="file has-name is-fullwidth")
+                        label(class="file-label")
+                          input(class="file-input", type="file", name="file")
+                          span(class="file-cta")
+                            span(class="file-icon")
+                              i(class="fas fa-upload")
+                            span(class="file-label") Choose a file&hellip;
+                          span(class="file-name")
+                    button(class="button button-call-to-action") Send RFP
 
     //
     // ABOUT

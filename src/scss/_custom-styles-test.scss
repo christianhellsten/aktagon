@@ -1,0 +1,155 @@
+$primary: #222 !default;
+$dark: $primary;
+$black: #222;
+
+@keyframes rotateGradient {
+  0% {
+    background-position: bottom right;
+  }
+  to {
+    background-position: top left;
+  }
+}
+
+
+.column.is-fixed-width {
+  flex: none;
+  width: 780px;
+  max-width: 780px;
+}
+
+
+article.content {
+  h1 {
+    font-family: $title-family;
+    @extend .is-size-1;
+    @extend .title;
+  }
+
+  h2 {
+    font-family: $subtitle-family;
+    @extend .is-size-2;
+    @extend .subtitle;
+  }
+
+  h2 {
+    font-family: $subtitle-family;
+    @extend .is-size-3;
+    @extend .subtitle;
+  }
+}
+
+.has-background-dark {
+  a {
+    //color: $white;
+  }
+
+  h1 {
+    @extend .is-size-1;
+    @extend .title;
+    //@extend .has-text-white;
+  }
+
+  h2 {
+    @extend .is-size-2;
+    @extend .title;
+    //@extend .has-text-white;
+  }
+
+  h3 {
+    @extend .is-size-3;
+    //@extend .title;
+    //@extend .has-text-white;
+  }
+
+  input, textarea {
+    //@extend .has-text-black;
+    //@extend .has-background-dark;
+  }
+
+  .above-title {
+    @extend .has-text-weight-bold;
+    color: white;
+  }
+
+  .title {
+    color: #004bff;
+    background-clip: text;            /* Standard syntax, though might not be supported in all browsers */
+    color: transparent;               /* Makes the text color transparent so only the background shows */
+    word-break: normal;
+    animation: rotateGradient 1s cubic-bezier(.42,0,.58,1) forwards;
+    //text-shadow: .025em .015em 0 #fbfbfb,-.045em -.045em 0 #004bff;
+    font-style: oblique 3deg;
+    //@extend .fadeout;
+    //-webkit-background-clip: text;    /* Clips the background to the text */
+    //color: white;
+    //background-clip: text;
+    //text-shadow: .015em .035em 0 #fbfbfb,-.015em -.015em 1em #004bff;
+    //text-shadow: .015em .035em 0 #fbfbfb,-.015em -.015em 0 #004bff;
+  }
+
+  .title-first {
+    background-image: linear-gradient(to bottom right, #004bff 30%, #fff 30%);
+    background-size: 100% 150%;
+  }
+}
+
+.button-call-to-action {
+  border-radius: 9999px;
+  font-weight: bolder;
+  font-size: 120%;
+  text-shadow: .095em .095em 0 #000,-.095em -.095em 0 #000;
+  background-color: #004bff;
+  border-color: $black;
+  color: $white;
+  opacity: 1;
+  font-style: oblique 3deg;
+}
+
+.list-item {
+  a {
+    font-weight: bolder;
+    font-style: oblique 3deg;
+    color: #004bff;
+  }
+}
+
+.button-call-to-action:active {
+  color: $blue;
+}
+
+.button-call-to-action:hover {
+  color: $white;
+  opacity: .8;
+}
+
+.ellipse-background {
+  position: absolute;
+  width: 1175px;
+  height: 1175px;
+  left: -470px;
+  top: -470px;
+  border-radius: 50%;
+
+  background: #01A4FF;
+  opacity: .07;
+  filter: blur(200px);
+}
+
+.ellipse-background-right {
+  left: 348px;
+  top: -470px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $dark;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $dark;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $dark;
+}

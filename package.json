@@ -1,38 +1,25 @@
 {
-  "name": "app",
+  "name": "aktagon.com",
   "version": "1.0.0",
   "private": true,
-  "license": "UNLICENSED",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "",
   "description": "",
   "scripts": {
-    "browsersync": "browser-sync start --directory --server ./dist --files ./dist/* --startPath index.html",
     "clean": "rimraf dist/*",
-    "copy-assets": "cpx \"src/assets/**/*.*\" dist/",
-    "css-compile": "sass --style expanded src/scss/bulma-theme.scss dist/css/bulma/bulma.css",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/bulma/bulma.min.css dist/css/bulma/bulma.css",
-    "css": "npm-run-all --sequential css-*",
-    "templates": "pug --pretty -o dist/ src/pug/",
-    "build": "npm-run-all --sequential clean copy-* templates css",
-    "watch": "npm-run-all build --parallel watch-templates watch-css browsersync",
-    "watch-templates": "npm run templates -- --watch",
-    "watch-css": "npm run css-compile -- --watch"
+    "build": "npx parcel build src/pug/index.pug",
+    "watch": "npx parcel src/pug/index.pug"
   },
   "dependencies": {
-    "bulma": "^0.9.4",
-    "markdown-it-anchor": "^8.6.7"
+    "bulma": "^0.9.4"
   },
   "devDependencies": {
-    "browser-sync": "^2.29.3",
-    "clean-css-cli": "^4.2.1",
-    "cpx": "^1.5.0",
+    "@parcel/transformer-pug": "^2.9.3",
+    "@parcel/transformer-sass": "^2.9.3",
     "jstransformer-markdown-it": "^3.0.0",
+    "markdown-it-anchor": "^8.6.7",
     "markdown-it-table-of-contents": "^0.6.0",
-    "marked": "^4.3.0",
-    "npm-run-all": "^4.1.3",
-    "pug": "^2.0.3",
-    "pug-cli": "^1.0.0-alpha6",
-    "rimraf": "^2.6.2",
-    "sass": "^1.43.4"
+    "parcel": "^2.9.3",
+    "rimraf": "^2.6.2"
   }
 }

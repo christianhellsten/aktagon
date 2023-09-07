@@ -1,6 +1,35 @@
-$primary: #222 !default;
-$dark: $primary;
-$black: #222;
+$oblique-style: oblique 35deg;
+$light-blue: #0196ff;
+//$text-shadow-dark: 0.03em 0.05em 0px #090079, -0.015em -0.015em 0 #222;
+$text-shadow-dark: 0.03em 0.05em #090079, 0.15em 0.15em #222;
+$text-shadow-light: .1em .1em #090079, -.015em -.015em 1em $blue;
+$text-shadow-secondary: .1em .1em #090079, -.015em -.015em 0.1em blue;
+
+body {
+  .content {
+    figure {
+      margin-left: 0;
+      margin-right: 0;
+      img {
+        margin-bottom: -7em;
+        //clip-path: circle(30.67% at center center)
+        //clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+        //clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 84% 78%, 49% 89%, 16% 78%, 0% 75%);
+        //clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 65% 75%, 49% 89%, 35% 75%, 0% 75%);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 89%, 58% 89%, 33% 65%, 0 65%);
+      }
+    }
+  }
+}
+
+@keyframes rotateGradient {
+  0% {
+    background-position: bottom right
+  }
+  to {
+    background-position: top left
+  }
+}
 
 .column.is-fixed-width {
   flex: none;
@@ -8,130 +37,128 @@ $black: #222;
   max-width: 780px;
 }
 
+#logo {
+  font-size: 2em;
+  white-space: nowrap;
+}
 
-article.content {
-  h1 {
-    font-family: $title-family;
-    @extend .is-size-1;
-    @extend .title;
+.above-title {
+  font-weight: 800;
+  font-style: $oblique-style;
+}
+
+
+
+a {
+  //color: $white;
+}
+
+strong {
+  font-style: $oblique-style;
+}
+
+
+h1 {
+  @extend .is-size-1;
+  @extend .title;
+  font-style: $oblique-style;
+  //@extend .has-text-white;
+}
+
+h2 {
+  @extend .is-size-2;
+  @extend .title;
+  font-style: $oblique-style;
+  //@extend .has-text-white;
+}
+
+h3 {
+  @extend .is-size-3;
+  @extend .title;
+  font-style: $oblique-style;
+  //@extend .has-text-white;
+}
+
+.title {
+  word-break: normal;
+}
+
+.subtitle {
+  font-style: $oblique-style;
+  margin-bottom: 1em;
+}
+
+.table-of-contents {
+  ul {
+    margin-left: 0.25em;
   }
 
-  h2 {
-    font-family: $subtitle-family;
-    @extend .is-size-2;
-    @extend .subtitle;
-  }
-
-  h2 {
-    font-family: $subtitle-family;
-    @extend .is-size-3;
-    @extend .subtitle;
+  li {
+    @extend .has-text-weight-medium;
+    margin-left: 0;
   }
 }
 
 .has-background-dark {
-  a {
-    //color: $white;
-  }
-
-  h1 {
-    @extend .is-size-1;
-    @extend .title;
-    //@extend .has-text-white;
-  }
-
-  h2 {
-    @extend .is-size-2;
-    @extend .title;
-    //@extend .has-text-white;
-  }
-
-  h3 {
-    @extend .is-size-3;
-    @extend .title;
-    //@extend .has-text-white;
-  }
-
-  input, textarea {
-    //@extend .has-text-black;
-    @extend .has-background-dark;
-  }
-
-  .title {
-    word-break: normal;
-    @extend .fadeout;
-  }
-}
-
-// https://www.joshwcomeau.com/gradient-generator/
-.is-gradient {
-  //linear-gradient(111.17deg, #01FCFF -19.55%, #004BFF 59.17%);
-  background: linear-gradient(
-    120deg,
-    hsl(240deg 100% 20%) 0%,
-    hsl(289deg 100% 21%) 44%,
-    hsl(315deg 100% 27%) 65%,
-    hsl(329deg 100% 36%) 76%,
-    hsl(337deg 100% 43%) 83%,
-    hsl(357deg 91% 59%) 88%,
-    hsl(17deg 100% 59%) 92%,
-    hsl(34deg 100% 53%) 95%,
-    hsl(45deg 100% 50%) 98%,
-    hsl(55deg 100% 50%) 100%
-  );
-}
-
-.button-call-to-action {
-  border-radius: 9999px;
-  background-color: transparent;
-  border-color: $black;
   color: $white;
-  opacity: 1;
+
+  .hero-title {
+    animation: rotateGradient 1s cubic-bezier(.42,0,.58,1) forwards;
+    background-size: 100% 150%;
+    background-image: linear-gradient(to bottom right, $blue 50%,#fff 50%);
+    background-clip: text;
+    //text-shadow: .015em .035em 0 #fbfbfb, -.015em -.015em 1em $blue;
+    text-shadow: $text-shadow-light;
+    font-style: $oblique-style;
+    font-weight: 800;
+  }
+
+  .subtitle {
+    text-shadow: $text-shadow-light;
+    color: $white;
+    margin-bottom: 0em;
+    @extend .has-text-light;
+  }
+
+  .navbar-item {
+    text-shadow: $text-shadow-light;
+  }
+
+  .button-call-to-action {
+    animation: rotateGradient 1s cubic-bezier(.42,0,.58,1) forwards;
+    background-size: 100% 150%;
+    background-image: linear-gradient(to bottom right, rgba(0, 0, 255, 0.2) 50%, transparent 50%);
+    text-shadow: $text-shadow-light;
+    border-radius: 9px;
+    background-color: $blue;
+    border-color: $blue;
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-style: $oblique-style;
+    color: $white;
+    opacity: 1;
+  }
+
+  h2, h3 {
+    text-shadow: $text-shadow-secondary;
+  }
+}
+
+.has-background-white {
+  .hero-title {
+    @extend .title;
+    animation: rotateGradient 1s cubic-bezier(.42,0,.58,1) forwards;
+    background-size: 100% 150%;
+    background-image: linear-gradient(to bottom right, $blue 50%, $dark 50%);
+    background-clip: text;
+    text-shadow: $text-shadow-dark;
+    font-style: $oblique-style;
+    font-weight: 800;
+    color: $light-blue;
+  }
 }
 
 .button-call-to-action:hover {
   color: $white;
   opacity: .8;
-}
-
-.ellipse-background {
-  position: absolute;
-  width: 1175px;
-  height: 1175px;
-  left: -470px;
-  top: -470px;
-  border-radius: 50%;
-
-  background: #01A4FF;
-  opacity: .07;
-  filter: blur(200px);
-}
-
-.ellipse-background-right {
-  left: 348px;
-  top: -470px;
-}
-
-.fadeout {
-  // Fade-out effect
-  background: -webkit-linear-gradient(top left, #fff, #222);
-  background: -moz-linear-gradient(top left, #fff, #222);
-  background: linear-gradient(to bottom right, #fff, #222);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $dark;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: $dark;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-  color: $dark;
 }
