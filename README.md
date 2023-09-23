@@ -1,5 +1,10 @@
 ## Intro
 
+Hosting:
+
+* netlify.app
+* cloudflare.com
+
 Assets (SCSS, images, etc):
 
 * src/assets/ - default static files (eg. image placeholders). You should replace them with your own files.
