@@ -111,7 +111,7 @@ block content
     We'll use SWI-Prolog's CLP(FD) library and the following code to solve the Magic
     Square problem:
 
-    ```
+    ```prolog
     % Import the clpfd library which provides constraints over finite domains
     :- use_module(library(clpfd)).
 
@@ -149,7 +149,7 @@ block content
 
     To list all solutions we run the query in the Prolog interpreter:
 
-    ```
+    ```prolog
     ?- magic_square(Square).
     Square = [2, 7, 6, 9, 5, 1, 4, 3, 8] ;
     Square = [2, 9, 4, 7, 5, 3, 6, 1, 8] ;

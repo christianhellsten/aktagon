@@ -32,7 +32,7 @@ block content
     Prolog. In the example below, we establish a knowledge base about a family,
     which consists of two parents, two children, and four grandparents:
 
-    ```
+    ```prolog
     % anne has two children
     parent(anne, axel).
     parent(anne, victor).
@@ -75,7 +75,7 @@ block content
 
     Using rules, we can build a relationships among facts.
 
-    ```
+    ```prolog
     % Define what a mother, father, and a grandparent is
     mother(M, C) :- parent(M, C), female(M).
     father(F, C) :- parent(F, C), male(F).
@@ -100,7 +100,7 @@ block content
     To determine if Tim is the parent of Victor, input the following query in a
     Prolog interpreter:
 
-    ```
+    ```prolog
     % Ask if Tim is the parent of Victor
     parent(tim, victor).
     ```
@@ -113,7 +113,7 @@ block content
     We can use **variables** to make our queries more general, allowing us to
     lookup parents and grandparents:
 
-    ```
+    ```prolog
     % Lookup parents
     ?- parent(Parent, victor).
     Parent = anne ;
@@ -142,7 +142,7 @@ block content
     recursion to find the ancestors of a person by adding the following two
     rules to our knowledge base:
 
-    ```
+    ```prolog
     % Use recursion to define the concept of ancestor
     ancestor(X, Z) :- parent(X, Z).
     ancestor(X, Z) :- parent(X, Y), ancestor(Y, Z).
@@ -151,7 +151,7 @@ block content
     With these rules in place, we can enumerate all the ancestors of Victor
     using the variable **Ancestor**:
 
-    ```
+    ```bash
     ?- ancestor(Ancestor, victor).
     Ancestor = anne ;
     Ancestor = tim ;
@@ -209,7 +209,7 @@ block content
     For example, using the following query and by using **trace** we see how
     Prolog figures out that Anne is an ancestor of Victor:
 
-    ```
+    ```bash
       [trace]  ?- trace, ancestor(anne, victor).
          Call: (11) ancestor(anne, victor) ? creep
          Call: (12) parent(anne, victor) ? creep
@@ -232,7 +232,7 @@ block content
     For example, when asking if a grandparent is an ancestor, Prolog will use
     backtracking to find the answer:
 
-    ```
+    ``bash
       [trace]  ?- trace, ancestor(bill, victor).
          Call: (11) ancestor(bill, victor) ? creep
          Call: (12) parent(bill, victor) ? creep
@@ -261,7 +261,7 @@ block content
     an external file and from the tests that we're going to write. Add the
     following to the top of the family\.pl file:
 
-    ```
+    ```prolog
     :- module(family, [ancestor/2]).
     ```
 
@@ -269,7 +269,7 @@ block content
 
     Save the following code in a file named family_test.pl:
 
-    ```
+    ```prolog
     :- use_module(library(plunit)).
      % The code we test is saved in 'family.pl'
     :- use_module(family).
