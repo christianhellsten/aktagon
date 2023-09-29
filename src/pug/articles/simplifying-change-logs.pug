@@ -1,0 +1,375 @@
+extends ../article-layout.pug
+
+block title
+  | Simplifying Change Logs: A Trigger-Based Approach With PostgreSQL
+
+block content
+  figure(class="image container")
+    img(src="../../assets/images/articles/large-language-models-llms.png?as=jpg&width=800", alt="", class="pb-5")
+
+  :markdown-it
+
+    **Table of contents**
+
+    [[toc]]
+
+    ## Introduction
+
+    Keeping a log of the changes made to your data is crucial in many
+    business-critical applications.
+
+    In this article, we'll explore a method for automatically maintaining a
+    changelog using a trigger-based approach.
+
+    ### What is a Trigger-Based Approach to Changelogs?
+
+    The core concept of a trigger-based approach is to instruct the database to
+    automatically insert a record into a changelog whenever business-critical
+    data is modified. This changelog record provides information
+    about the changes made to the original data.
+
+    This approach is reliable, easy to maintain, and efficient. The maintenance
+    of the changelog is fully managed by the database, which is often the most
+    robust component of your application.
+
+    ### What Are Database Triggers?
+
+    In most databases, including PostgreSQL, we can define a trigger using the
+    **CREATE TRIGGER** statement. This trigger automatically inserts a record into
+    a changelog table upon any insert, update, or delete operation on the
+    source table.
+
+    ### The First Step: Identifying Tables for Changelog
+
+    The first step in creating a changelog is defining the tables that need a
+    changelog.
+
+    In the case of a hypothetical bank, we could maintain a changelog for all
+    changes made to a **transactions** table, which stores financial
+    transactions. The table could have the following structure:
+
+    ```sql
+    CREATE TABLE transactions (
+        id SERIAL PRIMARY KEY,
+        account_id INTEGER NOT NULL,
+        amount NUMERIC NOT NULL,
+        type VARCHAR(50) CHECK (type IN ('deposit', 'withdrawal')),
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+    );
+    ```
+
+    After having identified the source tables for our changelog. It's time to
+    automate the creation of the changelog.
+
+    ## Automating the Changelog Creation
+
+    Every business-critical table will have a corresponding changelog table
+    where changes are recorded. We'll use a database function to automate the
+    creation of all required triggers and data structures. Creating a function
+    that does all the work for us will save us time when we have multiple
+    tables for which we wish to maintain changelogs.
+
+    To implement our changelog solution, we need the following
+    steps:
+
+    1. **Create a Table** Define a new table that will house the changelog entries.
+    2. **Create a Function** Design a function that will insert data into the changelog table we established in step 1.
+    3. **Create a Trigger** Implement a trigger that activates the function we developed in step 2 when changes to the data in the original table are detected.
+
+    We'll automate these three steps by developing a function that accomplishes
+    all of them. We'll name this function **create_changelog_table** and it will
+    take the following input parameters:
+
+    - **p_schema_name**: The name of the schema where the original table resides.
+    - **p_table_name**: The name of the original table for which we want to create a changelog.
+    - **p_changelog_schema_name**: The name of the schema where the changelog table will be created.
+    - **p_changelog_table_name**: The name of the table where the changelog entries will be stored.
+
+    The full source code for the function will be at the end of the article.
+
+    ### Creating a Changelog Table
+
+    The changelog table will be a copy of the original business-critical table
+    with the following additional columns used for recording the changes and
+    when they were made:
+
+    ```sql
+    change_type VARCHAR
+    change_timestamp TIMESTAMP
+    change jsonb
+    ```
+
+    Using **CREATE TABLE** we create a new changelog table that is a copy of
+    the original table, and add new columns (change_type, change_timestamp,
+    change) for recording the changes and when they were made.
+
+    ### Creating a Changelog Function
+
+    Use **CREATE FUNCTION** to define a new PostgreSQL function that
+    captures the changes (insert, update, delete) on the original table and log
+    them in the changelog table by inserting a new record for each change. The
+    newly created changelog row includes the change_type (insert, update, or
+    delete) and change_timestamp based on either the created_at (insert) or
+    updated_at (update) columns.
+
+    ### Creating a Trigger for the Changelog Function
+
+    Using **CREATE TRIGGER** we attach the newly created trigger function to
+    the original table, making it active after inserts, updates, or deletes.
+
+    To do all this we'll define the **create_changelog_table** that looks like this (the full source code can be found at the end of this article):
+
+    ```sql
+    -- Function for creating a changelog table for a table
+    CREATE OR REPLACE FUNCTION create_changelog_table(
+        p_schema_name text,
+        p_table_name text,
+        p_changelog_schema_name text,
+        p_changelog_table_name text
+    )
+    RETURNS void LANGUAGE plpgsql AS $$
+    DECLARE
+        v_trigger_name text;
+        v_table_with_schema text;
+        v_changelog_table_with_schema text;
+        v_changelog_trigger_function text;
+        v_changelog_row_type text;
+    BEGIN
+        -- Generate trigger name and schema.table strings
+        ...
+        -- Create the history table
+        ...
+        -- Populate change_type based on created_at and updated_at
+        ...
+        -- Create the trigger function in the history schema
+        ...
+        -- Delete previous triggers if they exist
+        ...
+        -- Attach the trigger to the original table
+        ...
+        -- Create the function to prevent updates and deletes
+        ...
+        -- Prevent updates and deletes on the history table
+        ...
+        -- Create or update the history changelog view
+        ...
+    END;
+    $$;
+    ```
+
+    ### Creating a Changelog for a Table
+
+    With the function defined that automates the creation of our changelog, we can now create the table, function, and
+    trigger for our transactions table by running the following in PSQL:
+
+
+    ```sql
+    CREATE SCHEMA changelog;
+    SELECT create_changelog_table('public', 'transactions', 'changelog', 'transactions');
+    ```
+
+    Examining the **transactions** table we see that a new trigger named **transactions_changelog_trigger** has been added:
+
+
+    ```bash
+                                            Table "public.transactions"
+    ┌────────────┬──────────────────────────┬───────────┬──────────┬──────────────────────────────────────────┐
+    │   Column   │           Type           │ Collation │ Nullable │                 Default                  │
+    ├────────────┼──────────────────────────┼───────────┼──────────┼──────────────────────────────────────────┤
+    │ id         │ integer                  │           │ not null │ nextval('transactions_id_seq'::regclass) │
+    │ account_id │ integer                  │           │ not null │                                          │
+    │ amount     │ numeric                  │           │ not null │                                          │
+    │ type       │ character varying(50)    │           │          │                                          │
+    │ created_at │ timestamp with time zone │           │          │ CURRENT_TIMESTAMP                        │
+    │ updated_at │ timestamp with time zone │           │          │ CURRENT_TIMESTAMP                        │
+    └────────────┴──────────────────────────┴───────────┴──────────┴──────────────────────────────────────────┘
+    ...
+    Triggers:
+        transactions_changelog_trigger AFTER INSERT OR DELETE OR UPDATE ON transactions FOR EACH ROW EXECUTE FUNCTION history.transactions_changelog_trigger()
+    ```
+
+    By examining the **changelog.transactions** table, we find that it's a copy of the **public.transactions** table with change_type, change_timestamp, and change added:
+
+
+    ```bash
+                                   Table "changelog.transactions"
+    ┌──────────────────┬─────────────────────────────┬───────────┬──────────┬─────────┐
+    │      Column      │            Type             │ Collation │ Nullable │ Default │
+    ├──────────────────┼─────────────────────────────┼───────────┼──────────┼─────────┤
+    │ id               │ integer                     │           │          │         │
+    │ account_id       │ integer                     │           │          │         │
+    │ amount           │ numeric                     │           │          │         │
+    │ type             │ character varying(50)       │           │          │         │
+    │ created_at       │ timestamp with time zone    │           │          │         │
+    │ updated_at       │ timestamp with time zone    │           │          │         │
+    │ change_type      │ character varying(10)       │           │ not null │         │
+    │ change_timestamp │ timestamp without time zone │           │ not null │         │
+    │ change           │ jsonb                       │           │          │         │
+    └──────────────────┴─────────────────────────────┴───────────┴──────────┴─────────┘
+    ```
+
+
+    ### Creating a Master Changelog View
+
+    A master changelog view is needed for showing all the changes in our
+    system. To achieve this we will create a master changelog view named
+    **master** that collects the changes from all the separate changelog
+    tables.
+
+    The function **create_changelog_view** creates or updates this view that
+    combines information from all tables in the schema where changelogs are stored.
+
+
+    The view is updated by the **create_changelog_table** whenever a new
+    changelog table is created.
+
+    ```sql
+    -- Create or update the history changelog view
+    EXECUTE 'SELECT create_changelog_view(''' || p_changelog_schema_name || ''', ''master'');';
+    ```
+
+    ## Source Code
+
+    ### create_changelog_table
+
+    The full source code for the **create_changelog_table** function that sets
+    up the changelog for one specific table can be seen here:
+
+    ```sql
+    CREATE OR REPLACE FUNCTION create_changelog_table(
+        p_schema_name text,
+        p_table_name text,
+        p_changelog_schema_name text,
+        p_changelog_table_name text
+    )
+    RETURNS void LANGUAGE plpgsql AS $$
+    DECLARE
+        v_trigger_name text;
+        v_table_with_schema text;
+        v_changelog_table_with_schema text;
+        v_changelog_trigger_function text;
+        v_changelog_row_type text;
+    BEGIN
+        -- Generate trigger name and schema.table strings
+        v_trigger_name := p_table_name || '_changelog_trigger';
+        v_table_with_schema := p_schema_name || '.' || p_table_name;
+        v_changelog_table_with_schema := p_changelog_schema_name || '.' || p_changelog_table_name;
+        v_changelog_trigger_function := p_changelog_schema_name || '.' || v_trigger_name;
+        v_changelog_row_type := p_changelog_schema_name || '.' || p_changelog_table_name || '%ROWTYPE';
+
+        -- Create the history table
+        EXECUTE 'CREATE TABLE ' || v_changelog_table_with_schema || ' AS TABLE ' || v_table_with_schema;
+        EXECUTE 'ALTER TABLE ' || v_changelog_table_with_schema || ' ADD COLUMN change_type VARCHAR(10)';
+        EXECUTE 'ALTER TABLE ' || v_changelog_table_with_schema || ' ADD COLUMN change_timestamp TIMESTAMP';
+        EXECUTE 'ALTER TABLE ' || v_changelog_table_with_schema || ' ADD COLUMN change jsonb';
+
+        -- Populate change_type based on created_at and updated_at
+        EXECUTE 'UPDATE ' || v_changelog_table_with_schema ||
+        ' SET change = ''{}'', ' ||
+        ' change_timestamp = CASE WHEN created_at = updated_at THEN created_at ELSE updated_at END, ' ||
+        ' change_type = CASE WHEN created_at = updated_at THEN ''INSERT'' ELSE ''UPDATE'' END';
+        EXECUTE 'ALTER TABLE ' || v_changelog_table_with_schema || ' ALTER COLUMN change_type SET NOT NULL';
+        EXECUTE 'ALTER TABLE ' || v_changelog_table_with_schema || ' ALTER COLUMN change_timestamp SET NOT NULL';
+
+        -- Create the trigger function in the history schema
+        EXECUTE '
+        CREATE OR REPLACE FUNCTION ' || v_changelog_trigger_function || '()
+        RETURNS TRIGGER AS $fn$
+        DECLARE
+          change_data jsonb;
+          changelog_row ' || v_changelog_row_type || ';
+        BEGIN
+          change_data := jsonb_build_object(
+            ''old'', to_jsonb(OLD),
+            ''new'', to_jsonb(NEW)
+          );
+          IF TG_OP = ''DELETE'' THEN
+            changelog_row := OLD;
+          ELSE
+            changelog_row := NEW;
+          END IF;
+          changelog_row.change_type := TG_OP;
+          changelog_row.change_timestamp := NOW();
+          changelog_row.change := change_data;
+          INSERT INTO ' || v_changelog_table_with_schema || ' SELECT changelog_row.*;
+          RETURN NULL;  -- Since it''s an AFTER trigger
+        END;
+        $fn$ LANGUAGE plpgsql;';
+
+        -- Delete previous triggers if they exist
+        EXECUTE 'DROP TRIGGER IF EXISTS ' || v_trigger_name || ' ON ' || v_table_with_schema;
+        EXECUTE 'DROP TRIGGER IF EXISTS prevent_updates_on_' || p_changelog_table_name || ' ON ' || v_changelog_table_with_schema;
+
+        -- Attach the trigger to the original table
+        EXECUTE 'CREATE TRIGGER ' || v_trigger_name || '
+        AFTER INSERT OR UPDATE OR DELETE
+        ON ' || v_table_with_schema || '
+        FOR EACH ROW EXECUTE FUNCTION ' || v_changelog_trigger_function || '();';
+
+        -- Create the function to prevent updates and deletes
+        EXECUTE 'CREATE OR REPLACE FUNCTION prevent_updates_deletes() RETURNS TRIGGER AS $fn$ BEGIN RAISE EXCEPTION ''Updates and deletes are not allowed on this table''; END; $fn$ LANGUAGE plpgsql;';
+
+        -- Prevent updates and deletes on the history table
+        EXECUTE 'CREATE TRIGGER prevent_updates_on_' || p_changelog_table_name || '
+        BEFORE UPDATE OR DELETE ON ' || v_changelog_table_with_schema || '
+        FOR EACH ROW EXECUTE FUNCTION prevent_updates_deletes();';
+
+        -- Create or update the history changelog view
+        EXECUTE 'SELECT create_changelog_view(''' || p_changelog_schema_name || ''', ''master'');';
+    END;
+    $$;
+    ```
+
+    ### create_changelog_view
+
+    The source code for the **create_changelog_view** that sets up the master changelog view looks like this:
+
+    ```sql
+    -- Function to create a unified view of all history tables in a schema
+    CREATE OR REPLACE FUNCTION create_changelog_view(
+        p_schema_name text,     -- The name of the schema containing the master changelog view
+        p_view_table_name text  -- The name of the master changelog view
+    )
+    RETURNS void LANGUAGE plpgsql AS $$
+    DECLARE
+      v_table_name text;
+      first_table boolean := true;
+      view_sql text := 'CREATE OR REPLACE VIEW ' || p_schema_name || '.' || p_view_table_name || ' AS ';
+    BEGIN
+      FOR v_table_name IN (
+        SELECT table_name
+        FROM information_schema.tables
+        WHERE
+          table_schema = p_schema_name AND
+          table_type = 'BASE TABLE' AND
+          table_name != p_view_table_name
+      )
+      LOOP
+        -- NOTE: We need to cast id values of different types to varchar
+        IF first_table THEN
+          view_sql := view_sql || ' SELECT ''' || v_table_name || ''' AS entity_type, id::varchar, change, change_type, change_timestamp, created_at, updated_at FROM ' || p_schema_name || '.' || v_table_name;
+          first_table := false;
+        ELSE
+          view_sql := view_sql || ' UNION ALL SELECT ''' || v_table_name || ''' AS entity_type, id::varchar, change, change_type, change_timestamp, created_at, updated_at FROM ' || p_schema_name || '.' || v_table_name;
+        END IF;
+      END LOOP;
+
+      -- Execute the SQL to create the view
+      EXECUTE view_sql;
+    END;
+    $$;
+    ```
+
+    ## Conclusion
+
+    In summary, a trigger-based approach to changelogs is a way to
+    automatically monitor and log changes in database tables. Using database
+    triggers, you can set up automated scripts that activate when data is
+    modified in specific tables. To capture these changes, a changelog
+    table and associated changelog function are created. The final piece is the triggers, which link these
+    elements, ensuring that any change is automatically recorded.
+
+    For those that want a changelog of multiple tables, a master changelog view
+    offers a way of aggregating all changes. This approach simplifies the task
+    of auditing and tracking data modifications.

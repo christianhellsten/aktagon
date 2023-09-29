@@ -22,6 +22,13 @@ body {
   }
 }
 
+
+.content {
+  h2:not(:first-child) {
+    text-shadow: .03em .05em #fff, .15em .15em #bdbdbd;
+  }
+}
+
 @keyframes rotateGradient {
   0% {
     background-position: bottom right
@@ -161,4 +168,28 @@ h3 {
 .button-call-to-action:hover {
   color: $white;
   opacity: .8;
+}
+
+
+.table-of-contents {
+  ul {
+    list-style-type: disc;
+    margin-left: 0;
+    padding-left: 0.25em;
+  }
+
+  /* First-level ul */
+  ul > li > ul {
+    margin-left: 1em;
+  }
+
+  /* Second-level ul */
+  ul > li > ul > li > ul {
+    margin-left: 1em;
+  }
+
+  /* Third-level ul (and deeper) */
+  ul ul ul {
+    margin-left: 1em;
+  }
 }
