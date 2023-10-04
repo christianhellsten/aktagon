@@ -1,8 +1,8 @@
 $oblique-style: oblique 35deg;
 $light-blue: #0196ff;
 //$text-shadow-dark: 0.03em 0.05em 0px #090079, -0.015em -0.015em 0 #222;
-$text-shadow-dark: 0.03em 0.05em #090079, 0.15em 0.15em #222;
-$text-shadow-light: .1em .1em #090079, -.015em -.015em 1em $blue;
+$text-shadow-dark: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
+$text-shadow-light: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
 $text-shadow-secondary: .1em .1em #090079, -.015em -.015em 0.1em blue;
 
 body {
@@ -38,13 +38,23 @@ body {
   }
 }
 
+/* By default, make the column responsive */
 .column.is-fixed-width {
-  flex: none;
-  width: 780px;
-  max-width: 780px;
+  flex: 1;
+  max-width: 100%;
+}
+
+/* Apply fixed-width for screens larger than 780px */
+@media screen and (min-width: 781px) {
+  .column.is-fixed-width {
+    flex: none;
+    width: 780px;
+    max-width: 780px;
+  }
 }
 
 #logo {
+  line-height: 2em;
   font-size: 2em;
   white-space: nowrap;
 }
@@ -54,10 +64,13 @@ body {
   font-style: $oblique-style;
 }
 
-
-
 a {
+  //color: #6f99ff;
   //color: $white;
+}
+
+a:hover {
+  text-shadow: none;
 }
 
 strong {
@@ -147,7 +160,11 @@ h3 {
   }
 
   h2, h3 {
-    text-shadow: $text-shadow-secondary;
+    text-shadow: $text-shadow-light;
+  }
+
+  a:hover {
+    text-shadow: none;
   }
 }
 

@@ -7,13 +7,14 @@
   "description": "",
   "scripts": {
     "clean": "rimraf dist/*",
-    "build": "npx parcel build src/pug/index.pug",
-    "watch": "npx parcel src/pug/index.pug"
+    "build": "parcel build src/pug/index.pug",
+    "watch": "parcel -p 8081 src/pug/index.pug"
   },
   "dependencies": {
     "bulma": "^0.9.4"
   },
   "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
     "@parcel/transformer-pug": "^2.9.3",
     "@parcel/transformer-sass": "^2.9.3",
     "jstransformer-markdown-it": "^3.0.0",
