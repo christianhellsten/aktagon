@@ -78,10 +78,15 @@ placeholder {
 }
 
 #logo {
-  @extend .ml-2;
-  line-height: 5rem;
-  font-size: 1.8em;
-  white-space: nowrap;
+  img {
+    vertical-align: middle;
+  }
+  span {
+    @extend .ml-2;
+    line-height: 5rem;
+    font-size: .8em;
+    white-space: nowrap;
+  }
 }
 
 .above-title {

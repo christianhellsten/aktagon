@@ -22,49 +22,41 @@ block content
         a(name="services")
         .hero-body
             .container
-                .columns
-                    .column
-                        h2(class="hero-title") Services
-                        p I specialize in transforming your ideas into high-quality software products across various platforms. My expertise lies in creating exceptional SaaS products and custom software to meet your business and customer requirements.
-                        p Every business is unique, and I'm committed to delivering solutions that are meticulously tailored to align with your goals and the expectations of your end-users.
-                .columns.is-multiline
-                    .column
-                        h3 Software Development
-                        ul.list
-                            li
-                                strong Web Applications: 
-                                span Developing functional, scalable, and reliable web applications to enhance user interaction.
-                            li
-                                strong Desktop Applications: 
-                                span Creating efficient desktop applications to meet your users needs.
-                            li
-                                strong Mobile Applications: 
-                                span Building user-friendly mobile applications for better connectivity with your audience.
-                    .column
-                        h3 DevOps
-                        ul.list
-                            li
-                                strong Continuous Integration/Continuous Deployment (CI/CD): 
-                                span I implement modern CI/CD pipelines to ensure swift and reliable delivery of your software products.
-                            li
-                                strong Infrastructure Automation: 
-                                span I automate your infrastructure setup and management, enhancing efficiency and reducing manual errors.
-                            li
-                                strong Monitoring and Incident Management: 
-                                span I set up comprehensive monitoring systems and incident management processes to ensure the highest level of service reliability and performance.
-                .columns
-                    .column
-                        h3 Cost Reduction
-                        ul.list
-                            li
-                                strong Optimization: 
-                                span I analyze and optimize your software architectures and processes to significantly reduce operational and development costs.
-                            li
-                                strong Cloud Management: 
-                                span I help in managing and optimizing your cloud resources to ensure cost-effectiveness while maintaining high performance and reliability.
-                    .column
-                        h3 Project Lifecycle Support
-                        p From ideation to deployment and ongoing maintenance, I provide comprehensive support throughout the project lifecycle to ensure the success and sustainability of your software products.
+                h2(class="hero-title") Services
+                p I specialize in transforming your ideas into high-quality software products across various platforms. My expertise lies in creating exceptional SaaS products and custom software to meet your business and customer requirements.
+                p Every business is unique, and I'm committed to delivering solutions that are meticulously tailored to align with your goals and the expectations of your end-users.
+                h3 Software Development
+                ul.list
+                    li
+                        strong Web Applications: 
+                        span Developing functional, scalable, and reliable web applications to enhance user interaction.
+                    li
+                        strong Desktop Applications: 
+                        span Creating efficient desktop applications to meet your users needs.
+                    li
+                        strong Mobile Applications: 
+                        span Building user-friendly mobile applications for better connectivity with your audience.
+                h3 DevOps
+                ul.list
+                    li
+                        strong Continuous Integration/Continuous Deployment (CI/CD): 
+                        span I implement modern CI/CD pipelines to ensure swift and reliable delivery of your software products.
+                    li
+                        strong Infrastructure Automation: 
+                        span I automate your infrastructure setup and management, enhancing efficiency and reducing manual errors.
+                    li
+                        strong Monitoring and Incident Management: 
+                        span I set up comprehensive monitoring systems and incident management processes to ensure the highest level of service reliability and performance.
+                h3 Cost Reduction
+                ul.list
+                    li
+                        strong Optimization: 
+                        span I analyze and optimize your software architectures and processes to significantly reduce operational and development costs.
+                    li
+                        strong Cloud Management: 
+                        span I help in managing and optimizing your cloud resources to ensure cost-effectiveness while maintaining high performance and reliability.
+                h3 Project Lifecycle Support
+                p From ideation to deployment and ongoing maintenance, I provide comprehensive support throughout the project lifecycle to ensure the success and sustainability of your software products.
 
                 //.columns
                     .column
@@ -133,6 +125,7 @@ block content
                 ul.list
                     li.list-item
                         a(href="./articles/simplifying-change-logs.pug") Simplifying Change Logs: A Trigger-Based Approach With PostgreSQL
+
     section.is-fullheight-with-navbar.hero
         //
         // SECTION:
@@ -140,31 +133,26 @@ block content
         a(name="contact")
         .hero-body
             .container
-                .columns.is-multiline
-                    //.column.is-half.is-offset-one-quarter
-                    .column
-
-
-                        h3 Contact
-                        p Seeking a partner to join forces on your upcoming project? Aktagon Ltd. is ready to collaborate and make it a success.
-                        form(action="#", data-netlify="true", enctype="multipart/form-data", netlify-honeypot="bot-field", name="contact-form")
-                            input(name="bot-field", class="is-hidden")
-                            div(class="control mb-6")
-                                input(class="input", type="text", placeholder="Name", name="name")
-                            div(class="control mb-6")
-                                input(class="input", type="email", placeholder="E-mail", name="email")
-                            div(class="control mb-6")
-                                textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
-                            div(class="control mb-6")
-                              div(class="file has-name is-fullwidth")
-                                label(class="file-label")
-                                  input(class="file-input", type="file", name="file")
-                                  span(class="file-cta")
-                                    span(class="file-icon")
-                                      i(class="fas fa-upload")
-                                    span(class="file-label") Choose a file&hellip;
-                                  span(class="file-name")
-                            button(class="button button-call-to-action") Send RFP
+                h3 Contact
+                p Seeking a partner to join forces on your upcoming project? Aktagon Ltd. is ready to collaborate and make it a success.
+                form(action="#", data-netlify="true", enctype="multipart/form-data", netlify-honeypot="bot-field", name="contact-form")
+                    input(name="bot-field", class="is-hidden")
+                    div(class="control mb-6")
+                        input(class="input", type="text", placeholder="Name", name="name")
+                    div(class="control mb-6")
+                        input(class="input", type="email", placeholder="E-mail", name="email")
+                    div(class="control mb-6")
+                        textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
+                    div(class="control mb-6")
+                      div(class="file has-name is-fullwidth")
+                        label(class="file-label")
+                          input(class="file-input", type="file", name="file")
+                          span(class="file-cta")
+                            span(class="file-icon")
+                              i(class="fas fa-upload")
+                            span(class="file-label") Choose a file&hellip;
+                          span(class="file-name")
+                    button(class="button button-call-to-action") Send RFP
 
     section.is-fullheight-with-navbar.hero(style="display: flex; flex-direction: column; justify-content: center;")
         //
@@ -173,15 +161,13 @@ block content
         a(name="about")
         .hero-body
             .container
-                .columns.is-multiline.is-vcentered
-                    .column.is-half.is-offset-one-quarter
-                        //
-                        // ABOUT
-                        //
-                        h3 About Aktagon Ltd.
-                        p Aktagon Ltd., based in Finland, is your reliable partner for software development needs. With over 20 years of expertise in building software, I have been dedicated to crafting user-friendly products for my clients since 2006. My approach is rooted in practical solutions and a deep understanding of my clients' goals.
+                //
+                // ABOUT
+                //
+                h3 About Aktagon Ltd.
+                p Aktagon Ltd., based in Finland, is your reliable partner for software development needs. With over 20 years of expertise in building software, I have been dedicated to crafting user-friendly products for my clients since 2006. My approach is rooted in practical solutions and a deep understanding of my clients' goals.
 
-                        h4 VAT ID
-                        p FI20537825 (2053782-5)
-                        h4 Contact
-                        p Feel free to reach out for collaborations or inquiries at christian@aktagon.com.
+                h4 VAT ID
+                p FI20537825 (2053782-5)
+                h4 Contact
+                p Feel free to reach out for collaborations or inquiries at christian@aktagon.com.
