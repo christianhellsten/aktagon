@@ -1,9 +1,18 @@
+$body-background-color: $primary;
 $oblique-style: oblique 35deg;
 $light-blue: #0196ff;
-//$text-shadow-dark: 0.03em 0.05em 0px #090079, -0.015em -0.015em 0 #222;
-$text-shadow-dark: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
-$text-shadow-light: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
-$text-shadow-secondary: .1em .1em #090079, -.015em -.015em 0.1em blue;
+$text-shadow-heavy: 1px 1px #050042,
+               2px 2px #050042,
+               3px 3px #050042,
+               4px 4px #050042;
+$text-shadow-medium: 1px 1px #050042,
+               2px 2px #050042;
+$text-shadow-light: 1px 1px #050042;
+
+.hero-title {
+  @extend .is-spaced;
+  @extend .mt-2;
+}
 
 body {
   .content {
@@ -22,10 +31,25 @@ body {
   }
 }
 
+h4 {
+  font-size: 1.25em;
+  font-weight: 800;
+  @extend .mb-3;
+}
+
+p {
+  @extend .mb-3;
+}
+
+placeholder {
+  color: $black;
+}
+
 
 .content {
   h2:not(:first-child) {
-    text-shadow: .03em .05em #fff, .15em .15em #bdbdbd;
+    color: $light-blue;
+    text-shadow: $text-shadow-medium;
   }
 }
 
@@ -54,8 +78,8 @@ body {
 }
 
 #logo {
-  @extend .ml-3;
-  line-height: 60px;
+  @extend .ml-2;
+  line-height: 5rem;
   font-size: 1.8em;
   white-space: nowrap;
 }
@@ -100,6 +124,11 @@ h3 {
   //@extend .has-text-white;
 }
 
+ul {
+  @extend .mb-3;
+  list-style: circle;
+}
+
 .title {
   word-break: normal;
 }
@@ -123,6 +152,10 @@ h3 {
 .has-background-dark {
   color: $white;
 
+  a, strong {
+    color: $white;
+  }
+
   .hero-title {
     animation: rotateGradient 1s cubic-bezier(.42,0,.58,1) forwards;
     background-size: 100% 150%;
@@ -139,6 +172,12 @@ h3 {
     color: $white;
     margin-bottom: 0em;
     @extend .has-text-light;
+  }
+
+  .navbar {
+    button {
+      padding-top: 3.5em;
+    }
   }
 
   .navbar-item {
@@ -163,10 +202,11 @@ h3 {
   h2, h3 {
     text-shadow: $text-shadow-light;
   }
+}
 
-  a:hover {
-    text-shadow: none;
-  }
+a:hover {
+  text-decoration: underline;
+  text-shadow: none;
 }
 
 .has-background-white {
@@ -176,7 +216,7 @@ h3 {
     background-size: 100% 150%;
     background-image: linear-gradient(to bottom right, $blue 50%, $dark 50%);
     background-clip: text;
-    text-shadow: $text-shadow-dark;
+    text-shadow: $text-shadow-heavy;
     font-style: $oblique-style;
     font-weight: 800;
     color: $light-blue;
@@ -210,4 +250,11 @@ h3 {
   ul ul ul {
     margin-left: 1em;
   }
+}
+
+.hero-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

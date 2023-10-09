@@ -1,166 +1,187 @@
 extends layout.pug
 
 block content
-    //
-    // SECTION 1
-    //
-    div(class="columns is-relative mx-2-mobile")
-        div(class="column is-fixed-width")
-            //div(class="ellipse-background")
-            div(class="mb-20 mb-32-desktop")
-                .hero
-                    span(class="subtitle") Web, Mobile, and Desktop
-                    h1(class="hero-title is-spaced mt-2")
-                        span Software
-                        span(class="is-block is-underlined-disabled")
-                            | product
-                            //img(src="../assets/aktagon-assets/logos/aktagon-logo-rocket.svg", alt="" width="50" height="50")
-                        span(class="is-underlined-disabled") development
-                    p(class="mb-5") Customized software solutions, catering to business and customer requirements.
-                    a(class="button button-call-to-action", href="#contact" style="max-width: 300px") Start a project
-        div(class="column")
-            //img(src="aktagon-assets/images/section-1.png", style="opacity: 0.4")
-    //
-    // SECTION 2
-    //
-    div(class="columns is-relative mt-20 mx-2-mobile")
-        a(name="products-for-the-web")
-        //div(class="column is-hidden-mobile")
-            //img(src="aktagon-assets/images/web.svg", style="opacity: 0.4")
-        div(class="column is-fixed-width")
-            //div(class="ellipse-background ellipse-background-right")
-            div(class="mb-20 mb-32-desktop")
-                span(class="subtitle") Web development
-                h1(class="hero-title is-spaced mt-2")
-                    span Software
-                    span(class="is-block") products
-                    span(class="is-underlined-disabled is-block") for the web.
-                p(class="mb-5") Aktagon Ltd. creates friendly, browser-based software solutions that make life easier for your business, customers, and stakeholders, while offering a delightful user experience.
-    //
-    // SECTION 3
-    //
-    div(class="columns is-relative mt-20 mx-2-mobile")
-        a(name="products-for-the-desktop")
-        div(class="column is-fixed-width")
-            //div(class="ellipse-background")
-            div(class="mb-20 mb-32-desktop")
-                span(class="subtitle") Desktop app development
-                h1(class="hero-title is-spaced mt-2")
-                    span Software
-                    span(class="is-block") products
-                    span(class="is-underlined-disabled is-block") for the desktop.
-                p(class="mb-5") Aktagon Ltd. crafts cross-platform, browser-based software products that play nice with MacOS, Windows, and Linux systems.
-        div(class="column")
-            //img(src="aktagon-assets/images/section-3.png", class="opacity: 0.4")
-    //
-    // SECTION 4
-    //
-    div(class="columns is-relative mt-20 mx-2-mobile")
-        a(name="products-for-mobile-devices")
-        //div(class="column is-hidden-mobile has-text-right")
-            //img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
-        div(class="column is-fixed-width")
-            //div(class="ellipse-background-right")
-            div(class="mb-20 mb-32-desktop")
-                span(class="subtitle") Mobile app development
-                h1(class="hero-title is-spaced mt-2")
-                    span Software
-                    span(class="is-block") products
-                    span(class="is-underlined-disabled is-block") for mobile devices.
-                p(class="mb-5") Aktagon Ltd. specializes in developing top-notch, cross-platform, browser-based software products that ensure seamless compatibility with both iOS and Android devices for optimal user experience.
 
     //
-    // Large Language Models
+    // SECTION:
     //
-    div(class="columns is-relative py-20 m-5-mobile")
-        div(class="column is-fixed-width")
-            h2 Large Language Models
-            ol.list.is-hoverable.is-lower-alpha
-                li.list-item
-                    h3
+    section.is-fullheight-with-navbar.hero
+        .hero-body
+            span(class="subtitle") Software Development for Web, Mobile, and Desktop
+            h1(class="hero-title")
+                span Transforming Ideas
+                span.is-block Into Outstanding
+                span Software Products
+            p(class="mb-5") Turning Your Vision into Robust SaaS Products and Custom Software Solutions
+            a(class="button button-call-to-action", href="#contact") Start a project
+
+    //
+    // SECTION
+    //
+    section.is-fullheight-with-navbar.hero
+        a(name="services")
+        .hero-body
+            .container
+                .columns
+                    .column
+                        h2(class="hero-title") Services
+                        p I specialize in transforming your ideas into high-quality software products across various platforms. My expertise lies in creating exceptional SaaS products and custom software to meet your business and customer requirements.
+                        p Every business is unique, and I'm committed to delivering solutions that are meticulously tailored to align with your goals and the expectations of your end-users.
+                .columns.is-multiline
+                    .column
+                        h3 Software Development
+                        ul.list
+                            li
+                                strong Web Applications: 
+                                span Developing functional, scalable, and reliable web applications to enhance user interaction.
+                            li
+                                strong Desktop Applications: 
+                                span Creating efficient desktop applications to meet your users needs.
+                            li
+                                strong Mobile Applications: 
+                                span Building user-friendly mobile applications for better connectivity with your audience.
+                    .column
+                        h3 DevOps
+                        ul.list
+                            li
+                                strong Continuous Integration/Continuous Deployment (CI/CD): 
+                                span I implement modern CI/CD pipelines to ensure swift and reliable delivery of your software products.
+                            li
+                                strong Infrastructure Automation: 
+                                span I automate your infrastructure setup and management, enhancing efficiency and reducing manual errors.
+                            li
+                                strong Monitoring and Incident Management: 
+                                span I set up comprehensive monitoring systems and incident management processes to ensure the highest level of service reliability and performance.
+                .columns
+                    .column
+                        h3 Cost Reduction
+                        ul.list
+                            li
+                                strong Optimization: 
+                                span I analyze and optimize your software architectures and processes to significantly reduce operational and development costs.
+                            li
+                                strong Cloud Management: 
+                                span I help in managing and optimizing your cloud resources to ensure cost-effectiveness while maintaining high performance and reliability.
+                    .column
+                        h3 Project Lifecycle Support
+                        p From ideation to deployment and ongoing maintenance, I provide comprehensive support throughout the project lifecycle to ensure the success and sustainability of your software products.
+
+                //.columns
+                    .column
+                        h3(class="hero-title is-spaced") Technology Stack
+                        p I employ a diverse range of technologies to ensure the optimal performance and reliability of your software products. My tech stack includes but is not limited to:
+                //.columns
+                    .column
+                        h4 Frontend
+                        ul.list
+                            li HTML
+                            li CSS
+                            li JavaScript
+                    .column
+                        h4 Backend
+                        ul.list
+                            li Ruby
+                            li Python
+                            li Go
+                            li Node.js
+                    .column
+                        h4 Databases
+                        ul.list
+                            li SQL
+                            li NoSQL
+                            li Graph
+                            li Vector
+
+    section.is-fullheight-with-navbar.hero
+        //
+        // SECTION:
+        //
+        a(name="insights")
+        .hero-body
+            .container
+                h2(class="hero-title is-spaced") Insights
+                //
+                // Large Language Models
+                //
+                h3 Large Language Models
+                ul.list
+                    li.list-item
                         a(href="./articles/large-language-models-llms.pug") Essential Concepts for Comprehending Large Language Models
-                li.list-item
-                    h3
+                    li.list-item
                         a(href="./articles/llama-index.pug") Index and Search Your Data Seamlessly with LlamaIndex and Large Language Models
-                //li.list-item
-                    h3
-                        a(href="/articles/lang-chain.pug") Build Smart Applications Using LangChain and Large Language Models
-    //
-    // Logic programming
-    //
-    div(class="columns is-relative mt-20 mx-2-mobile")
-        a(name="products-for-mobile-devices")
-        //div(class="column is-hidden-mobile has-text-right")
-            //img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
-        div(class="column")
-            //div(class="ellipse-background-right")
-            div(class="mb-20 mb-32-desktop")
-                h2 Logic Programming
-                ol.list.is-hoverable.is-lower-alpha
-                    li.list-item
+                    //li.list-item
                         h3
-                            a(href="./articles/prolog-in-a-nutshell.pug") Prolog in a Nutshell
+                            a(href="/articles/lang-chain.pug") Build Smart Applications Using LangChain and Large Language Models
+                //
+                // Logic programming
+                //
+                //div(class="column is-hidden-mobile has-text-right")
+                    //img(src="aktagon-assets/images/mobile-phones.svg", style="opacity: 0.4")
+                h3 Logic Programming
+                ul.list
                     li.list-item
-                        h3
-                            a(href="./articles/constraint-logic-programming-in-prolog.pug") Constraint Logic Programming in Prolog
+                        a(href="./articles/prolog-in-a-nutshell.pug") Prolog in a Nutshell
+                    li.list-item
+                        a(href="./articles/constraint-logic-programming-in-prolog.pug") Constraint Logic Programming in Prolog
                     //li.list-item
                         h3
                             a(href="./articles/natural-language-parsing-in-prolog.pug") Natural Language Parsing in Prolog
-    //
-    // Databases
-    //
-    div(class="columns is-relative mt-20 mx-2-mobile")
-        a(name="products-for-mobile-devices")
-        div(class="column")
-            div(class="mb-20 mb-32-desktop")
-                h2 Databases
-                ol.list.is-hoverable.is-lower-alpha
+                //
+                // Databases
+                //
+                h3 Databases
+                ul.list
                     li.list-item
-                        h3
-                            a(href="./articles/simplifying-change-logs.pug") Simplifying Change Logs: A Trigger-Based Approach With PostgreSQL
-    //
-    // CONTACT
-    //
-    div(class="columns is-relative pt-20 m-5-mobile")
+                        a(href="./articles/simplifying-change-logs.pug") Simplifying Change Logs: A Trigger-Based Approach With PostgreSQL
+    section.is-fullheight-with-navbar.hero
+        //
+        // SECTION:
+        //
         a(name="contact")
-        div(class="column is-fixed-width")
-            div(class="mb-20 mb-32-desktop")
-                h2 Send a request for proposal
-                span(class="has-text-light") Seeking a partner to join forces on your upcoming project? Aktagon Ltd. is ready to collaborate and make it a success.
-                form(action="#", class="mt-12", data-netlify="true", enctype="multipart/form-data", netlify-honeypot="bot-field", name="contact-form")
-                    input(name="bot-field", class="is-hidden")
-                    div(class="control mb-6")
-                        input(class="input", type="text", placeholder="Name", name="name")
-                    div(class="control mb-6")
-                        input(class="input", type="email", placeholder="E-mail", name="email")
-                    div(class="control mb-6")
-                        textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
-                    div(class="control mb-6")
-                      div(class="file has-name is-fullwidth")
-                        label(class="file-label")
-                          input(class="file-input", type="file", name="file")
-                          span(class="file-cta")
-                            span(class="file-icon")
-                              i(class="fas fa-upload")
-                            span(class="file-label") Choose a file&hellip;
-                          span(class="file-name")
-                    button(class="button button-call-to-action") Send RFP
+        .hero-body
+            .container
+                .columns.is-multiline
+                    //.column.is-half.is-offset-one-quarter
+                    .column
 
-    //
-    // ABOUT
-    //
-    div(class="columns is-relative py-20 has-text-centered has-text-left-mobile mx-2-mobile")
+
+                        h3 Contact
+                        p Seeking a partner to join forces on your upcoming project? Aktagon Ltd. is ready to collaborate and make it a success.
+                        form(action="#", data-netlify="true", enctype="multipart/form-data", netlify-honeypot="bot-field", name="contact-form")
+                            input(name="bot-field", class="is-hidden")
+                            div(class="control mb-6")
+                                input(class="input", type="text", placeholder="Name", name="name")
+                            div(class="control mb-6")
+                                input(class="input", type="email", placeholder="E-mail", name="email")
+                            div(class="control mb-6")
+                                textarea(class="textarea has-fixed-size", name="message", cols="30", rows="10", placeholder="Message")
+                            div(class="control mb-6")
+                              div(class="file has-name is-fullwidth")
+                                label(class="file-label")
+                                  input(class="file-input", type="file", name="file")
+                                  span(class="file-cta")
+                                    span(class="file-icon")
+                                      i(class="fas fa-upload")
+                                    span(class="file-label") Choose a file&hellip;
+                                  span(class="file-name")
+                            button(class="button button-call-to-action") Send RFP
+
+    section.is-fullheight-with-navbar.hero(style="display: flex; flex-direction: column; justify-content: center;")
+        //
+        // SECTION:
+        //
         a(name="about")
-        div(class="column")
-            h3 About
-            p Aktagon Ltd., your friendly software-builder, has been crafting cool, user-loved products for customers since 2006.
-        div(class="column")
-            h3 Address
-            p Aktagon Ltd., Renbackavägen 8 A, 02750 Esbo, Finland
-        div(class="column")
-            h3 Email
-            p(class="mb-1") christian@aktagon.com
-        div(class="column")
-            h3 VAT ID
-            p The VAT ID of Aktagon Ltd. is:
-            p FI20537825 (2053782-5)
+        .hero-body
+            .container
+                .columns.is-multiline.is-vcentered
+                    .column.is-half.is-offset-one-quarter
+                        //
+                        // ABOUT
+                        //
+                        h3 About Aktagon Ltd.
+                        p Aktagon Ltd., based in Finland, is your reliable partner for software development needs. With over 20 years of expertise in building software, I have been dedicated to crafting user-friendly products for my clients since 2006. My approach is rooted in practical solutions and a deep understanding of my clients' goals.
+
+                        h4 VAT ID
+                        p FI20537825 (2053782-5)
+                        h4 Contact
+                        p Feel free to reach out for collaborations or inquiries at christian@aktagon.com.

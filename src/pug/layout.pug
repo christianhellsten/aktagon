@@ -9,6 +9,7 @@ html(lang="en")
         link(rel="preconnect" href="https://fonts.googleapis.com")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
         link(href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,900;1,900&display=swap" rel="stylesheet")
+        //link(rel="stylesheet", href="../scss/aktagon-theme.scss")
         link(rel="stylesheet", href="../scss/bulma-theme.scss")
         link(rel="icon", href="favicon.ico")
         script(src="./js/main.js")
@@ -16,7 +17,7 @@ html(lang="en")
         //
         // NAVBAR
         //
-        nav(class="navbar is-dark mb-10 mb-16-desktop py-5", style="background-color: transparent !important;")
+        nav(class="navbar is-dark")
             div(class="container is-fluid")
                 div(class="navbar-brand is-justify-content-space-between")
                     //img(src="../assets/aktagon-assets/logos/aktagon-logo-rocket.svg", alt="" width="40" height="40")
@@ -32,8 +33,9 @@ html(lang="en")
                 div(class="navbar-menu")
                     div(class="navbar-end mr-5")
                         a(class="navbar-item is-active", href="/") Home
-                        a(class="navbar-item", href="/#products-for-the-web") Products for the web
-                        a(class="navbar-item", href="/#products-for-mobile-devices") Products for mobile devices
+                        a(class="navbar-item", href="/#services") Services
+                        a(class="navbar-item", href="/#insights") Insights
+                        a(class="navbar-item", href="/#contact") Contact
                         a(class="navbar-item", href="/#about") About Aktagon Ltd.
                         //a(class="button is-black is-inverted is-outlined is-rounded is-info", href="#contact") Start a project
                 div(class="is-hidden navbar-side is-fixed is-top-0 is-bottom-0 is-left-0 has-mw-sm", style="width: 75%; z-index: 9999;")
@@ -52,14 +54,13 @@ html(lang="en")
                                 a(class="navbar-item", href="/#products-for-mobile-devices") Products for the desktop
                                 a(class="navbar-item", href="/#about") About Aktagon Ltd.
                                 a(class="button is-black is-inverted is-outlined", href="#contact") Start a project
-        div(class="columns is-centered")
-            div(class="column is-four-fifths")
-                block content
-                //
-                // FOOTER
-                //
-                div(class="columns is-relative py-20 px-5")
-                    div(class="column")
-                        img(src="../assets/aktagon-assets/logos/aktagon-logo.svg", alt="", width="100")
-                    div(class="column")
-                    div(class="column has-text-right") &copy; 2006 - &infin;
+        block content
+        //
+        // FOOTER
+        //
+        footer
+            .columns.is-relative.py-20.px-5
+                .column
+                    img(src="../assets/aktagon-assets/logos/aktagon-logo.svg", alt="", width="100")
+                .column
+                .column.has-text-right &copy; 2006 - &infin;

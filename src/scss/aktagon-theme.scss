@@ -1,0 +1,11 @@
+$primary-color: #004bff;
+$body-background-color: $primary-color;
+$oblique-style: oblique 35deg;
+$light-blue: #0196ff;
+//$text-shadow-dark: 0.03em 0.05em 0px #090079, -0.015em -0.015em 0 #222;
+$text-shadow-dark: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
+$text-shadow-light: 0.1em 0.1em #050042, -0.015em -0.015em 1em #00000024;
+$text-shadow-secondary: .1em .1em #090079, -.015em -.015em 0.1em blue;
+
+@import "../../node_modules/bulma/bulma.sass";
+@import 'custom-styles';
