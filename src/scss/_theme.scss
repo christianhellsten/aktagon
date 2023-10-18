@@ -1,3 +1,4 @@
+//$navbar-item-img-max-height: 20px;
 $body-background-color: $primary;
 $oblique-style: oblique 35deg;
 $light-blue: #0196ff;
@@ -77,9 +78,12 @@ placeholder {
   }
 }
 
+.valign-middle {
+    vertical-align: middle;
+}
+
 #logo {
   img {
-    vertical-align: middle;
   }
   span {
     @extend .ml-2;
@@ -262,4 +266,8 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.hero.is-fullheight-with-navbar {
+  min-height: calc(100vh - 12rem);
 }

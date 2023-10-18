@@ -17,14 +17,15 @@ html(lang="en")
         //
         // NAVBAR
         //
-        nav(class="navbar is-dark")
+        nav(class="navbar is-dark is-spaced")
             div(class="container is-fluid")
                 div(class="navbar-brand is-justify-content-space-between")
                     //img(src="../assets/aktagon-assets/logos/aktagon-logo-rocket.svg", alt="" width="40" height="40")
                     //img(src="../assets/aktagon-assets/logos/aktagon-wireframe-logo.svg", alt="" width="60" height="60")
                     //img(src="../assets/aktagon-assets/logos/aktagon-logo-letter.svg", alt="" width="40" height="40")
                     a(id="logo" class="hero-title title pl-0 mb-0 ml-0-mobile", href="/" title="Aktagon Ltd.")
-                        img(src="../assets/aktagon-assets/logos/aktagon-logo-swirl.svg", alt="" width="60" height="60")
+                        //img(src="../assets/aktagon-assets/logos/aktagon-logo-swirl.svg", alt="" width="60" height="60")
+                        img.valign-middle(src="../assets/aktagon-assets/logos/aktagon-logo-4.svg", alt="" width="60" height="60")
                         span aktagon
                     //img(src="../assets/aktagon-assets/logos/aktagon-logo-white.svg", alt="")
                     button(class="button is-ghost is-hidden-desktop navbar-menu-open")
@@ -55,13 +56,27 @@ html(lang="en")
                                 a(class="navbar-item", href="/#products-for-mobile-devices") Products for the desktop
                                 a(class="navbar-item", href="/#about") About Aktagon Ltd.
                                 a(class="button is-black is-inverted is-outlined", href="#contact") Start a project
+        //.
+            <button class="btn-variation2">Start a Software Project</button>
+            <button class="btn-variation1">Start a Software Project</button>
         block content
+
+            div.
+                <svg width="200" height="60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Vibrant octagonal frame -->
+                    <polygon points="10,0 190,0 200,30 190,60 10,60 0,30" fill="#4CAF50"/>
+
+                    <!-- Refined letter 'A' -->
+                    <text x="50%" y="50%" fill="white" font-family="Arial" font-size="24" font-weight="bold" dy=".3em" text-anchor="middle">
+                        A
+                    </text>
+                </svg>
         //
         // FOOTER
         //
         footer
             .columns.is-relative.py-20.px-5
                 .column
-                    img(src="../assets/aktagon-assets/logos/aktagon-logo.svg", alt="", width="100")
-                .column
-                .column.has-text-right &copy; 2006 - &infin;
+                    img.valign-middle(src="../assets/aktagon-assets/logos/aktagon-logo-4.svg", alt="", width="60")
+                    span.ml-3 &copy; 2006 - &infin;
+
