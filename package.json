@@ -15,12 +15,12 @@
   },
   "devDependencies": {
     "@parcel/resolver-default": "^2.9.3",
-    "@parcel/transformer-pug": "^2.9.3",
-    "@parcel/transformer-sass": "^2.9.3",
+    "@parcel/transformer-pug": "^2.12.0",
+    "@parcel/transformer-sass": "^2.12.0",
     "jstransformer-markdown-it": "^3.0.0",
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-table-of-contents": "^0.6.0",
-    "parcel": "^2.9.3",
+    "parcel": "^2.12.0",
     "rimraf": "^2.6.2",
     "sharp": "^0.31.3"
   }
