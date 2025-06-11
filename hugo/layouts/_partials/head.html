@@ -1,0 +1,33 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- External CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+  />
+
+  <!-- Default files -->
+  {{ with resources.Get "scss/main.scss" | toCSS | postCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
+
+  <!-- JavaScript -->
+  <script src="{{ "js/app.js" | relURL }}" defer="true"></script>
+
+  <link rel="icon" type="image/svg+xml" href="{{ "images/aktagon-logo-4.e13c9149.svg" | relURL }}">
+</head>

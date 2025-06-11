@@ -1,0 +1,79 @@
+/* Grid Layout System */
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.wrapper > * {
+  flex: 1 100%;
+}
+
+/* Header Layout */
+.header {
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header__buttons {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+/* Footer Layout */
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Main Content Areas */
+.main {
+  flex: 1; /* Take remaining space */
+  padding: 2rem;
+  max-width: none; /* Remove any width constraints */
+}
+
+.aside-1 {
+  //flex: 0 0 300px; /* Fixed width, no grow/shrink */
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.aside-2 {
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 180px - 80px); /* 100% - header - footer */
+}
+
+/* Article */
+.article {
+  overflow: hidden;
+}

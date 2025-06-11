@@ -1,7 +1,26 @@
-/* Responsive */
+/* Base layout container */
+.layout-container {
+  display: flex;
+  flex-direction: column; /* Mobile first: vertical stack */
+  min-height: 100vh;
+}
 
 /* Mobile Styles (max-width: 640px) */
 @media (max-width: 640px) {
+  /* Layout: main first, then asides */
+  .main {
+    order: 1;
+  }
+  .aside-1 {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+
   /* Navigation */
   .nav-tabs {
     display: none;
@@ -24,18 +43,14 @@
     height: auto;
     padding: 20px;
     gap: 10px;
-    text-align: center;
   }
-
   .footer-left,
   .footer-right {
     width: 100%;
   }
-
   .footer-left {
     order: 2;
   }
-
   .footer-right {
     order: 1;
     font-weight: 600;
@@ -44,6 +59,20 @@
 
 /* Small Tablet Styles (641px - 799px) */
 @media (min-width: 641px) and (max-width: 799px) {
+  /* Keep vertical layout but restore natural order */
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+
   /* Navigation */
   .nav-item a {
     padding: 6px 12px;
@@ -66,6 +95,34 @@
 
 /* Large Tablet Styles (800px - 1023px) */
 @media (min-width: 800px) and (max-width: 1023px) {
+  /* Transition to horizontal layout */
+  .layout-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Content area takes full width, footer below */
+  .content-wrapper {
+    display: flex;
+    width: 100%;
+    order: 1;
+  }
+
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    flex: 1; /* Takes remaining space */
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    width: 100%;
+    order: 2;
+  }
+
   /* Navigation */
   .nav-item a {
     padding: 6px 12px;
@@ -78,51 +135,34 @@
     padding-left: 50px;
     padding-right: 50px;
   }
-
-  /* Layout */
-  .main {
-    flex: 3 0px;
-  }
-  .aside-1 {
-    order: 1;
-  }
-  .main {
-    order: 2;
-  }
-  .aside-2 {
-    order: 3;
-  }
-  .footer {
-    order: 4;
-  }
 }
 
 /* Desktop Styles (min-width: 1024px) */
 @media (min-width: 1024px) {
-  /* Navigation */
-  .nav-item a {
+  /* Full horizontal layout */
+  .layout-container {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  /* Layout */
-  .main {
+  .content-wrapper {
+    display: flex;
+    width: 100%;
+    order: 1;
   }
+
   .aside-1 {
     order: 1;
   }
   .main {
+    flex: 1;
     order: 2;
   }
   .aside-2 {
     order: 3;
   }
   .footer {
-    order: 4;
-  }
-}
-
-/* General responsive rules */
-@media (min-width: 600px) {
-  .aside {
-    flex: 1 0 0;
+    width: 100%;
+    order: 2;
   }
 }

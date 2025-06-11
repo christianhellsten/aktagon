@@ -1,0 +1,87 @@
+/**
+ * CSS for layered 3D scenes viewed from a distance.
+ *
+ * .is-3d = renders 3D scene
+ * .is-3d-exploded = renders 3D exploded scene
+ *
+ */
+
+:root {
+  --t3d-duration: 2s; /* Animation duration for 2D to 3D transition */
+  --t3d-scene-distance: -200px; /* How far back the scene is positioned (Z-axis) */
+  --t3d-scene-tilt: 47deg; /* Downward tilt angle (rotateX) */
+  --t3d-scene-rotation: 31deg; /* Left/right rotation (rotateY) */
+  --t3d-scene-skew: 324deg; /* Diagonal orientation (rotateZ) */
+  --t3d-layer-base: 20px; /* Base depth for first layer */
+  --t3d-layer-increment: 80px; /* Depth increment between layers */
+}
+
+body {
+}
+
+/* 3D viewport with perspective */
+.t3d-viewport {
+  perspective: 4000px;
+  perspective-origin: 100% 0;
+}
+
+/* 3D scene container */
+.t3d-scene {
+  position: relative;
+}
+
+/* Individual depth layers */
+.t3d-layer {
+  transition:
+    transform var(--t3d-duration) ease-out,
+    margin var(--t3d-duration) ease-out;
+  transform: translate3d(0, 0, 30px);
+  position: absolute;
+}
+
+/* Layer colors and styling */
+.t3d-layer[data-index="1"] {
+}
+
+.t3d-layer[data-index="2"] {
+}
+
+.t3d-layer[data-index="3"] {
+}
+
+/* 3D transformation state */
+.is-3d .t3d-scene {
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, var(--t3d-scene-distance)) scale(1.2)
+    rotateX(var(--t3d-scene-tilt)) rotateY(var(--t3d-scene-rotation))
+    rotateZ(var(--t3d-scene-skew));
+}
+
+.is-3d-exploded .t3d-layer[data-index="1"] {
+  transform: translateZ(var(--t3d-layer-base));
+}
+
+.is-3d-exploded .t3d-layer[data-index="2"] {
+  transform: translateZ(
+    calc(var(--t3d-layer-base) + var(--t3d-layer-increment))
+  );
+}
+
+.is-3d-exploded .t3d-layer[data-index="3"] {
+  transform: translateZ(
+    calc(var(--t3d-layer-base) + 2 * var(--t3d-layer-increment))
+  );
+}
+
+.is-3d-exploded .t3d-layer[data-index="4"] {
+  transform: translateZ(
+    calc(var(--t3d-layer-base) + 3 * var(--t3d-layer-increment))
+  );
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .t3d-scene {
+    transition: none;
+  }
+}

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVP: DOM Depth Level Classes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #2c3e50;
+        color: #333;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* 3D Container */
+      .viewport {
+        perspective: 1000px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .ui-container {
+        transform-style: preserve-3d;
+        width: 800px;
+        height: 500px;
+        position: relative;
+      }
+
+      /* Level Classes - Core Algorithm Result */
+      [class*="level-"] {
+        transform-style: preserve-3d;
+      }
+
+      .level-0 {
+        transform: translateZ(0px);
+      }
+      .level-1 {
+        transform: translateZ(15px);
+      }
+      .level-2 {
+        transform: translateZ(30px);
+      }
+      .level-3 {
+        transform: translateZ(45px);
+      }
+      .level-4 {
+        transform: translateZ(60px);
+      }
+      .level-5 {
+        transform: translateZ(75px);
+      }
+
+      /* Simple App Styles */
+      .app {
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: grid;
+        grid-template-rows: 60px 1fr 40px;
+        border: 1px solid #ddd;
+      }
+
+      .header {
+        background: #34495e;
+        color: white;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-weight: bold;
+      }
+
+      .nav {
+        display: flex;
+        gap: 10px;
+      }
+
+      .nav-item {
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .main {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+      }
+
+      .sidebar {
+        background: #ecf0f1;
+        padding: 20px;
+      }
+
+      .sidebar-item {
+        padding: 8px;
+        margin: 4px 0;
+        background: white;
+        border-radius: 4px;
+      }
+
+      .content {
+        padding: 20px;
+        background: #f8f9fa;
+      }
+
+      .section {
+        padding: 15px;
+        margin: 10px 0;
+        background: white;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+      }
+
+      .item {
+        padding: 8px;
+        margin: 5px 0;
+        background: #e3f2fd;
+        border-radius: 4px;
+      }
+
+      .footer {
+        background: #34495e;
+        color: white;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Simple Controls */
+      .controls {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        min-width: 250px;
+      }
+
+      .control {
+        margin: 10px 0;
+      }
+
+      .control label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .control input {
+        width: 100%;
+      }
+
+      .control-value {
+        display: inline-block;
+        width: 50px;
+        text-align: right;
+        font-family: monospace;
+      }
+
+      button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px 0;
+        width: 100%;
+      }
+
+      /* Visualization */
+      .info {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        max-width: 300px;
+      }
+
+      .level-info {
+        margin: 2px 0;
+      }
+
+      /* Debug Colors */
+      .debug .level-0 {
+        background-color: rgba(255, 0, 0, 0.1) !important;
+      }
+      .debug .level-1 {
+        background-color: rgba(0, 255, 0, 0.1) !important;
+      }
+      .debug .level-2 {
+        background-color: rgba(0, 0, 255, 0.1) !important;
+      }
+      .debug .level-3 {
+        background-color: rgba(255, 255, 0, 0.1) !important;
+      }
+      .debug .level-4 {
+        background-color: rgba(255, 0, 255, 0.1) !important;
+      }
+      .debug .level-5 {
+        background-color: rgba(0, 255, 255, 0.1) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="viewport">
+      <div class="ui-container">
+        <div class="app">
+          <div class="header">
+            <div class="logo">MVP App</div>
+            <div class="nav">
+              <div class="nav-item">Home</div>
+              <div class="nav-item">About</div>
+              <div class="nav-item">Contact</div>
+            </div>
+          </div>
+          <div class="main">
+            <div class="sidebar">
+              <div class="sidebar-item">Dashboard</div>
+              <div class="sidebar-item">
+                Projects
+                <div class="item">Project A</div>
+                <div class="item">
+                  Project B
+                  <div class="item">Sub-task 1</div>
+                  <div class="item">Sub-task 2</div>
+                </div>
+              </div>
+              <div class="sidebar-item">Settings</div>
+            </div>
+            <div class="content">
+              <h2>Core Algorithm Demo</h2>
+              <div class="section">
+                <h3>Simple Depth Assignment</h3>
+                <div class="item">Level classes applied by DOM depth</div>
+                <div class="item">No complexity, just core functionality</div>
+              </div>
+              <div class="section">
+                <h3>Algorithm Steps</h3>
+                <div class="item">1. Traverse DOM tree</div>
+                <div class="item">2. Count depth level</div>
+                <div class="item">
+                  3. Apply .level-X class
+                  <div class="item">Z = Level × Spacing</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">MVP: Minimum Viable Product</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <h4>Controls</h4>
+
+      <div class="control">
+        <label
+          >Spacing:
+          <span class="control-value" id="spacing-value">15px</span></label
+        >
+        <input type="range" id="spacing" min="0" max="50" value="15" />
+      </div>
+
+      <div class="control">
+        <label
+          >Translate X:
+          <span class="control-value" id="transx-value">0px</span></label
+        >
+        <input type="range" id="transx" min="-200" max="200" value="0" />
+      </div>
+
+      <div class="control">
+        <label
+          >Translate Y:
+          <span class="control-value" id="transy-value">0px</span></label
+        >
+        <input type="range" id="transy" min="-200" max="200" value="0" />
+      </div>
+
+      <div class="control">
+        <label
+          >Translate Z:
+          <span class="control-value" id="transz-value">0px</span></label
+        >
+        <input type="range" id="transz" min="-200" max="200" value="0" />
+      </div>
+
+      <div class="control">
+        <label
+          >Rotate X:
+          <span class="control-value" id="rotx-value">0°</span></label
+        >
+        <input type="range" id="rotx" min="-45" max="45" value="0" />
+      </div>
+
+      <div class="control">
+        <label
+          >Rotate Y:
+          <span class="control-value" id="roty-value">0°</span></label
+        >
+        <input type="range" id="roty" min="-45" max="45" value="0" />
+      </div>
+
+      <button onclick="applyLevels()">Apply Level Classes</button>
+      <button onclick="toggleDebug()">Toggle Debug Colors</button>
+      <button onclick="copyHtmlAndCss()">Copy HTML And CSS</button>
+      <button onclick="reset()">Reset</button>
+    </div>
+
+    <div class="info">
+      <div><strong>Level Analysis:</strong></div>
+      <div id="level-counts"></div>
+      <div style="margin-top: 10px">
+        <strong>Formula:</strong> Z = Level × Spacing
+      </div>
+    </div>
+
+    <script>
+      // Core Algorithm - MVP Implementation
+      const container = document.querySelector(".ui-container");
+      const app = document.querySelector(".app");
+
+      let debugMode = false;
+      let levelData = {};
+
+      // Core: Apply level classes based on DOM depth
+      function applyLevels() {
+        const spacing = parseInt(document.getElementById("spacing").value);
+        levelData = {};
+        let maxLevel = 0;
+
+        // Remove existing classes
+        document.querySelectorAll('[class*="level-"]').forEach((el) => {
+          for (let i = 0; i <= 10; i++) {
+            el.classList.remove(`level-${i}`);
+          }
+        });
+
+        // Core traversal algorithm
+        function traverse(element, level = 0) {
+          // Skip controls
+          if (element.closest(".controls") || element.closest(".info")) {
+            return;
+          }
+
+          maxLevel = Math.max(maxLevel, level);
+
+          // Apply level class
+          element.classList.add(`level-${level}`);
+
+          // Count for visualization
+          if (!levelData[level]) levelData[level] = 0;
+          levelData[level]++;
+
+          // Recurse children
+          Array.from(element.children).forEach((child) => {
+            traverse(child, level + 1);
+          });
+        }
+
+        traverse(app, 0);
+        updateCSS(spacing, maxLevel);
+        updateInfo();
+      }
+
+      // Update CSS with new spacing
+      function updateCSS(spacing, maxLevel) {
+        let css = '[class*="level-"] { transform-style: preserve-3d; }\n';
+
+        for (let i = 0; i <= maxLevel; i++) {
+          css += `.level-${i} { transform: translateZ(${i * spacing}px); }\n`;
+        }
+
+        const style = document.createElement("style");
+        style.id = "dynamic-levels";
+        style.textContent = css;
+
+        const existing = document.querySelector("#dynamic-levels");
+        if (existing) existing.remove();
+        document.head.appendChild(style);
+      }
+
+      // Update visualization info
+      function updateInfo() {
+        const counts = document.getElementById("level-counts");
+        let html = "";
+
+        Object.keys(levelData).forEach((level) => {
+          const count = levelData[level];
+          const spacing = parseInt(document.getElementById("spacing").value);
+          html += `<div class="level-info">Level ${level}: ${count} elements (Z: ${level * spacing}px)</div>`;
+        });
+
+        counts.innerHTML = html;
+      }
+
+      // Update 3D transform
+      function updateTransform() {
+        const transX = document.getElementById("transx").value;
+        const transY = document.getElementById("transy").value;
+        const transZ = document.getElementById("transz").value;
+        const rotX = document.getElementById("rotx").value;
+        const rotY = document.getElementById("roty").value;
+
+        container.style.transform = `translateX(${transX}px) translateY(${transY}px) translateZ(${transZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+        document.getElementById("transx-value").textContent = transX + "px";
+        document.getElementById("transy-value").textContent = transY + "px";
+        document.getElementById("transz-value").textContent = transZ + "px";
+        document.getElementById("rotx-value").textContent = rotX + "°";
+        document.getElementById("roty-value").textContent = rotY + "°";
+      }
+
+      // Debug mode
+      function toggleDebug() {
+        debugMode = !debugMode;
+        document.body.classList.toggle("debug", debugMode);
+      }
+
+      // Reset
+      function reset() {
+        document.getElementById("spacing").value = 15;
+        document.getElementById("transx").value = 0;
+        document.getElementById("transy").value = 0;
+        document.getElementById("transz").value = 0;
+        document.getElementById("rotx").value = 0;
+        document.getElementById("roty").value = 0;
+        updateTransform();
+        applyLevels();
+      }
+
+      // Copy HTML and CSS
+      function copyHtmlAndCss() {
+        const appHtml = document.querySelector(".app").outerHTML;
+        const dynamicStyle = document.querySelector("#dynamic-levels");
+        const dynamicCss = dynamicStyle ? dynamicStyle.textContent : "";
+
+        const output = `<!-- HTML Structure -->\n${appHtml}\n\n<!-- Dynamic Level CSS -->\n<style>\n${dynamicCss}</style>`;
+
+        navigator.clipboard
+          .writeText(output)
+          .then(() => {
+            const button = document.querySelector(
+              'button[onclick="copyHtmlAndCss()"]',
+            );
+            const originalText = button.textContent;
+            button.textContent = "Copied!";
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+          });
+      }
+
+      // Event listeners
+      document.getElementById("spacing").addEventListener("input", (e) => {
+        document.getElementById("spacing-value").textContent =
+          e.target.value + "px";
+        if (Object.keys(levelData).length > 0) {
+          const maxLevel = Math.max(...Object.keys(levelData).map(Number));
+          updateCSS(parseInt(e.target.value), maxLevel);
+          updateInfo();
+        }
+      });
+
+      document
+        .getElementById("transx")
+        .addEventListener("input", updateTransform);
+      document
+        .getElementById("transy")
+        .addEventListener("input", updateTransform);
+      document
+        .getElementById("transz")
+        .addEventListener("input", updateTransform);
+      document
+        .getElementById("rotx")
+        .addEventListener("input", updateTransform);
+      document
+        .getElementById("roty")
+        .addEventListener("input", updateTransform);
+
+      // Initialize
+      applyLevels();
+      updateTransform();
+    </script>
+  </body>
+</html>

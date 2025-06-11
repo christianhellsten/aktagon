@@ -1,0 +1,12 @@
+hugo/public/
+hugo/resources/
+public/
+dist/
+pages/
+*.env*
+*.pid
+*.lock
+*.log
+*.tmp
+tmp/
+log/

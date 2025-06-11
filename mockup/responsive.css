@@ -1,0 +1,127 @@
+/* Responsive */
+
+/* Mobile Styles (max-width: 640px) */
+@media (max-width: 640px) {
+  /* Navigation */
+  .nav-tabs {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+  }
+  .main-nav {
+    position: relative;
+    margin-left: 1rem;
+  }
+  .header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Footer - Stack vertically */
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .footer-left,
+  .footer-right {
+    width: 100%;
+  }
+
+  .footer-left {
+    order: 2;
+  }
+
+  .footer-right {
+    order: 1;
+    font-weight: 600;
+  }
+}
+
+/* Small Tablet Styles (641px - 799px) */
+@media (min-width: 641px) and (max-width: 799px) {
+  /* Navigation */
+  .nav-item a {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .main-nav {
+    margin-left: 1.5rem;
+  }
+  .header {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  /* Footer - Maintain horizontal layout but adjust spacing */
+  .footer {
+    height: 60px;
+    padding: 15px 20px;
+  }
+}
+
+/* Large Tablet Styles (800px - 1023px) */
+@media (min-width: 800px) and (max-width: 1023px) {
+  /* Navigation */
+  .nav-item a {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .main-nav {
+    margin-left: 1.5rem;
+  }
+  .header {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  /* Layout */
+  .main {
+    flex: 3 0px;
+  }
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+}
+
+/* Desktop Styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+  /* Navigation */
+  .nav-item a {
+  }
+
+  /* Layout */
+  .main {
+  }
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+}
+
+/* General responsive rules */
+@media (min-width: 600px) {
+  .aside {
+    flex: 1 0 0;
+  }
+}

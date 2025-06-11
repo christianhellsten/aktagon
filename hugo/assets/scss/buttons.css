@@ -1,0 +1,83 @@
+/* Toggle Button Components */
+.toggle-btn {
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  opacity: 0.8;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.toggle-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+.toggle-btn:active {
+  transform: translateY(1px);
+  background: rgba(255, 255, 255, 0.2);
+}
+.toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.btn--primary {
+  background: white;
+  color: var(--bg-primary);
+}
+
+.btn--primary:hover {
+  background: #f0f0f0;
+}
+
+.btn--primary:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn--secondary:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}

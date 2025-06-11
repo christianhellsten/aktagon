@@ -1,0 +1,29 @@
+baseURL = 'https://aktagon.com/'
+languageCode = 'en-us'
+title = 'Aktagon Ltd. – Fast-Paced Development, Rock-Solid Delivery'
+pluralizeListTitles = false
+theme = ''
+# publishDir = "../pages"
+# canonifyURLs = true # prepend baseURL to any absolute paths
+
+[params]
+  description = "Aktagon Ltd. – Fast-Paced Development, Rock-Solid Delivery"
+  author = "Christian Hellsten"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[permalinks]
+  # posts = "/posts/:year/:month/:slug/"
+  radar = "/radar/:year/:month/:slug/"
+  research  = "/research/:slug/"

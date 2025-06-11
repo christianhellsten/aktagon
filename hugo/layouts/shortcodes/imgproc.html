@@ -1,0 +1,9 @@
+{{- $src := .Get "src" -}} {{- with .Page.Resources.GetMatch $src -}} {{-
+$resized := .Resize "600x" -}}
+<img
+  src="{{ $resized.RelPermalink }}"
+  width="{{ $resized.Width }}"
+  height="{{ $resized.Height }}"
+  alt="{{ .Name | safeURL }}"
+/>
+{{- end -}}

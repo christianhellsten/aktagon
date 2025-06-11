@@ -378,6 +378,11 @@ body {
   vertical-align: middle;
 }
 
+.page-article {
+  padding: 100px;
+  max-width: 780px;
+}
+
 /* Light mode - show grid overlay */
 body.show-grid .header {
   background: rgba(255, 99, 71, 0.3);

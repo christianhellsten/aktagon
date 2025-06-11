@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      2D to 3D Transformation Using transform & transform-style CSS properties
+    </title>
+    <style>
+      :root {
+        --t3d-duration: 5s; /* Animation duration for 2D to 3D transition */
+        --t3d-scene-distance: -200px; /* How far back the scene is positioned (Z-axis) */
+        --t3d-scene-tilt: 71deg; /* Downward tilt angle (rotateX) */
+        --t3d-scene-rotation: -10deg; /* Left/right rotation (rotateY) */
+        --t3d-scene-skew: 60deg; /* Diagonal orientation (rotateZ) */
+        --t3d-layer-base: 20px; /* Base depth for first layer */
+        --t3d-layer-increment: 30px; /* Depth increment between layers */
+      }
+
+      body {
+        font-family: system-ui, Arial, sans-serif;
+        background: #f0f0f0;
+      }
+
+      /* 3D viewport with perspective */
+      .t3d-viewport {
+        perspective: 1000px;
+      }
+
+      /* 3D scene container */
+      .t3d-scene {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+      }
+
+      /* Individual depth layers */
+      .t3d-layer {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* Layer colors and styling */
+      .t3d-layer[data-index="1"] {
+        background: rgba(255, 0, 0, 0.7);
+        border-color: red;
+      }
+
+      .t3d-layer[data-index="2"] {
+        background: rgba(0, 255, 0, 0.7);
+        border-color: green;
+      }
+
+      .t3d-layer[data-index="3"] {
+        background: rgba(0, 0, 255, 0.7);
+        border-color: blue;
+      }
+
+      /* 3D transformation state */
+      .is-3d .t3d-scene {
+        transition: transform var(--t3d-duration);
+        transform-style: preserve-3d;
+        transform: translate3d(0, 0, var(--t3d-scene-distance))
+          rotateX(var(--t3d-scene-tilt)) rotateY(var(--t3d-scene-rotation))
+          rotateZ(var(--t3d-scene-skew));
+      }
+
+      .is-3d .t3d-layer[data-index="1"] {
+        transform: translateZ(var(--t3d-layer-base));
+      }
+
+      .is-3d .t3d-layer[data-index="2"] {
+        transform: translateZ(
+          calc(var(--t3d-layer-base) + var(--t3d-layer-increment))
+        );
+      }
+
+      .is-3d .t3d-layer[data-index="3"] {
+        transform: translateZ(
+          calc(var(--t3d-layer-base) + 2 * var(--t3d-layer-increment))
+        );
+      }
+
+      /* Accessibility: Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .t3d-scene {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS transform & transform-style</h1>
+    <div class="t3d-viewport">
+      <div class="t3d-scene">
+        <div class="t3d-layer" data-index="1">Level 1</div>
+        <div class="t3d-layer" data-index="2">Level 2</div>
+        <div class="t3d-layer" data-index="3">Level 3</div>
+      </div>
+    </div>
+    <script>
+      /* Start the 3D animation on page load */
+      window.addEventListener("load", () => {
+        document
+          .querySelectorAll(".t3d-viewport")
+          .forEach((el) => el.classList.add("is-3d"));
+      });
+    </script>
+  </body>
+</html>
