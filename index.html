@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aktagon.com</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="grid.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="buttons.css" />
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="app.js" defer="true"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header-left">
+          <div id="logo">
+            <a
+              class=""
+              href="/"
+              title="Aktagon Ltd. – Software & Product Development"
+              ><img
+                class="valign-middle"
+                src="aktagon-logo-4.e13c9149.svg"
+                alt
+                width="50"
+                height="50"
+            /></a>
+          </div>
+        </div>
+        <div class="header-right">
+          <nav class="main-nav" role="navigation">
+            <button
+              class="mobile-nav-toggle"
+              aria-label="Toggle navigation"
+              onclick="toggleMobileNav()"
+            >
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-tabs" id="main-nav" role="tablist">
+              <li class="nav-item active" role="tab">
+                <a href="/" aria-current="page">Home</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/news">Chronicle</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/blog">Insights</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/about">About</a>
+              </li>
+            </ul>
+            <ul class="mobile-nav" id="mobile-nav">
+              <li class="nav-item active" role="tab">
+                <a href="/" aria-current="page">Home</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/news">Chronicle</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/blog">Insights</a>
+              </li>
+              <li class="nav-item" role="tab">
+                <a href="/about">About</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="header__buttons">
+          <button class="toggle-btn" onclick="toggleAnimation()">
+            &#x25B6;
+          </button>
+          <button class="toggle-btn toggle-grid-btn" onclick="toggleGrid()">
+            &#x2692;
+          </button>
+        </div>
+      </header>
+      <div class="content-wrapper">
+        <article class="main">
+          <div class="editor-perspective">
+            <div class="editor-container" id="editor">
+              <div class="editor-business-idea" data-nosnippet="true">
+                <h1>Moonshot: Travel to the Moon & Back</h1>
+
+                <p>
+                  <strong>Target Audience:</strong> Product managers and
+                  technical leads
+                </p>
+
+                <h2>Business Idea</h2>
+                <p>
+                  I want to create an investment platform that uses algorithmic
+                  trading strategies to generate enough capital to fund a
+                  private lunar mission.
+                </p>
+
+                <h2>Document Business Requirements</h2>
+
+                <h3>Functional Requirements</h3>
+                <ul>
+                  <li>Investment portfolio management</li>
+                  <li>Algorithmic trading algorithms</li>
+                  <li>Risk assessment tools</li>
+                  <li>Moon mission cost tracking</li>
+                  <li>Progress dashboard</li>
+                  <li>Investment performance analytics</li>
+                </ul>
+
+                <h3>Non-Functional Requirements</h3>
+                <ul>
+                  <li>Performance: Execute trades under 100ms</li>
+                  <li>
+                    Security: Financial data encryption, regulatory compliance
+                  </li>
+                  <li>Availability: 99.99% uptime during market hours</li>
+                  <li>Scalability: Handle $100M+ in managed assets</li>
+                </ul>
+
+                <h2>Olog Model</h2>
+                <ul>
+                  <li>
+                    <strong>Objects:</strong> User, Portfolio, Trade, Algorithm,
+                    Asset, MissionGoal
+                  </li>
+                  <li>
+                    <strong>Links:</strong> User owns Portfolio, Portfolio
+                    contains Assets, Algorithm executes Trades
+                  </li>
+                  <li>
+                    <strong>Operations:</strong> Buy/Sell assets, Calculate
+                    returns, Track mission funding
+                  </li>
+                  <li>
+                    <strong>Groupings:</strong> Assets by Sector, Trades by
+                    Strategy, Goals by Timeline
+                  </li>
+                </ul>
+
+                <h2>PRDs (Product Requirement Documents)</h2>
+
+                <h3>Core Features</h3>
+                <ul>
+                  <li>Real-time trading dashboard</li>
+                  <li>AI-powered investment algorithms</li>
+                  <li>Moon mission cost calculator</li>
+                  <li>Performance tracking</li>
+                </ul>
+
+                <h3>Mobile App</h3>
+                <ul>
+                  <li>Portfolio monitoring</li>
+                  <li>Trade notifications</li>
+                  <li>Mission progress tracker</li>
+                </ul>
+
+                <h2>ADRs (Architecture Decision Documents)</h2>
+
+                <h3>ADR-001: Database</h3>
+                <p><strong>Decision:</strong> TimescaleDB</p>
+                <p>
+                  <strong>Rationale:</strong> Optimized for time-series
+                  financial data, PostgreSQL compatibility
+                </p>
+
+                <h3>ADR-002: Trading Engine</h3>
+                <p><strong>Decision:</strong> Rust-based microservices</p>
+                <p>
+                  <strong>Rationale:</strong> Low-latency trading execution,
+                  memory safety
+                </p>
+
+                <h3>ADR-003: Market Data</h3>
+                <p><strong>Decision:</strong> Alpha Vantage API</p>
+                <p>
+                  <strong>Rationale:</strong> Real-time data, comprehensive
+                  coverage, cost-effective
+                </p>
+
+                <h3>ADR-004: Brokerage</h3>
+                <p><strong>Decision:</strong> Interactive Brokers API</p>
+                <p>
+                  <strong>Rationale:</strong> Low fees, global markets,
+                  algorithmic trading support
+                </p>
+
+                <h2>Timeline</h2>
+                <ul>
+                  <li>
+                    <strong>Phase 1 (Months 1-6):</strong> Basic trading
+                    platform and algorithms
+                  </li>
+                  <li>
+                    <strong>Phase 2 (Months 7-12):</strong> AI optimization and
+                    risk management
+                  </li>
+                  <li>
+                    <strong>Phase 3 (Year 2-3):</strong> Scale to $10M target
+                    fund
+                  </li>
+                  <li>
+                    <strong>Phase 4 (Year 4-5):</strong> Partner with space
+                    companies for lunar mission
+                  </li>
+                </ul>
+
+                <h2>Success Metrics</h2>
+                <ul>
+                  <li>Generate $10M investment fund within 3 years</li>
+                  <li>Achieve 15%+ annual returns consistently</li>
+                  <li>Secure lunar mission partnership</li>
+                  <li>Launch to moon by 2030</li>
+                </ul>
+
+                <h2>Next Steps</h2>
+                <ol>
+                  <li>Research lunar mission costs and providers</li>
+                  <li>Develop initial trading algorithms</li>
+                  <li>Obtain necessary financial licenses</li>
+                  <li>Build MVP trading platform</li>
+                  <li>Partner with space industry experts</li>
+                </ol>
+              </div>
+              <header class="editor-header editor-3d">
+                <div class="traffic-lights">
+                  <span class="traffic-light red"></span>
+                  <span class="traffic-light yellow"></span>
+                  <span class="traffic-light green"></span>
+                </div>
+                <div class="window-title">main.go</div>
+                <div class="header-actions">
+                  <span class="action-btn">Sign in</span>
+                </div>
+              </header>
+
+              <nav class="tab-bar editor-3d">
+                <div class="tab active">
+                  <span class="tab-icon">&bull;</span>
+                  <span class="tab-name">main.go</span>
+                </div>
+                <div class="tab">
+                  <span class="tab-name">PRD.md</span>
+                </div>
+                <div class="tab">
+                  <span class="tab-name">ADR.md</span>
+                </div>
+                <div class="tab">
+                  <span class="tab-name">README.md</span>
+                </div>
+              </nav>
+
+              <div class="editor-layout editor-3d">
+                <aside class="sidebar">
+                  <div class="sidebar-header">
+                    <span class="sidebar-title">Projects / Moonshot</span>
+                  </div>
+                  <div class="file-tree">
+                    <div class="file-item active">📄 main.go</div>
+                    <div class="file-item">📁 cmd/</div>
+                    <div class="file-item">📁 pkg/</div>
+                    <div class="file-item">📄 go.mod</div>
+                    <div class="file-item">📄 go.sum</div>
+                    <div class="file-item">📄 ADR.md</div>
+                    <div class="file-item">📄 PRD.md</div>
+                    <div class="file-item">📄 README.md</div>
+                  </div>
+                </aside>
+
+                <main class="code-editor">
+                  <div class="editor-content">
+                    <div class="line-numbers">
+                      <div class="line-number">1</div>
+                      <div class="line-number">2</div>
+                      <div class="line-number">3</div>
+                      <div class="line-number">4</div>
+                      <div class="line-number">5</div>
+                      <div class="line-number">6</div>
+                      <div class="line-number">7</div>
+                      <div class="line-number">8</div>
+                      <div class="line-number">9</div>
+                      <div class="line-number">10</div>
+                      <div class="line-number">11</div>
+                      <div class="line-number">12</div>
+                      <div class="line-number">13</div>
+                      <div class="line-number">14</div>
+                      <div class="line-number">15</div>
+                      <div class="line-number">16</div>
+                      <div class="line-number">17</div>
+                      <div class="line-number">18</div>
+                      <div class="line-number">19</div>
+                      <div class="line-number">20</div>
+                      <div class="line-number">21</div>
+                      <div class="line-number">22</div>
+                      <div class="line-number">23</div>
+                      <div class="line-number">24</div>
+                      <div class="line-number">25</div>
+                      <div class="line-number">26</div>
+                      <div class="line-number">27</div>
+                      <div class="line-number">28</div>
+                      <div class="line-number">29</div>
+                      <div class="line-number">30</div>
+                      <div class="line-number">31</div>
+                      <div class="line-number">32</div>
+                      <div class="line-number">33</div>
+                      <div class="line-number">34</div>
+                      <div class="line-number">35</div>
+                      <div class="line-number">36</div>
+                      <div class="line-number">37</div>
+                      <div class="line-number">38</div>
+                      <div class="line-number">39</div>
+                      <div class="line-number">40</div>
+                      <div class="line-number">41</div>
+                      <div class="line-number">42</div>
+                      <div class="line-number">43</div>
+                      <div class="line-number">44</div>
+                      <div class="line-number">45</div>
+                      <div class="line-number">46</div>
+                      <div class="line-number">47</div>
+                      <div class="line-number">48</div>
+                      <div class="line-number">49</div>
+                      <div class="line-number">50</div>
+                    </div>
+                    <div class="code-content">
+                      <div class="code-line">
+                        <span class="keyword">package</span>
+                        <span class="identifier">main</span>
+                      </div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">import</span> (
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"context"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"crypto/sha1"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"encoding/hex"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"encoding/xml"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"flag"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"fmt"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string">&nbsp;&nbsp;&nbsp;&nbsp;"io"</span>
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"log"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"net/http"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"net/url"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string">&nbsp;&nbsp;&nbsp;&nbsp;"os"</span>
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"path/filepath"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"strings"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        <span class="string"
+                          >&nbsp;&nbsp;&nbsp;&nbsp;"time"</span
+                        >
+                      </div>
+                      <div class="code-line">)</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">const</span> (
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;rssURL =
+                        <span class="string"
+                          >"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&output=atom"</span
+                        >
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;userAgent =
+                        <span class="string"
+                          >"Aktagon Ltd. (https://aktagon.com;
+                          support@aktagon.com)"</span
+                        >
+                      </div>
+                      <div class="code-line">)</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">type</span> Feed
+                        <span class="keyword">struct</span> {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Entries []Entry `xml:<span
+                          class="string"
+                          >"entry"</span
+                        >`
+                      </div>
+                      <div class="code-line">}</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">type</span> Entry
+                        <span class="keyword">struct</span> {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Link Link `xml:<span
+                          class="string"
+                          >"link"</span
+                        >`
+                      </div>
+                      <div class="code-line">}</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">type</span> Link
+                        <span class="keyword">struct</span> {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Href
+                        <span class="keyword">string</span> `xml:<span
+                          class="string"
+                          >"href,attr"</span
+                        >`
+                      </div>
+                      <div class="code-line">}</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">func</span>
+                        <span class="function">main</span>() {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;dir, max :=
+                        <span class="function">parseFlags</span>()
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>
+                        err := <span class="function">run</span>(dir, max); err
+                        != <span class="keyword">nil</span> {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.<span
+                          class="function"
+                          >Fatalf</span
+                        >(<span class="string">"error: %v"</span>, err)
+                      </div>
+                      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                      <div class="code-line">}</div>
+                      <div class="code-line"></div>
+                      <div class="code-line">
+                        <span class="keyword">func</span>
+                        <span class="function">parseFlags</span>() (<span
+                          class="keyword"
+                          >string</span
+                        >, <span class="keyword">int</span>) {
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;dir := flag.<span
+                          class="function"
+                          >String</span
+                        >(<span class="string">"dir"</span>,
+                        <span class="string">"downloads"</span>,
+                        <span class="string">"destination directory"</span>)
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;max := flag.<span
+                          class="function"
+                          >Int</span
+                        >(<span class="string">"n"</span>,
+                        <span class="number">5</span>,
+                        <span class="string"
+                          >"number of filings to fetch (0 = all)"</span
+                        >)
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;flag.<span class="function"
+                          >Parse</span
+                        >()
+                      </div>
+                      <div class="code-line">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
+                          >return</span
+                        >
+                        *dir, *max
+                      </div>
+                      <div class="code-line">}</div>
+                    </div>
+                  </div>
+                </main>
+
+                <aside class="right-sidebar editor-3d">
+                  <div class="sidebar-header">
+                    <span class="sidebar-title">📋 TODO</span>
+                  </div>
+                  <div class="todo-content">
+                    <div class="todo-section">
+                      <div class="todo-item">• Fetch EDGAR feed</div>
+                      <div class="todo-item">• Parse feed entries</div>
+                      <div class="todo-item">• Download filings (XBRL)</div>
+                      <div class="todo-item">• Parse XBRL</div>
+                      <div class="todo-item">• Store data in Parquet files</div>
+                      <div class="todo-item">• Import data into DuckDB</div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+
+              <footer class="status-bar editor-3d">
+                <div class="status-left">
+                  <span class="status-item">📄 main.go</span>
+                  <span class="status-item">Go</span>
+                  <span class="status-item">UTF-8</span>
+                </div>
+                <div class="status-right">
+                  <span class="status-item">Ln 1, Col 1</span>
+                  <span class="status-item">Spaces: 4</span>
+                  <span class="status-item">Go 1.21</span>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </article>
+        <aside class="aside aside-1">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Transforming Ideas Into Outstanding Software Products
+            </h1>
+            <p class="hero-subtitle">
+              Turning Your Vision into Robust Software Products
+            </p>
+            <div class="hero-actions">
+              <a href="#" class="btn btn--primary">Start a project</a>
+              <a href="#" class="btn btn--secondary"> Plan a project → </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <footer class="footer">
+        <div class="footer-left">
+          <span data-nosnippet="true"
+            >I have made an end at last, and my weary hand can rest.</span
+          >
+        </div>
+        <div class="footer-right">&copy; Aktagon Ltd. 2025</div>
+      </footer>
+    </div>
+  </body>
+</html>

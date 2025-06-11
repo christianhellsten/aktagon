@@ -1,0 +1,136 @@
+/* Main Navigation Styles */
+.main-nav {
+  margin-left: 2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(20, 20, 20, 0.8);
+  //border: 1px solid var(--border-color);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 10px #0069af42;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item a {
+  padding: 8px 16px;
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item:last-child a {
+  border-right: none;
+}
+
+.nav-item:first-child a {
+  border-radius: 4px 0 0 4px;
+}
+
+.nav-item:last-child a {
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-item a:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.nav-item a:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  color: var(--text-primary);
+}
+
+.nav-item.active a {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  border-bottom: 2px solid var(--accent-blue);
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  gap: 3px;
+}
+
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.mobile-nav.active {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobile-nav .nav-item a {
+  padding: 12px 16px;
+  border-right: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  min-height: 44px;
+}
+
+.mobile-nav .nav-item:last-child a {
+  border-bottom: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.mobile-nav .nav-item:first-child a {
+  border-radius: 8px 8px 0 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
