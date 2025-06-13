@@ -2,7 +2,6 @@ baseURL = 'https://aktagon.com/'
 languageCode = 'en-us'
 title = 'Aktagon Ltd. – Fast-Paced Development, Rock-Solid Delivery'
 pluralizeListTitles = false
-theme = ''
 # publishDir = "../pages"
 # canonifyURLs = true # prepend baseURL to any absolute paths
 
